@@ -11,6 +11,10 @@ This website is built with [Django](https://www.djangoproject.com/) and [Bootstr
 ### Local Setup
 
 Setup your virtualenvironment first using the required python version.
+
+#### Setting up your local environment
+Copy `.env.sample` and create new file named `.env` to use the environment variable. It is recommended to setup your local Postgres instance first. The project defaults to sqlite currently if the environment variables found in `.env.sample` aren't present.
+
 Install dependencies
 ```
 [logicmorph] pip install -r requirements.txt
@@ -34,5 +38,5 @@ Always reformat the html files that you are working on before doing commits so t
 Run djlint
 
 ```
-djlint --reformat templates/path/to/your.html
+[logicmorph] djlint --reformat templates/path/to/your.html
 ```
