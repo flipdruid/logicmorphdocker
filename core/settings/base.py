@@ -45,7 +45,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = "django-insecure-%ey1ip+9m5ap$5bw-nq8tz(ks!rfg6s27#b=u93aqgx*ci$wa*"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +145,10 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+if DEBUG:
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+  STATIC_ROOT = os.path.join(BASE_DIR, 'static')  
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
