@@ -10,7 +10,7 @@ if not POSTGRES_ENABLED:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db2.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 else:
@@ -22,15 +22,7 @@ else:
             "PASSWORD": os.environ.get("PG_PASSWORD"),
             "HOST": os.environ.get("PG_HOSTNAME"),
             "PORT": os.environ.get("PG_PORT"),
-        }
-        # "default": {
-        #     "ENGINE": "django.db.backends.postgresql_psycopg2",
-        #     "NAME": "logicmorphdb",
-        #     "USER": "postgres",
-        #     "PASSWORD": "logicmorph2022",
-        #     "HOST": "127.0.0.1",
-        #     "PORT": "5432",
-        # }
+        }        
     }
 
 
