@@ -136,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "Asia/Manila"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -181,7 +181,7 @@ CELERY_BROKER_URL           = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT       = ['application/json']
 CELERY_RESULT_SERIALIZER    = 'json'
 CELERY_TASK_SERIALIZER      = 'json'
-CELERY_TIMEZONE             = 'Asia/Manila'
+CELERY_TIMEZONE             = 'UTC'
 
 CELERY_RESULT_BACKEND       = 'django-db'
 CELERY_RESULT_BACKEND       = 'django-db'

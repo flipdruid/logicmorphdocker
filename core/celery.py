@@ -6,9 +6,9 @@ from django.conf import settings
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','core.settings.dev')
 app = Celery('core')
-app.conf.enable_utc=False
+app.conf.enable_utc=True
 
-app.conf.update(timezone='Asia/Manila')
+app.conf.update(timezone='UTC')
 
 app.config_from_object(settings, namespace='CELERY')
 
