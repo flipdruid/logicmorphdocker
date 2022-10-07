@@ -45,12 +45,15 @@ Run djlint
 ### Run Celery using terminal
 
 #### Run celery with multiple workers
+```
 [logicmorph]  celery -A core.celery worker -l info
-
+```
 #### Run celery with single worker
+```
 [logicmorph] celery -A core.celery worker --pool=solo -l info
-
+```
 #### Run celery with worker at your choice
+```
 [logicmorph] celery -A core.celery worker --concurrency=5 -l info
+```
 
-#### Next
