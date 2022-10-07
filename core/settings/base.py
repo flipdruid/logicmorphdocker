@@ -153,7 +153,7 @@ SITE_ID = 1 #for django.contrib.sites - mail related
 ACCOUNT_ACTIVATION_DAYS = 7 #for django registration
 
 EMAIL_BACKEND   =   "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST      =   "mai.logicmorph.com"
+EMAIL_HOST      =   "mail.logicmorph.com"
 EMAIL_PORT      =   465
 EMAIL_USE_SSL   =   True
 EMAIL_HOST_USER =   "flipdruid@yahoo.com"
