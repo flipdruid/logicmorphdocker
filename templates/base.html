@@ -2,13 +2,24 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
     <head>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        
+        
+
         <title>
             {% block head_title %}{% endblock %}
         </title>
     </head>
     <body>
+        
         <main class="main" id="top">
             {% block content %}{% endblock %}
         </main>
+
+        <!-- Optional JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src = "{% static 'js/bootstrap.bundle.min.js' %}"></script> 
+    
     </body>
 </html>

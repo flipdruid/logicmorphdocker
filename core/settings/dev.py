@@ -22,5 +22,5 @@ else:
             "PASSWORD": os.environ.get("PG_PASSWORD"),
             "HOST": os.environ.get("PG_HOSTNAME"),
             "PORT": os.environ.get("PG_PORT"),
-        }
+        }        
     }
