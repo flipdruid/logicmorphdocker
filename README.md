@@ -52,3 +52,5 @@ Run djlint
 
 #### Run celery with worker at your choice
 [logicmorph] celery -A core.celery worker --concurrency=5 -l info
+
+#### Next
