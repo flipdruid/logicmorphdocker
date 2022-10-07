@@ -59,8 +59,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    #Celery
     'django_celery_results',
-    'django_celery_beat',
+    'django_celery_beat',    
+    #UserAuth
+    'django_registration',
+    'crispy_forms',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +79,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "core.urls"
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
 
 TEMPLATES = [
     {
@@ -129,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Manila"
 
 USE_I18N = True
 
@@ -139,16 +146,46 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = 'static/'
+
+SITE_ID = 1 #for django.contrib.sites - mail related
+
+ACCOUNT_ACTIVATION_DAYS = 7 #for django registration
+
+EMAIL_BACKEND   =   "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST      =   "mai.logicmorph.com"
+EMAIL_PORT      =   465
+EMAIL_USE_SSL   =   True
+EMAIL_HOST_USER =   "flipdruid@yahoo.com"
+DEFAULT_FROM_MAIL   =   EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = "tempass"
+
+AUTH_USER_MODEL =   "accounts.User"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-if DEBUG:
-  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-else:
-  STATIC_ROOT = os.path.join(BASE_DIR, 'static')  
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+#CELERY SETTINGS
+CELERY_BROKER_URL           = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT       = ['application/json']
+CELERY_RESULT_SERIALIZER    = 'json'
+CELERY_TASK_SERIALIZER      = 'json'
+CELERY_TIMEZONE             = 'Asia/Manila'
+
+CELERY_RESULT_BACKEND       = 'django-db'
+CELERY_RESULT_BACKEND       = 'django-db'
+CELERY_CACHE_BACKEND        = 'django-cache'
+
+#CELERY BEAT
+CELERY_BEAT_SCHEDULER       =  'django_celery_beat.schedulers:DatabaseScheduler'
