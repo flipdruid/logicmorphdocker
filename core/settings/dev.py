@@ -24,8 +24,3 @@ else:
             "PORT": os.environ.get("PG_PORT"),
         }        
     }
-
-
-
-
-

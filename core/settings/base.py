@@ -156,25 +156,19 @@ EMAIL_BACKEND   =   "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST      =   "mail.logicmorph.com"
 EMAIL_PORT      =   465
 EMAIL_USE_SSL   =   True
-EMAIL_HOST_USER =   "flipdruid@yahoo.com"
-DEFAULT_FROM_MAIL   =   EMAIL_HOST_USER
+EMAIL_HOST_USER =   os.environ.get("EMAIL_HOST_USER")
+DEFAULT_FROM_MAIL   =   os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = "tempass"
-
 AUTH_USER_MODEL =   "accounts.User"
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
 
 #CELERY SETTINGS
 CELERY_BROKER_URL           = 'redis://127.0.0.1:6379'
