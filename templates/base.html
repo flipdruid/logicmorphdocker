@@ -12,14 +12,14 @@
         </title>
     </head>
     <body>
-        {% include 'main/inc/navbar.html' %}
+        
         <main class="main" id="top">
             {% block content %}{% endblock %}
         </main>
 
         <!-- Optional JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        
+        <script src = "{% static 'js/bootstrap.bundle.min.js' %}"></script> 
     
     </body>
 </html>
