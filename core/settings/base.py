@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     #Celery
     'django_celery_results',
     'django_celery_beat',    
@@ -66,6 +67,8 @@ INSTALLED_APPS = [
     'django_registration',
     'crispy_forms',
     'accounts',
+
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +88,7 @@ CRISPY_TEMPLATE_PACK='bootstrap4'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -159,7 +162,17 @@ EMAIL_USE_SSL       =   get_env_bool("EMAIL_USE_SSL", True)
 EMAIL_HOST_USER     =   os.environ.get("EMAIL_HOST_USER")
 DEFAULT_FROM_MAIL   =   os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD =   os.environ.get("EMAIL_HOST_PASSWORD")
-AUTH_USER_MODEL     =   "accounts.User"
+
+# AUTH_USER_MODEL="accounts.User"
+# LOGIN_URL="login"
+# LOGOUT_REDIRECT_URL="login"
+# LOGIN_REDIRECT_URL="home"
+
+#UserAuth
+AUTH_USER_MODEL     =   os.environ.get("AUTH_USER_MODEL")
+LOGIN_URL           =   os.environ.get("LOGIN_URL")
+LOGOUT_REDIRECT_URL =   os.environ.get("LOGOUT_REDIRECT_URL")
+LOGIN_REDIRECT_URL  =   os.environ.get("LOGIN_REDIRECT_URL")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
