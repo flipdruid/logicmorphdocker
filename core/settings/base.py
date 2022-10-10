@@ -179,9 +179,12 @@ LOGIN_REDIRECT_URL  =   os.environ.get("LOGIN_REDIRECT_URL")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 #CELERY SETTINGS
 CELERY_BROKER_URL           = 'redis://127.0.0.1:6379'

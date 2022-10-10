@@ -20,6 +20,7 @@ from django_registration.backends.activation.views import  RegistrationView, Act
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
+
 class IndexView(TemplateView):
     template_name   =   'accounts/home.html'
 

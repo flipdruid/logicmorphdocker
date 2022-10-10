@@ -1,5 +1,7 @@
 
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -28,8 +30,4 @@ urlpatterns = [
     path('reset_password_sent/',views.ResetPasswordDone.as_view(),name="password_reset_done"), 
     path('reset/<uid64>/<token>',views.ResetPasswordConfirm.as_view(),name="password_reset_confirm"),
     path('reset_password_complete/',views.ResetPasswordComplete.as_view(),name="password_reset_complete"),
-
-    
-    # path('logout/', views.Logout.as_view(), name='logout'),
-    # path('logout')
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
