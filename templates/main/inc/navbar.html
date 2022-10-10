@@ -13,70 +13,32 @@
         </button>
             
         
-            <div class="row">
+            <!-- <div class="row"> -->
                 <div class="collapse navbar-collapse" id ="collapse_target">
-                    <div class="col-lg-3 ">
+                    <!-- <div class="col-lg-3 "> -->
                         <a class="navbar-brand"><img src="{% static 'image/lm.png' %}"style="width: 50px; height: 50px;"></a>
-                        <a href ="/" class = "align-middle"><span class="navbar-text" style="margin-top: 11px;">LogicMorph</span></a>
-                    </div>
-                    <div class="col-lg-9" >
-                        <ul class="navbar-nav" style="text-align: right; padding: 0; margin: 0;">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle"  data-toggle="dropdown" data-target="dropdown_target" href="#">
-                                        Solutions <span class="caret"></span>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                                        <a href="#" class="dropdown-item">Solution 1</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item">Solution 2</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
-                                        Our Stacks<span class="caret"></span></a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                                            <a href="#" class="dropdown-item">Stack 1 </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item">Stacks 2</a>
-                                        </div>
-                                </li>
+                        <a href ="/" class = "align-middle"><span class="navbar-text">LogicMorph</span></a>
+                    <!-- </div> -->
+                    <!-- <div class="col-lg-9"> -->
+                        <ul class="navbar-nav ml-auto">
+                                <li class="nav-item"><a class="nav-link"  href="#">Solutions</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#">Our Stacks</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#">Resources</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#">About Us</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#">About Us</a></li>
+                                <a href="#" class="nav-link btn btn-outline-secondary">Contact Us</a>                                                           
+                                <!-- <li class="nav-item">
+                                    {% if user.is_authenticated %}
+                                        <a href="/accounts/logout" class="nav-link">Logout</a>
+                                    {% else %}
+                                        <a href="/accounts/login" class="nav-link">Login</a>
+                                    {% endif %}
+                                </li> -->
                             
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
-                                        Resources<span class="caret"></span></a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                                            <a href="#" class="dropdown-item">Resource 1</a>                        
-                                            <a href="#" class="dropdown-item">Resource 2</a>
-                                            <a href="#" class="dropdown-item">Resource 3</a>                                            
-                                        </div>
-                                </li>
-                        
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
-                                    About US<span class="caret"></span></a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                                        <a href="#" class="dropdown-item">Who we are?</a>
-                                        <a href="#" class="dropdown-item">Why us?</a>
-                                        <a href="#" class="dropdown-item">Customer Support</a>
-                                    </div>
-                            </li>
-                            <li class="nav-item">
-                            <a href="#" class="nav-link btn btn-outline-secondary">Contact Us</a>
-                            </li>                                
-                                    
-                           
-                            <!-- <li class="nav-item">
-                                {% if user.is_authenticated %}
-                                    <a href="/accounts/logout" class="nav-link">Logout</a>
-                                {% else %}
-                                    <a href="/accounts/login" class="nav-link">Login</a>
-                                {% endif %}
-                            </li> -->
-                            
-                        </ul>
-                    </div>
+                    </ul>
+                    <!-- </div> -->
                 </div>
-            </div>
+            <!-- </div> -->
         
         
     </nav>
