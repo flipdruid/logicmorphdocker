@@ -158,18 +158,13 @@ ACCOUNT_ACTIVATION_DAYS = 7 #for django registration
 EMAIL_BACKEND       =   "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST          =   os.environ.get("EMAIL_HOST")
 EMAIL_PORT          =   os.environ.get("EMAIL_PORT")
-EMAIL_USE_SSL       =   get_env_bool("EMAIL_USE_SSL", True)
+EMAIL_USE_TLS       =   get_env_bool("EMAIL_USE_SSL", True)
 EMAIL_HOST_USER     =   os.environ.get("EMAIL_HOST_USER")
 DEFAULT_FROM_MAIL   =   os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD =   os.environ.get("EMAIL_HOST_PASSWORD")
 
-# AUTH_USER_MODEL="accounts.User"
-# LOGIN_URL="login"
-# LOGOUT_REDIRECT_URL="login"
-# LOGIN_REDIRECT_URL="home"
-
 #UserAuth
-AUTH_USER_MODEL     =   os.environ.get("AUTH_USER_MODEL")
+AUTH_USER_MODEL     =   "accounts.User"
 LOGIN_URL           =   os.environ.get("LOGIN_URL")
 LOGOUT_REDIRECT_URL =   os.environ.get("LOGOUT_REDIRECT_URL")
 LOGIN_REDIRECT_URL  =   os.environ.get("LOGIN_REDIRECT_URL")

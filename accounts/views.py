@@ -64,7 +64,8 @@ class ResetPasswordComplete(PasswordResetCompleteView):
 
 class Register(RegistrationView):
     form_class = UserForm
-    # template_name = 'django_registration/registration_form.html'
+    template_name = 'django_registration/registration_form.html'
+    success_url = reverse_lazy("accounts:django_registration_complete")
 
 class ActivateUser(ActivationView):    
     template_name = 'django_registration/activate.html'
