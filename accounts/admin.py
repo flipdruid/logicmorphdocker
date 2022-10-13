@@ -1,9 +1,6 @@
-# from django.contrib.auth.admin import UserAdmin
-
-
 from django.contrib import admin
 
-from .models import User, Profile, Customer
+from accounts.models import User, Profile, Customer
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):

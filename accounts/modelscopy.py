@@ -2,10 +2,10 @@ import email
 from ssl import create_default_context
 from statistics import mode
 from tabnanny import verbose
-from unittest.util import _MAX_LENGTH
 from xml.sax import default_parser_list
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+# from accounts.tasks import contact_us_send_mail
 
 
 class User(AbstractUser):
@@ -34,6 +34,10 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.email
+
+    def save (self,*args, **kwargs):
+        super (Customer, self).save(*args, **kwargs)
+        contact_us_send_mail.delay(self.id)
 
 
 

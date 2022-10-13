@@ -1,12 +1,11 @@
-# from django.shortcuts import render
 import email
 from http.client import HTTPResponse
 from django.views.generic import CreateView
 from django.views.generic.edit import FormView
 
-# from django.shortcuts import resolve_url
-from .forms import UserForm
-from .models import Customer
+from accounts.forms import UserForm
+from accounts.models import Customer
+from accounts.tasks import contact_us_send_mail
 
 from django.contrib.auth.views import ( 
 LoginView,
@@ -25,18 +24,18 @@ from django_registration.backends.activation.views import  RegistrationView, Act
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
-
-
-
 class ContactUs(CreateView):
     model           =   Customer
     template_name   =   'accounts/contact_us.html' 
     fields          =   '__all__'
     success_url     =   reverse_lazy("accounts:home")    
 
+    def get_success_url(self):        
+        contact_us_send_mail.delay(self.object.id)
+        return reverse_lazy("accounts:home")
+
 class IndexView(TemplateView):
     template_name   =   'accounts/home.html'
-
 
 class Login(LoginView):
     template_name = 'accounts/login.html'
