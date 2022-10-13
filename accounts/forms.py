@@ -1,8 +1,18 @@
+from dataclasses import fields
+from pyexpat import model
 from django.contrib.auth.forms import UserCreationForm
 
-from accounts.models import User
+from django import forms
+
+from accounts.models import User, Customer
 
 class UserForm (UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model   =   User
         fields  =    ('email', 'username','first_name', 'last_name', 'password1', 'password2')
+
+
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model   =   Customer
+        fields  =   '__all__'

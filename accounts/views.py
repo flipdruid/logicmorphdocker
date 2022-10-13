@@ -1,7 +1,12 @@
 # from django.shortcuts import render
+import email
+from http.client import HTTPResponse
+from django.views.generic import CreateView
+from django.views.generic.edit import FormView
 
-from django.shortcuts import resolve_url
-from accounts.forms import UserForm
+# from django.shortcuts import resolve_url
+from .forms import UserForm
+from .models import Customer
 
 from django.contrib.auth.views import ( 
 LoginView,
@@ -21,13 +26,20 @@ from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
 
+
+
+class ContactUs(CreateView):
+    model           =   Customer
+    template_name   =   'accounts/contact_us.html' 
+    fields          =   '__all__'
+    success_url     =   reverse_lazy("accounts:home")    
+
 class IndexView(TemplateView):
     template_name   =   'accounts/home.html'
 
 
 class Login(LoginView):
     template_name = 'accounts/login.html'
-    # redirect_url  = reverse_lazy('home')
 
 class Logout(LogoutView):
     template_name = 'accounts/logged_out.html'
@@ -53,14 +65,11 @@ class ResetPassword(PasswordResetView):
 class ResetPasswordDone(PasswordResetDoneView):
     template_name   =  'accounts/password_reset_done.html'
 
-
 class ResetPasswordConfirm(PasswordResetConfirmView):
     template_name   =  'accounts/password_reset_confirm.html'
 
-
 class ResetPasswordComplete(PasswordResetCompleteView):
     template_name   =  'accounts/passwprd_reset_complete.html'
-
 
 class Register(RegistrationView):
     form_class = UserForm
