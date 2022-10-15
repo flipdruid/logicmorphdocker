@@ -1,11 +1,7 @@
 import email
 from http.client import HTTPResponse
 from django.views.generic import CreateView
-from django.views.generic.edit import FormView
-
 from accounts.forms import UserForm
-from accounts.models import Customer
-from accounts.tasks import contact_us_send_mail
 
 from django.contrib.auth.views import ( 
 LoginView,
@@ -23,16 +19,7 @@ PasswordContextMixin,
 from django_registration.backends.activation.views import  RegistrationView, ActivationView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-
-class ContactUs(CreateView):
-    model           =   Customer
-    template_name   =   'accounts/contact_us.html' 
-    fields          =   '__all__'
-    success_url     =   reverse_lazy("accounts:home")    
-
-    def get_success_url(self):        
-        contact_us_send_mail.delay(self.object.id)
-        return reverse_lazy("accounts:home")
+  
 
 class IndexView(TemplateView):
     template_name   =   'accounts/home.html'
@@ -51,7 +38,7 @@ class Profile(TemplateView):
 
 class ChangePassword(PasswordChangeView):
     template_name   =   'accounts/password_change_form.html'
-    success_url     =   reverse_lazy("login")
+    success_url     =   reverse_lazy("accounts:login")
 
 class ChangePasswordDone(PasswordChangeDoneView):
     template_name   =   'accounts/password_change_done.html'
@@ -77,9 +64,11 @@ class Register(RegistrationView):
 
 class ActivateUser(ActivationView):    
     template_name = 'django_registration/activate.html'
+    success_url = reverse_lazy("accounts:django_registration_activation_complete")
 
 class ActivationComplete (TemplateView):
     template_name = "django_registration/activation_complete.html"
+    # success_url = reverse_lazy("accounts:django_registration_activation_complete")
 
 class RegistrationComplete(TemplateView):
     template_name = "django_registration/registration_complete.html"

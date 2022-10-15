@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'django_registration',
     'crispy_forms',
     'accounts',
-
+    'app',
     'widget_tweaks',
 ]
 
@@ -168,6 +168,9 @@ AUTH_USER_MODEL     =   "accounts.User"
 LOGIN_URL           =   os.environ.get("LOGIN_URL")
 LOGOUT_REDIRECT_URL =   os.environ.get("LOGOUT_REDIRECT_URL")
 LOGIN_REDIRECT_URL  =   os.environ.get("LOGIN_REDIRECT_URL")
+
+#SALT
+HASHID_FIELD_SALT   =   os.environ.get("HASHID_FIELD_SALT")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
