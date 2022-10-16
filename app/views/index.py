@@ -1,11 +1,24 @@
+from logging import exception
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, TemplateView
+
 from app.models import Post, Lead
 from django.urls import reverse_lazy
 
+class Error400(TemplateView):
+    template_name       =   '400.html'
+
+class Error403(TemplateView):
+    template_name       =   '403.html'
+
+class Error404(TemplateView):
+    template_name       =   '404.html'
+
+class Error500(TemplateView):
+    template_name       =   '500.html'
 
 class Landing(ListView):
     model               =   Post
