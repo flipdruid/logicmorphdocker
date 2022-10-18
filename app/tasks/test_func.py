@@ -1,8 +1,9 @@
 from celery import shared_task
 
+
 @shared_task(bind=True)
 def test_func(self):
-    #operation
+    # operation
     for i in range(10):
-        print (i)
+        print(i)
     return "Done"

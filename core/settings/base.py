@@ -60,15 +60,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    #Celery
-    'django_celery_results',
-    'django_celery_beat',    
-    #UserAuth
-    'django_registration',
-    'crispy_forms',
-    'accounts',
-    'app',
-    'widget_tweaks',
+    # Celery
+    "django_celery_results",
+    "django_celery_beat",
+    # UserAuth
+    "django_registration",
+    "crispy_forms",
+    "accounts",
+    "app",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
@@ -83,12 +83,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "core.urls"
 
-CRISPY_TEMPLATE_PACK='bootstrap4'
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'templates')],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -149,28 +149,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
-SITE_ID = 1 #for django.contrib.sites - mail related
+SITE_ID = 1  # for django.contrib.sites - mail related
 
-ACCOUNT_ACTIVATION_DAYS = 7 #for django registration
+ACCOUNT_ACTIVATION_DAYS = 7  # for django registration
 
-EMAIL_BACKEND       =   "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST          =   os.environ.get("EMAIL_HOST")
-EMAIL_PORT          =   os.environ.get("EMAIL_PORT")
-EMAIL_USE_TLS       =   get_env_bool("EMAIL_USE_SSL", True)
-EMAIL_HOST_USER     =   os.environ.get("EMAIL_HOST_USER")
-DEFAULT_FROM_MAIL   =   os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD =   os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_USE_TLS = get_env_bool("EMAIL_USE_SSL", True)
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+DEFAULT_FROM_MAIL = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
-#UserAuth
-AUTH_USER_MODEL     =   "accounts.User"
-LOGIN_URL           =   os.environ.get("LOGIN_URL")
-LOGOUT_REDIRECT_URL =   os.environ.get("LOGOUT_REDIRECT_URL")
-LOGIN_REDIRECT_URL  =   os.environ.get("LOGIN_REDIRECT_URL")
+# UserAuth
+AUTH_USER_MODEL = "accounts.User"
+LOGIN_URL = os.environ.get("LOGIN_URL")
+LOGOUT_REDIRECT_URL = os.environ.get("LOGOUT_REDIRECT_URL")
+LOGIN_REDIRECT_URL = os.environ.get("LOGIN_REDIRECT_URL")
 
-#SALT
-HASHID_FIELD_SALT   =   os.environ.get("HASHID_FIELD_SALT")
+# SALT
+HASHID_FIELD_SALT = os.environ.get("HASHID_FIELD_SALT")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -178,23 +178,24 @@ HASHID_FIELD_SALT   =   os.environ.get("HASHID_FIELD_SALT")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = "/media/"
 
-#CELERY SETTINGS
-CELERY_BROKER_URL           = 'redis://127.0.0.1:6379'
-CELERY_RESULT_BACKEND       = "redis://127.0.0.1:6379"
-CELERY_ACCEPT_CONTENT       = ['application/json']
-CELERY_RESULT_SERIALIZER    = 'json'
-CELERY_TASK_SERIALIZER      = 'json'
-CELERY_TIMEZONE             = 'UTC'
+
+# CELERY SETTINGS
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
 
 
 # CELERY_RESULT_BACKEND       = 'django-db'
-CELERY_CACHE_BACKEND        = 'django-cache'
+CELERY_CACHE_BACKEND = "django-cache"
 
-#CELERY BEAT
-CELERY_BEAT_SCHEDULER       =  'django_celery_beat.schedulers:DatabaseScheduler'
+# CELERY BEAT
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"

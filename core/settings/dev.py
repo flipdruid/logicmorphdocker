@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
@@ -22,5 +22,5 @@ else:
             "PASSWORD": os.environ.get("PG_PASSWORD"),
             "HOST": os.environ.get("PG_HOSTNAME"),
             "PORT": os.environ.get("PG_PORT"),
-        }        
+        }
     }
