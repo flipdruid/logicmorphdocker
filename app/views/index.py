@@ -1,16 +1,10 @@
 from logging import exception
-
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import loader
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.generic import CreateView
-from django.views.generic import DeleteView
-from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
-from django.views.generic import UpdateView
+
 
 from app.models import Lead
 from app.models import Post
@@ -37,3 +31,9 @@ class Landing(ListView):
     template_name = "main/landing.html"
     paginate_by = 10
     context_object_name = "posts"
+
+# class Coverage(TemplateView):
+#     # model = Lead
+#     template_name = "htmlcov/index.html"
+#     # fields = "__all__"
+#     success_url = reverse_lazy("main")

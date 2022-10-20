@@ -1,2 +1,2 @@
-from .post import LeadForm
+from .lead import LeadForm
 from .post import PostForm

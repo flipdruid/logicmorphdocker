@@ -3,8 +3,7 @@ from __future__ import absolute_import
 import celery
 from django.conf import settings
 from django.db import models
-from django_fsm import FSMField
-from django_fsm import transition
+from django_fsm import FSMField, transition
 from hashid_field import HashidAutoField
 
 
@@ -19,7 +18,7 @@ class Lead(models.Model):
     entity_name = models.CharField(max_length=100, verbose_name="Subject")
     details = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["-created_at"]

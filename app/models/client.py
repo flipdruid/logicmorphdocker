@@ -5,6 +5,7 @@ from datetime import datetime
 from django.conf import settings
 from django.db import models
 from hashid_field import HashidAutoField
+# from app.models import Profile
 
 
 def image_path(instance, filename):
@@ -35,5 +36,5 @@ class Client(models.Model):
         upload_to=image_path, default="business_logo/lmlt.png"
     )
     address = models.CharField(max_length=200)
-    telephone_no = models.IntegerField()
+    telephone_no = models.CharField(max_length=100)
     position = models.CharField(max_length=100)

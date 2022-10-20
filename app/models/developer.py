@@ -5,8 +5,9 @@ from django.conf import settings
 from django.db import models
 from hashid_field import HashidAutoField
 
-from app.models import Profile
-from app.models import Project
+from app.models.profile import Profile
+from app.models.project import Project
+
 
 
 class Developer(models.Model):

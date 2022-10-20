@@ -1,11 +1,10 @@
 from django.urls import path
-
 from app.views.index import Landing
-from app.views.index import LeadCreate
-from app.views.index import PostCreate
-from app.views.index import PostDelete
-from app.views.index import PostEdit
-from app.views.index import PostView
+from app.views import LeadCreate
+from app.views import PostCreate
+from app.views import PostDelete
+from app.views import PostEdit
+from app.views import PostView
 
 
 urlpatterns = [

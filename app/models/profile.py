@@ -32,7 +32,7 @@ class Profile(models.Model):
     id = HashidAutoField(
         primary_key=True, salt=f"profilemodel{settings.HASHID_FIELD_SALT}"
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile_user")
     avatar = models.ImageField(upload_to=image_path, default="avatar/lmlt.png")
     is_logicmorph_staff = models.BooleanField(default=False)
     is_dark_theme = models.BooleanField(default=False)

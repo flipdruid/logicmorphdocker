@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 from hashid_field import HashidAutoField
 
-from app.models import Client
+from app.models.client import Client
 
 
 class Project(models.Model):
@@ -17,7 +17,7 @@ class Project(models.Model):
         Client, on_delete=models.CASCADE, related_name="client_profile"
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["-created_at"]

@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import models
 from hashid_field import HashidAutoField
-
 from accounts.models.user import User
 
 
