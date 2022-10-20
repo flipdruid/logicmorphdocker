@@ -1,0 +1,21 @@
+# Set this variable to True to enable postgres
+POSTGRES_ENABLED=FALSE
+PG_DB_NAME="lmdb"
+PG_USERNAME="lmpg"
+PG_PASSWORD="logic2022"
+PG_HOSTNAME="localhost"
+PG_PORT=5432
+
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_USE_TLS=True
+EMAIL_PORT=587
+EMAIL_HOST_USER="philip.logicmorph@gmail.com"
+DEFAULT_FROM_MAIL   = "philip.logicmorph@gmail.com"
+EMAIL_HOST_PASSWORD="mecajupmqljeqrfb"
+
+# AUTH_USER_MODEL="accounts.User"
+LOGIN_URL="accounts:login"
+LOGOUT_REDIRECT_URL="accounts:login"
+LOGIN_REDIRECT_URL="accounts:home"
+
+HASHID_FIELD_SALT = "56df835efa4bcda1435f326ca8412a2344a0c2c509d66eefe3f97f65d5e1f6b4"
