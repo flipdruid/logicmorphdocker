@@ -12,7 +12,7 @@ class TestUser(TestCase):
             last_name="Delacruz",
             email="flipdruid@yahoo.com"
         )
-        return self.user
+        return
     
     def tearDown(self):
         self.user=None

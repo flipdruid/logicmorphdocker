@@ -2,7 +2,10 @@ from tarfile import CONTTYPE
 from django.test import TestCase
 from datetime import datetime
 from app.models import Lead
+
+
 class TestLeadModels(TestCase):
+    
     
     def setUp(self):
         self.lead=Lead.objects.create(
