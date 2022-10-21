@@ -1,11 +1,7 @@
 from tarfile import CONTTYPE
 from django.test import TestCase
-from datetime import datetime, date
+from datetime import datetime
 from app.models import Lead
-  
-currentTime = datetime.now()
-# dates=datetime.strptime(str(currentTime), '%Y-%m-%d')
-dates = currentTime.strftime('%Y-%m-%d')
 class TestLeadModels(TestCase):
     
     def setUp(self):
@@ -15,33 +11,21 @@ class TestLeadModels(TestCase):
             email="flipdruid@yahoo.com",
             entity_name="Subject",
             details="details",
-            created_at= dates,
-            updated_at= dates
+            created_at= datetime.today().strftime('%Y-%m-%d'),
+            updated_at= datetime.today().strftime('%Y-%m-%d')
         ) 
         
+        self.created_at=self.lead.created_at
+        self.updated_at=self.lead.updated_at
 
-    def test_first_name_str(self):
-        self.first_name="Verlien"
-        self.assertEqual(self.first_name, self.lead.first_name)
-            
-    def test_last_name_str(self):
-        self.last_name="Lebios"
-        self.assertEqual(self.last_name, self.lead.last_name)
+    def tearDown(self):
+        self.lead=None
 
-    def test_email_str(self):
-        self.email="flipdruid@yahoo.com"
-        self.assertEqual(self.email, self.lead.email)
-        
-    def test_entity_name_str(self):
-        self.entity_name="Subject"
-        self.assertEqual(self.entity_name, self.lead.entity_name)
-    
-    def test_details_str(self):
-        self.details="details"
-        self.assertEqual(self.details, self.lead.details)
-
-    def test_created_at_str(self):
-        self.assertEqual(str(self.lead.created_at), str(self.lead.created_at))
-
-    def test_updated_at_str(self):
-        self.assertEqual(str(self.lead.updated_at), str(self.lead.updated_at))
+    def test_create_lead(self):
+        self.assertEqual(self.lead.first_name, "Verlien")
+        self.assertEqual(self.lead.last_name,"Lebios")
+        self.assertEqual(self.lead.email, "flipdruid@yahoo.com")
+        self.assertEqual(self.lead.entity_name, "Subject")
+        self.assertEqual(self.lead.details, "details")
+        self.assertEqual(str(self.created_at), str(self.lead.created_at))
+        self.assertEqual(str(self.updated_at), str(self.lead.updated_at))

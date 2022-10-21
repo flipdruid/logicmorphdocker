@@ -4,11 +4,8 @@ from django.test import TestCase
 from datetime import datetime
 from app.models.client import Client
 from app.models.project import Project
-  
-currentTime = datetime.now()
-# dates=datetime.strptime(str(currentTime), '%Y-%m-%d')
-dates = currentTime.strftime('%Y-%m-%d')
-class TestClientModels(TestCase):
+
+class TestProjectModels(TestCase):
     
     def setUp(self):
         self.client=Client.objects.create(
@@ -26,21 +23,16 @@ class TestClientModels(TestCase):
             created_at=datetime.today().strftime('%Y-%m-%d'),
             updated_at=datetime.today().strftime('%Y-%m-%d')
         )
+        self.created_at=self.project.created_at
+        self.updated_at=self.project.updated_at
     
-
-    def test_name_str(self):
+    def tearDown(self):
+        self.client=None
+        self.project=None
+        
+    def test_create_project_str(self):
         self.assertEqual(self.project.name, "Philip")
-    
-    def test_state_str(self):
         self.assertEqual(self.project.state, "New")
-
-    def test_client_object(self):
         self.assertEqual(self.project.client, self.client)
-
-    def test_created_at_str(self):
-        self.expected_date = self.project.created_at
-        self.assertEqual(str(self.project.created_at), str(self.expected_date))
-    
-    def test_updated_at_str(self):
-        self.expected_date = self.project.updated_at
-        self.assertEqual(str(self.project.updated_at), str(self.expected_date))
+        self.assertEqual(self.project.created_at, self.created_at)
+        self.assertEqual(self.project.updated_at, self.updated_at)
