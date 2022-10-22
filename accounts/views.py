@@ -59,8 +59,7 @@ class ResetPasswordConfirm(PasswordResetConfirmView):
 
 
 class ResetPasswordComplete(PasswordResetCompleteView):
-    template_name = "accounts/passwprd_reset_complete.html"
-
+    template_name = "accounts/password_reset_complete.html"
 
 class Register(RegistrationView):
     form_class = UserForm

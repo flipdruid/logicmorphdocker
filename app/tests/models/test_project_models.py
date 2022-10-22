@@ -6,8 +6,8 @@ from app.models.client import Client
 from app.models.project import Project
 
 class TestProjectModels(TestCase):
-    
-    def setUp(self):
+
+    def create_client(self):
         self.client=Client.objects.create(
             business_name='Logic Morph',
             business_logo="logo.png",
@@ -15,7 +15,9 @@ class TestProjectModels(TestCase):
             telephone_no="123456",
             position ="Developer"
         )  
+        return self.client
 
+    def create_project(self):
         self.project=Project.objects.create(
             name= "Philip",
             state="New",
@@ -25,6 +27,13 @@ class TestProjectModels(TestCase):
         )
         self.created_at=self.project.created_at
         self.updated_at=self.project.updated_at
+        return self.project
+    
+    def setUp(self):
+        self.client=self.create_client()       
+        self.project=self.create_project()
+
+        
     
     def tearDown(self):
         self.client=None

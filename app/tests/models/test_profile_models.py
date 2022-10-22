@@ -4,10 +4,9 @@ from app.models import Post
 from accounts.models.user import User
 from app.models.profile import Profile
 
-class TestProfileModels(TestCase):    
+class TestProfileModels(TestCase):   
 
-    def setUp(self):        
-
+    def create_user(self):
         self.user=User.objects.create(
             username="userJuan",
             password="secretnijuan",
@@ -15,13 +14,21 @@ class TestProfileModels(TestCase):
             last_name="Delacruz",
             email="flipdruid@yahoo.com"
         )
-        
+        return self.user 
+
+    def create_profile(self):
         self.profile=Profile.objects.create(
             user=self.user,
             avatar="logo.jpg",
             is_logicmorph_staff =True,
             is_dark_theme = True, 
         )  
+        return self.profile
+
+    def setUp(self):        
+        self.user=self.create_user()
+        self.profile=self.create_profile()       
+        
 
     def tearDown(self):
         self.user=None

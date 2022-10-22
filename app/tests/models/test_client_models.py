@@ -2,17 +2,20 @@ from django.test import TestCase
 from datetime import date
 from app.models import Client
   
-class TestLeadModels(TestCase):          
-    def setUp(self):
-
+class TestLeadModels(TestCase):  
+    def create_client(self):
         self.client=Client.objects.create(
             business_name='Logic Morph',
             business_logo="logo.png",
             address="Philippines",
             telephone_no="123456",
             position ="Developer"
-        )    
+        )   
+        return self.client
 
+    def setUp(self):
+
+        self.client=self.create_client()
     def tearDown(self):
         self.client=None
 

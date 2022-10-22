@@ -5,9 +5,8 @@ from app.models import Lead
 
 
 class TestLeadModels(TestCase):
-    
-    
-    def setUp(self):
+
+    def create_lead(self):
         self.lead=Lead.objects.create(
             first_name="Verlien",
             last_name="Lebios",
@@ -20,6 +19,12 @@ class TestLeadModels(TestCase):
         
         self.created_at=self.lead.created_at
         self.updated_at=self.lead.updated_at
+
+        return self.lead
+
+    
+    def setUp(self):
+        self.lead=self.create_lead()
 
     def tearDown(self):
         self.lead=None

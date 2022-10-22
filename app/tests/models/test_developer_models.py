@@ -13,14 +13,18 @@ from accounts.tests.models.test_user_models import TestUser
 class TestLeadModels(TestCase):
 
     def create_user(self):
-        self.user=User.objects.create(
-            username="userJuan",
-            password="secretnijuan",
-            first_name="Juan",
-            last_name="Delacruz",
-            email="flipdruid@yahoo.com"
-        )
-        return self.user
+        user = User.objects.create(**self.user_credentials)
+        return user
+
+    # def create_user(self):
+    #     self.user=User.objects.create(
+    #         username="userJuan",
+    #         password="secretnijuan",
+    #         first_name="Juan",
+    #         last_name="Delacruz",
+    #         email="flipdruid@yahoo.com"
+    #     )
+    #     return self.user
 
     def create_client(self):
         self.client=Client.objects.create(
@@ -33,7 +37,7 @@ class TestLeadModels(TestCase):
         return self.client
 
     
-    def creater_project(self):
+    def create_project(self):
         self.project=Project.objects.create(
             name= "Philip",
             state="New",
@@ -62,11 +66,13 @@ class TestLeadModels(TestCase):
         )
         return self.developer
 
-    def setUp(self):
-
-        self.user=self.create_user()
+    def setUp(self):        
+        self.user_credentials = {'username': 'john', 'password': 'john_doe'}
+        self.user=self.create_user(**self.user_credentials)
+        
+        # self.user=self.create_user()
         self.client=self.create_client()
-        self.project=self.creater_project()
+        self.project=self.create_project()
         self.profile=self.create_profile()
         self.developer=self.create_developer()
 
