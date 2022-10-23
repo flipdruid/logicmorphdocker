@@ -1,5 +1,5 @@
 from accounts.models.user import User
-from django.test import TestCase
+from django.test import TestCase, Client
 
 
 
@@ -12,12 +12,12 @@ class TestUser(TestCase):
             last_name="Delacruz",
             email="flipdruid@yahoo.com"
         )
-        return
-    
+        client=Client()
     def tearDown(self):
         self.user=None
         
     def test_create_user(self):
+        self.client.login(username=self.user.username, password=self.user.password)
         self.username = "userJuan"
         self.assertEqual(str(self.username), str(self.user.username))
         self.password = "secretnijuan"

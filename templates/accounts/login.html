@@ -3,8 +3,12 @@
 
 {% block content %}
 
-<div class="album py-5 bg-light">
-    <div class="container pt-5">
+<div class="album py-2 bg-light">
+    <div class="container">
+      <div class = "row">
+        <div class = "col-lg-3"></div>
+        <div class = "col-lg-6">
+          <h2 class="text-center text-primary">LOGIN</h2>
       <form method="post" novalidate>
           {% csrf_token %}
 
@@ -17,13 +21,15 @@
                 {% endfor %}
             </div>
           {% endfor %}
-          <div class="form-group">
-              <button type="submit" class="btn btn-success">
+          <div class="form-group text-center">
+              <button type="submit" class="btn btn-light border border-primary rounded">
                 <span class="glyphicon glyphicon-ok"></span> Login
               </button>
-              <a href="{% url 'accounts:home' %}" class="btn btn-danger">Cancel</a>
+              <a href="{% url 'accounts:home' %}" class="btn btn-light border border-primary rounded">Cancel</a>
           </div>
       </form>
+      </div>
+      <div class = "col-lg-3"></div>
     </div>
 </div>
 

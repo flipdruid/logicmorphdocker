@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "accounts",
     "app",
     "widget_tweaks",
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [

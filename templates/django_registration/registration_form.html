@@ -3,27 +3,37 @@
 
 {% block content %}
 
-<div class="album py-5 bg-light">
-    <div class="container pt-5">
-      <form method="post"  action=".">
-          {% csrf_token %}
-
-          {% for field in form.visible_fields %}
-            <div class="form-group">
-                <label for ="{{  field.id_for_label }}"> {{ field.label }}  </label>
-                {{field|add_class:'form-control'}}
-                {% for error in field.errors %}
-                <span class="help-block"> {{ error }}</span>
-                {% endfor %}
-            </div>
-          {% endfor %}
-          <div class="form-group">
-              <button type="submit" class="btn btn-success">
-                <span class="glyphicon glyphicon-ok"></span> Submit
-              </button>
-              <a href="{% url 'accounts:login' %}" class="btn btn-danger">Cancel</a>
-          </div>
-      </form>
+<div class="album bg-light">
+    <div class="container-fluid pt-2">
+      
+      <!-- <div class="card text-center"> -->
+      <div class = "row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+          <h2 class="text-center text-primary">REGISTRATION FORM</h2>
+          <form method="post"  action=".">
+              {% csrf_token %}
+            
+              {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <label for ="{{  field.id_for_label }}"> {{ field.label }}  </label>
+                    {{field|add_class:'form-control'}}
+                    {% for error in field.errors %}
+                    <span class="help-block"> {{ error }}</span>
+                    {% endfor %}
+                </div>
+              {% endfor %}
+              <div class="form-group text-center">
+                  <button type="submit" class="btn btn-light border border-primary rounded">
+                    <span class="glyphicon glyphicon-ok"></span> Submit
+                  </button>
+                  <a href="{% url 'accounts:login' %}" class="btn btn-light border border-primary rounded">Cancel</a>
+              </div>
+          </form>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+    <!-- </div> -->
     </div>
 </div>
 
