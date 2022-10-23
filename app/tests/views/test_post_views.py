@@ -13,8 +13,7 @@ class TestPostViews(TestCase):
             'email': 'testemail@email.com',
             'is_active': 'True'
             }
-            
-        User.objects.create_user(**self.credentials)
+        self.user=User.objects.create(**self.credentials)      
         
         self.client=Client()
         self.landing_url= reverse_lazy("main")
@@ -28,23 +27,22 @@ class TestPostViews(TestCase):
         self.assertTemplateUsed(response,"main/contact_us.html")
 
     def test_post_create(self):
-        # self.client.login(email=self.credentials['email'], password=self.credentials['password']) // this one works too
-        self.client.login(username=self.credentials['username'], password=self.credentials['password'])
+        self.client.login(username=self.user.username, password=self.user.password)
         response = self.client.get(self.postcreate_url, follow=True)
         self.assertEqual(response.status_code, 200)
     
     def test_post_view(self):
-        self.client.login(username=self.credentials['username'], password=self.credentials['password'])
+        self.client.login(username=self.user.username, password=self.user.password)
         response = self.client.get('accounts/postview/1', follow=True)
         self.assertEqual(response.status_code, 200)
     
     def test_post_edit(self):
-        self.client.login(username=self.credentials['username'], password=self.credentials['password'])
+        response = self.client.get(self.login_url,self.credentials)
         response = self.client.get('accounts/postedit/1', follow=True)
         self.assertEqual(response.status_code, 200)
 
     def test_post_delete(self):
-        self.client.login(username=self.credentials['username'], password=self.credentials['password'])
+        response = self.client.get(self.login_url,self.credentials)
         response = self.client.get('accounts/postdelete/1', follow=True)
         self.assertEqual(response.status_code, 200)
 
