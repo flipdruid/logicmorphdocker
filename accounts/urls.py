@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
+from app.views.index import Landing
 
 from . import views
 
@@ -8,7 +9,7 @@ app_name = "accounts"
 
 urlpatterns = (
     [
-        path("", views.IndexView.as_view(), name="home"),
+        path("", Landing.as_view(), name="home"),
         path("login/", views.Login.as_view(), name="login"),
         path("logout/", views.Logout.as_view(), name="logout"),
         path("profile/", views.Profile.as_view(), name="profile"),

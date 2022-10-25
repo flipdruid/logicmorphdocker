@@ -11,4 +11,4 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ("id", "user", "timestamp")
+    list_display = ("id", "user")

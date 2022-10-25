@@ -68,17 +68,19 @@ class Register(RegistrationView):
 
 
 class ActivateUser(ActivationView):
-    template_name = "django_registration/activate.html"
-    success_url = reverse_lazy("accounts:django_registration_activation_complete")
+    pass
+    # template_name = "django_registration/activate.html"
+    # success_url = reverse_lazy("accounts:django_registration_activation_complete")
 
 
 class ActivationComplete(TemplateView):
     template_name = "django_registration/activation_complete.html"
-    # success_url = reverse_lazy("accounts:django_registration_activation_complete")
+    success_url = reverse_lazy("accounts:django_registration_activation_complete")
 
 
 class RegistrationComplete(TemplateView):
     template_name = "django_registration/registration_complete.html"
+    success_url = reverse_lazy("accounts:django_registration_activation_complete")
 
 
 class RegistrationClosed(TemplateView):

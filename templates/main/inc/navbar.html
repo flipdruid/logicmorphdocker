@@ -22,16 +22,16 @@
                     <!-- </div> -->
                     <!-- <div class="col-lg-9"> -->
                         <ul class="navbar-nav ml-auto">
-                                <li class="nav-item"><a class="nav-link"  href="#">Solutions</a></li>
-                                <li class="nav-item"><a class="nav-link"  href="#">Our Stacks</a></li>
-                                <li class="nav-item"><a class="nav-link"  href="#">Resources</a></li>
-                                <li class="nav-item"><a class="nav-link"  href="#">About Us</a></li>
-                                <a href="/contactus" class="nav-link btn btn-outline-secondary">Contact Us</a>
+                                <li class="nav-item"><a class="nav-link"  href="#"><i class="fa-solid fa-toolbox"></i> Solutions</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#"><i class="fa-brands fa-servicestack"></i> Our Stacks</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#"><i class="fa-brands fa-sourcetree"></i> Resources</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                                <a href="/contactus" class="nav-link btn btn-outline-secondary"><i class="fa-regular fa-envelope"></i> Contact Us</a>
                                 <li class="nav-item">
                                     {% if user.is_authenticated %}
-                                        <a href="/accounts/logout" class="nav-link">Logout</a>
+                                        <a href="/accounts/logout" class="nav-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                                     {% else %}
-                                        <a href="/accounts/login" class="nav-link">Login</a>
+                                        <a href="/accounts/login" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                                     {% endif %}
                                 </li>
 

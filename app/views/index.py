@@ -24,5 +24,5 @@ class Error500(TemplateView):
 class Landing(ListView):
     model = Post
     template_name = "main/landing.html"
-    paginate_by = 10
+    paginate_by = 3
     context_object_name = "posts"

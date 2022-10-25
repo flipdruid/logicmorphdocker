@@ -13,10 +13,10 @@
               {% csrf_token %}
               {{ form|crispy }}
               <div class="form-group text-center">
-                  <button type="submit" class="btn btn-success">
-                    <span class="glyphicon glyphicon-ok"></span> Update
+                  <button type="submit" class="btn btn-light border border-primary rounded">
+                    <i class="fa-solid fa-floppy-disk"></i> Update
                   </button>
-                  <a href="{% url 'main' %}" class="btn btn-danger">Cancel</a>
+                  <a href="{% url 'main' %}" class="btn btn-light border border-primary rounded"><i class="fa-solid fa-xmark"></i> Cancel</a>
               </div>
           </form>
         <div class="col-lg-3"></div>
