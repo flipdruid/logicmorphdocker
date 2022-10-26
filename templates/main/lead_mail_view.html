@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-lg-4"></div>
+           <div class="col-lg-4">
+            
+            <div class="card box-shadow text-center mt-5">
+                <div class="bg-primary text-white   text-center" style="height:25px;">{{lead.created_at}}</div>
+                <div class = "card-body">
+                    <h4 class="lead"> <a class="text-dark" href="{% url 'lead_mail_view' lead.id %}">{{ lead.entity_name }}</a> <span class="badge badge-info">{{ lead.state }}</span></h4>
+                    <p><small class="text-muted"> {{lead.details}}</small></p>
+                    <medium class="text-muted">{{lead.first_name}} {{lead.last_name}}</medium>
+                    <p><small class="text-muted">{{lead.email}}</small></p>
+                    <div class="mt-2 text-center">
+                        <div class="btn-group">
+                            <a href="{% url 'lead_mail_lists' %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-left-long"></i> Back</a>
+                            {% if user.is_staff %}
+                                <a href="{% url 'lead_client' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-regular fa-id-badge"></i> Lead Info.</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+       <div class="col-lg-4"></div>
+    </div>
+</div>
+
+{% endblock %}

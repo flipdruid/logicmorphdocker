@@ -6,7 +6,7 @@ from hashid_field import HashidAutoField
 
 class User(AbstractUser):
     id = HashidAutoField(
-        primary_key=True, salt=f"postmodel{settings.HASHID_FIELD_SALT}"
+        primary_key=True, salt=f"abstractusermodel{settings.HASHID_FIELD_SALT}"
     )
     email = models.EmailField(unique=True)
     USERNAME_FIELD = "email"

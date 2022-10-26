@@ -1,8 +1,6 @@
 from accounts.models.user import User
 from django.test import TestCase, Client
 
-
-
 class TestUser(TestCase):
     def setUp(self):
         self.user=User.objects.create(
@@ -17,14 +15,8 @@ class TestUser(TestCase):
         self.user=None
         
     def test_create_user(self):
-        self.client.login(username=self.user.username, password=self.user.password)
-        self.username = "userJuan"
-        self.assertEqual(str(self.username), str(self.user.username))
-        self.password = "secretnijuan"
-        self.assertEqual(str(self.password), str(self.user.password)) 
-        self.first_name = "Juan"
-        self.assertEqual(str(self.first_name), str(self.user.first_name)) 
-        self.last_name = "Delacruz"
-        self.assertEqual(str(self.last_name), str(self.user.last_name))
-        self.email = "flipdruid@yahoo.com"
-        self.assertEqual(str(self.email), str(self.user.email))
+        self.assertEqual(str(self.user.username), "userJuan" )
+        self.assertEqual(str(self.user.password), "secretnijuan") 
+        self.assertEqual(str(self.user.first_name), "Juan") 
+        self.assertEqual(str(self.user.last_name), "Delacruz")
+        self.assertEqual(str(self.user.email), "flipdruid@yahoo.com")

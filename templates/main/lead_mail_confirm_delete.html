@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class='container pt-2'>
+  <div class = "row ">
+    <div class = "col-lg-3"></div>
+    <div class = "col-lg-6 text-center">
+      <h2 class="text-center text-primary"></h2>
+      <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ lead.entity_name }}"?</p>
+        <input type="submit" value="Confirm" class="btn btn-light">
+        <a href="{% url 'lead_mail_lists' %}" class="btn btn-light">Cancel</a>
+      </form>
+    </div>
+    <div class = "col-lg-3"></div>
+</div>
+
+{% endblock %}

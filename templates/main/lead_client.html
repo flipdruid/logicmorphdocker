@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-lg-4"></div>
+           <div class="col-lg-4">
+                <div class="card box-shadow mt-5">
+                    <div class="bg-info text-white text-center align-middle">Lead Information</div>
+                        <div class = "card-body text-center">
+                            <h3 class="text-muted ">{{lead.first_name}} {{lead.last_name}}</h3>
+                            <small class="text-muted">{{lead.email}}</small>
+                            <div class="mt-2">
+                                <div class="btn-group">
+                                    <a href="{% url 'lead_client' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-regular fa-circle-up"></i> Convert to Client</a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                {% if lead_mails %}
+                    {% for lead_mail in lead_mails %}
+                        <div class="card box-shadow text-center mt-5">
+                            <div class="bg-primary text-white   text-center" style="height:25px;">{{lead_mail.created_at}}</div>
+                                <div class = "card-body">
+                                    <h3 class="text-muted">{{lead_mail.entity_name}}</h3>
+                                    <p><small class="text-muted"> {{lead_mail.details|slice:":100"}}</small></p>  
+                                    <a href="{% url 'lead_mail_view_lead' lead_mail.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>                                  
+                                </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+       <div class="col-lg-4"></div>
+    </div>
+</div>
+
+{% endblock %}

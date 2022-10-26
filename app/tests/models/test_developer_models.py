@@ -16,16 +16,6 @@ class TestLeadModels(TestCase):
         user = User.objects.create(**self.user_credentials)
         return user
 
-    # def create_user(self):
-    #     self.user=User.objects.create(
-    #         username="userJuan",
-    #         password="secretnijuan",
-    #         first_name="Juan",
-    #         last_name="Delacruz",
-    #         email="flipdruid@yahoo.com"
-    #     )
-    #     return self.user
-
     def create_client(self):
         self.client=Client.objects.create(
             business_name='Logic Morph',
