@@ -1,11 +1,13 @@
+from email.policy import default
 import os
 import random
 from datetime import datetime
 
 from django.conf import settings
 from django.db import models
+
 from hashid_field import HashidAutoField
-# from app.models import Profile
+from app.models.profile import Profile
 
 
 def image_path(instance, filename):
@@ -31,10 +33,13 @@ class Client(models.Model):
     id = HashidAutoField(
         primary_key=True, salt=f"clientmodel{settings.HASHID_FIELD_SALT}"
     )
-    business_name = models.CharField(max_length=150)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="profile_client"
+    )
+    business_name = models.CharField(max_length=150, default="input business name")
     business_logo = models.ImageField(
         upload_to=image_path, default="business_logo/lmlt.png"
     )
-    address = models.CharField(max_length=200)
-    telephone_no = models.CharField(max_length=100)
-    position = models.CharField(max_length=100)
+    address = models.CharField(max_length=200, default="input address")
+    telephone_no = models.CharField(max_length=100, default="input number")
+    position = models.CharField(max_length=100, default="input position")

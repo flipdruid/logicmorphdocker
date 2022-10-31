@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-
 import celery
 from django.conf import settings
 from django.db import models

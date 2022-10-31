@@ -5,6 +5,11 @@
     <div class="row">
        <div class="col-lg-4"></div>
            <div class="col-lg-4">
+                {% if error_message %}
+                    <p class="alert alert-danger">
+                       <strong>{{ error_message }}</strong>
+                    </p>
+                {% endif %}
                 <div class="card box-shadow mt-5">
                     <div class="bg-info text-white text-center align-middle">Lead Information</div>
                         <div class = "card-body text-center">
@@ -12,7 +17,7 @@
                             <small class="text-muted">{{lead.email}}</small>
                             <div class="mt-2">
                                 <div class="btn-group">
-                                    <a href="{% url 'lead_client' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-regular fa-circle-up"></i> Convert to Client</a>
+                                    <a href="{% url 'create_reg_link' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-regular fa-circle-up"></i> Convert to Client</a>
                                 </div>
                             </div>
                         </div>

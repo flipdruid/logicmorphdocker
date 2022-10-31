@@ -6,6 +6,7 @@ from app.models.lead import Lead
 from app.models.post import Post
 from app.models.project import Project
 from app.models.profile import Profile
+from app.models.reglink import Reglink
 
 
 @admin.register(Post)
@@ -42,6 +43,7 @@ class ProfileAdmin(admin.ModelAdmin):
 class ClientAdmin(admin.ModelAdmin):
     list_display = [
         "id",
+        "profile",
         "business_name",
         "business_logo",
         "address",
@@ -58,3 +60,8 @@ class ProjectAdmin(admin.ModelAdmin):
 @admin.register(Developer)
 class DeveloperAdmin(admin.ModelAdmin):
     list_display = ["id",  "role", "state"]
+
+
+@admin.register(Reglink)
+class ReglinkAdmin(admin.ModelAdmin):
+    list_display = ["id",  "lead_firstname", "lead_lastname", "lead_mail", "lead_id", "lead_reglink", "link_used", "created_at"]
