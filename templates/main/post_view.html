@@ -6,10 +6,15 @@
        <div class="col-lg-3"></div>
            <div class="col-lg-6">
                <div>
-                   <h2 class="pt-5">{{ posts.title }}</h2>
-                   <small class="text-muted">Author: {{posts.created_by}}</small>
-                  <p><medium class="text-muted">{{posts.description}}</medium> </p>
+                    <div class="text-center">
+                        <h2 class="pt-5" >{{ posts.title }}</h2>
+                        <small class="text-muted">Author: {{posts.created_by}}</small>
+                    </div>  
+                    <p style="text-align: justify;"><medium class="text-muted">{{posts.description}}</medium> </p>
                </div>
+                    <div class="text-center">                    
+                            <a href="{% url 'main' %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-left-long"></i> Back</a>
+                    </div>
             </div>
        <div class="col-lg-3"></div>
     </div>

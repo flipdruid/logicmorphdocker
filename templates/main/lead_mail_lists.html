@@ -1,25 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="album py-1 bg-light">
-    <div class="container-fluid text-center">
-        <h2 class="text-center text-primary">CURRENT LEAD EMAIL(S)</h2>
-        <div class="row ">
+    <div class="container-fluid mx-auto">
+        <h2 class="text-center text-primary mb-1">CURRENT LEAD EMAIL(S)</h2>
+        <div class="row">
                         <div class="col-lg-2"></div>
-                            <div class="col-lg-8 text-center">                                
+                            <div class="col-lg-8 mx-auto">     
                             {% for lead in leads %}
-                                {% if forloop.counter0|divisibleby:3 %} <div class="row"> {%  endif %}
-                                    <div class="card box-shadow rounded-top text-center" style="width: 300px; margin: 5px;">
-                                        <div class="bg-primary text-white  text-center" style="height:25px;">{{lead.created_at}}</div>
+                                {% if forloop.counter0|divisibleby:3 %} <div class="row d-flex justify-content-center"> {%  endif %}
+                                    <div class="card box-shadow rounded-top text-center" style="width: 300px; height:240px ; margin: 5px;">
+                                        <div class="bg-primary text-white  text-center" style="height:25px;">{{lead.created_at}} | <span class="badge badge-info rounded-pill"> {{ lead.state }}</span></div>
                                         <div class = "card-body">
-                                            <h4> {{ lead.entity_name }}<span class="badge badge-info"> {{ lead.state }}</span></h4>
+                                            <h4> {{ lead.entity_name |slice:":20" }}</h4>
                                             <div>
                                                 <medium class="text-muted" >{{lead.details|slice:":50"}}</medium> <br/>
                                             </div>
                                             <small class="text-muted" style="text-align:center;">{{lead.first_name}} {{lead.last_name}}</small> <br/>
                                             <small class="text-muted">{{lead.email}}</small> 
-                                            <div class="mt-2 text-center">
+                                            <div class="mt-1 text-center align-text-bottom">
                                                 <div class="btn-group">
                                                     <a href="{% url 'lead_mail_view' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>
+                                                    <a href="{% url 'lead_client' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-regular fa-id-badge"></i> Lead Info.</a>
                                                     <a href="{% url 'lead_mail_delete' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</a>
                                                 </div>
                                             </div>
@@ -27,7 +28,7 @@
                                     </div>
                                 {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
                             {% endfor %}
-                                <!-- <div class="text-center"> -->
+                                <div class="text-center">
                                     <ul class="pagination">
                                         {% if page_obj.has_previous %}
                                             <li class="page-item"><a href="?page=1" class="page-link" ><i class="fa-solid fa-angles-left"></i> First</a></li>
@@ -39,7 +40,7 @@
                                             <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link"><i class="fa-solid fa-angles-right"></i> Last</a></li>
                                         {% endif %}
                                     </ul>
-                                <!-- </div> -->
+                                </div>
                             </div>
                         <div class="col-lg-2"></div>
         </div>

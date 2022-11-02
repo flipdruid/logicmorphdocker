@@ -45,7 +45,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = "django-insecure-%ey1ip+9m5ap$5bw-nq8tz(ks!rfg6s27#b=u93aqgx*ci$wa*"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -97,6 +97,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "app.context.context_processors.currentuserprofile",
             ],
         },
     },
@@ -184,6 +185,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = "/media/"
+
 
 
 # CELERY SETTINGS

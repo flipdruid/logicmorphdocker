@@ -26,8 +26,8 @@ class Reglink(models.Model):
     def __str__(self):
         return str(self.lead_mail)
 
-    def save(self, *args, **kwargs):
-        super(Reglink, self).save(*args, **kwargs)
-        celery.current_app.send_task(
-            "app.tasks.leadtoclient_sendreglink.sendreglink", args=(str(self.id),)
-        )
+    # def save(self, *args, **kwargs):
+    #     super(Reglink, self).save(*args, **kwargs)
+    #     celery.current_app.send_task(
+    #         "app.tasks.leadtoclient_sendreglink.sendreglink", args=(str(self.id),)
+    #     )

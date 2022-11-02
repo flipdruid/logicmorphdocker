@@ -1,4 +1,8 @@
+
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
+from django.contrib.admin.views.decorators import staff_member_required
 from app.views.index import Landing
 from app.views.lead import LeadCreate, LeadMailList, LeadToClient, LeadMailView, LeadMailDelete, LeadMailViewLead, createreglink, leadactivation
 from app.views.post import PostCreate, PostDelete, PostEdit, PostView
@@ -8,7 +12,7 @@ from app.views.post import PostCreate, PostDelete, PostEdit, PostView
 urlpatterns = [
     path("", Landing.as_view(), name="main"),
     path("contactus/", LeadCreate.as_view(), name="contact_us"),
-    path("leads/", LeadMailList.as_view(), name="lead_mail_lists"),
+    path("leads/", staff_member_required(LeadMailList.as_view()), name="lead_mail_lists"),
     path("mailview/<str:pk>", LeadMailView.as_view(), name="lead_mail_view"),
     path("mailviewlead/<str:pk>", LeadMailViewLead.as_view(), name="lead_mail_view_lead"),
     path("leadclient/<str:pk>", LeadToClient.as_view(), name="lead_client"),
@@ -19,4 +23,4 @@ urlpatterns = [
     path("postdelete/<str:pk>", PostDelete.as_view(), name="post_delete"),
     path("createreglink/<str:lead_id>", createreglink, name="create_reg_link"),
     path("leadactivation/<str:reglink>", leadactivation, name="lead_activation_to_client"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

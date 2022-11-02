@@ -1,7 +1,7 @@
 import os
 import random
 from datetime import datetime
-
+from django.utils.safestring import mark_safe
 from django.conf import settings
 from django.db import models
 from hashid_field import HashidAutoField
@@ -36,3 +36,9 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to=image_path, default="avatar/lmlt.png")
     is_logicmorph_staff = models.BooleanField(default=False)
     is_dark_theme = models.BooleanField(default=False)
+
+    def image_tagfront(self):
+        return mark_safe('<img src="/app/media/%s" width="50" height"50" />'%(self.avatar))
+    
+    def __str__(self):
+        return str(self.user)

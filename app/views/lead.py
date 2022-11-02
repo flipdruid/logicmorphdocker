@@ -1,11 +1,13 @@
 
 import profile
+from queue import Empty
 from app.models.project import Project
 import celery
 import email
 from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
@@ -24,6 +26,7 @@ class LeadCreate(CreateView):
     success_url = reverse_lazy("main")
 
 @method_decorator(login_required, name="dispatch")
+# @method_decorator(permission_required, name='user.is_staff')
 class LeadMailList(ListView):
     model = Lead
     paginate_by = 9
@@ -75,9 +78,10 @@ def createreglink(request, lead_id):
     try:
         currentLead =   Lead.objects.get(id=lead_id)
         emailExist = Reglink.objects.get(lead_mail=currentLead.email)
-        celery.current_app.send_task(
-        "app.tasks.leadtoclient_sendreglink.sendreglink", args=(str(emailExist.id),))
-    
+
+        if emailExist.lead_mail==currentLead.email:
+            celery.current_app.send_task(
+            "app.tasks.leadtoclient_sendreglink.sendreglink", args=(str(emailExist.id),))    
     
     except ObjectDoesNotExist:
         reglink =   Reglink.objects.create(
@@ -87,6 +91,10 @@ def createreglink(request, lead_id):
                     lead_mail=currentLead.email,
                     )
         reglink.save()
+        getNewRegLink = Reglink.objects.get(lead_mail=currentLead.email)
+        celery.current_app.send_task(
+            "app.tasks.leadtoclient_sendreglink.sendreglink", args=(str(getNewRegLink.id),))  
+
     return HttpResponseRedirect(reverse('lead_client', args=(str(lead_id),)))
 
 # @login_required(login_url= '/accounts/login')
