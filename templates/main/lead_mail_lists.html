@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div class="album py-1 bg-light">
+    {% include 'main/inc/leftnav.html' %} 
     <div class="container-fluid mx-auto">
+        
         <h2 class="text-center text-primary mb-1">CURRENT LEAD EMAIL(S)</h2>
         <div class="row">
-                        <div class="col-lg-2"></div>
-                            <div class="col-lg-8 mx-auto">     
+                        <!-- <div class="col-lg-2"></div> -->
+                            <div class="col-lg-12 mx-auto">     
                             {% for lead in leads %}
                                 {% if forloop.counter0|divisibleby:3 %} <div class="row d-flex justify-content-center"> {%  endif %}
                                     <div class="card box-shadow rounded-top text-center" style="width: 300px; height:240px ; margin: 5px;">
@@ -42,7 +45,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        <div class="col-lg-2"></div>
+                        <!-- <div class="col-lg-2"></div> -->
         </div>
     </div>
 </div>

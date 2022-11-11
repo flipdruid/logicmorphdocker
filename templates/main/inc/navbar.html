@@ -6,7 +6,7 @@
         <!--  fixed-top  -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"> -->
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top"> -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,27 +30,27 @@
 
                                     <a class="navbar-brand ml-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                                         <!-- <img src = "media/{{profile.avatar}" alt="profileavatar" height="35" class="rounded-circle"> -->
-                                        <img src="media/{{userprofile.avatar}}"alt="profileavatar" height="35" class="rounded-circle">
+                                        <img src="/media/{{userprofile.avatar}}"alt="profileavatar" height="35" class="rounded-circle">
                                     </a>
 
                                         <div class="dropdown-menu dropdown-menu-right mt-3" aria-labelledby="navbarDropdown">
                                             
                                             <div class="dropdown-item">
                                                 <div style="font-size: 15px;" >{{user.first_name}} {{user.last_name}}</div>
-                                                <div class="text-muted" style="font-size: 10px;">{{user.email}}</div>  
+                                                <div class="text-muted text-center" style="font-size: 10px;">{{user.email}}</div>  
                                             </div>
                                             <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item">
+                                            <a href="{% url 'user_profile' %}" class="dropdown-item">
                                                 <i class="fa-regular fa-user"></i> Profile
                                             </a>
-                                            <a href="/accounts/logout" class="dropdown-item">
+                                            <a href="{% url 'accounts:logout' %}" class="dropdown-item">
                                                 <i class="fa-solid fa-right-from-bracket"></i> Logout
                                             </a>
                                             <!-- <div class="dropdown-divider"></div> --> 
                                             
                                         </div>
                                     {% else %}
-                                        <a href="/accounts/login" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                                        <a href="{% url 'accounts:login' %}" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                                     {% endif %}
                                 </li>
 

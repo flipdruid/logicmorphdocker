@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-Account Profile Page
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ fform|crispy }}
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-light border border-primary rounded"><i class="fa-solid fa-paper-plane"></i> Submit
+        </button>
+        <a href="{% url 'main' %}" class="btn btn-light border border-primary rounded"><i class="fa-solid fa-xmark"></i> Cancel</a>
+    </div>
+</form>
 {% endblock %}

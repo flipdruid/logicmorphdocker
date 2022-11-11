@@ -5,4 +5,4 @@ from app.models.client import Client
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = "__all__"
+        fields = ("business_name", "business_logo", "address", "telephone_no", "position")

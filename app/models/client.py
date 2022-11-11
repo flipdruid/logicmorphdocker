@@ -43,3 +43,6 @@ class Client(models.Model):
     address = models.CharField(max_length=200, default="input address")
     telephone_no = models.CharField(max_length=100, default="input number")
     position = models.CharField(max_length=100, default="input position")
+
+    def __str__(self):
+        return str(self.profile)

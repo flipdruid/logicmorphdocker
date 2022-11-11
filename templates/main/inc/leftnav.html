@@ -1,0 +1,94 @@
+{% if request.user.is_authenticated %}
+<div class="wrapper">
+    <!-- <div class="header">
+        <div class="header-menu">
+            <div class="title"> Logic <span>Morph</span></div>
+            <div class="sidebar-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div> -->
+            <!-- <ul>
+                <li><a href="#"><i class="fa-brands fa-dashcube"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-diagram-project"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-lock"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-salesforce"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-chart-pie"></i></a></li>
+            </ul> -->
+        <!-- </div>
+    </div> -->
+    <div class="sidebar">
+        <div class="sidebar-btn sidebar-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="sidebar-menu">
+            <div class="profile text-center">
+                <img src="/media/{{userprofile.avatar}}" alt="">
+                <p>{{user.first_name}} {{user.last_name}}</p>
+            </div>
+            <div class="menubars">
+                <li class="item">
+                    <a href="#" class="menu-btn sidebar-btn">
+                        <i class="fa-solid fa-bars"></i> <span></span>
+                    </a>
+                </li>
+            </div>
+            <li class="item">
+                <a href="#" class="menu-btn">
+                    <i class="fa-brands fa-dashcube"></i> <span> Dashboard</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="#" class="menu-btn">
+                    <i class="fa-solid fa-user-tie"></i> <span> Account Settings</span>
+                </a>
+            </li>
+            <li class="item" id="project">
+                <a href="#project" class="menu-btn">
+                    <i class="fa-solid fa-diagram-project"></i><span> Projects <i class="fa-solid fa-caret-down dropdown"></i></span>
+                </a>
+                <div class="sub-menu">
+
+                    {% if user.is_superuser %}
+                        <a href="{% url 'create_project' %}"><i class="fa-solid fa-diagram-project"></i><span> Create</span></a>
+                    {% else %}
+                        <a href="{% url 'create_client_project' %}"><i class="fa-solid fa-diagram-project"></i><span> Create</span></a>
+                    {% endif %}
+
+                    {% if user.is_superuser %}
+                        <a href="{% url 'list_project' %}"><i class="fa-solid fa-diagram-project"></i><span> Current</span></a>
+                    {% else %}
+                        <a href="{% url 'list_client_project'%}"><i class="fa-solid fa-diagram-project"></i><span> Current</span></a>
+                    {% endif %}
+                </div>
+            </li>
+            <li class="item">
+                <a href="#" class="menu-btn">
+                    <i class="fa-solid fa-gear"></i> <span> Settings</span>
+                </a>
+            </li>
+            {% if user.is_superuser %}
+                <li class="item">
+                    <a href="#" class="menu-btn">
+                        <i class="fa-solid fa-lock"></i><span>  Admin Only</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            <li class="item">
+                <a href="#" class="menu-btn">
+                    <i class="fa-brands fa-salesforce"></i><span> Leads</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="#" class="menu-btn">
+                    <i class="fa-solid fa-chart-pie"></i><span> Analytics</span>
+                </a>
+            </li>
+        </div>
+    </div>
+</div>
+<!-- wrapper end -->
+
+{% endif %}
+
+
