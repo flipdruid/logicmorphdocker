@@ -18,7 +18,7 @@ else:
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
             "NAME": os.environ.get("PG_DB_NAME"),
-            "USER": os.environ.get("PG_USERNAME"),
+            "USER": os.environ.get("PG_USERNAME"), 
             "PASSWORD": os.environ.get("PG_PASSWORD"),
             "HOST": os.environ.get("PG_HOSTNAME"),
             "PORT": os.environ.get("PG_PORT"),

@@ -48,7 +48,7 @@ SECRET_KEY = "django-insecure-%ey1ip+9m5ap$5bw-nq8tz(ks!rfg6s27#b=u93aqgx*ci$wa*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["logicmorph.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition

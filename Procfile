@@ -1,0 +1,1 @@
+web: gunicorn logicmorph.wsgi --log-file -
