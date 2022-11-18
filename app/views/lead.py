@@ -14,10 +14,11 @@ from accounts.models.user import User
 from app.models.profile import Profile
 from app.models.lead import Lead
 from app.models.reglink import Reglink
-from accounts.forms import UserForm, UserUpdateForm
+from accounts.forms import UserForm, UserUpdateForm, UserFormNoEmail
 from app.models.client import Client
 from app.forms.profile import ProfileUpdateForm
 from app.forms.client import ClientForm
+from accounts.models.user import User
 from django.contrib.auth.models import Group
 
 
@@ -25,9 +26,16 @@ class LeadCreate(CreateView):
     model = Lead
     template_name = "main/contact_us_mail.html"
     fields = ("first_name", "last_name","email","entity_name", "details")
-    success_url = reverse_lazy("main")
+    # success_url = reverse_lazy("main")
+    def get_success_url(self):
+        if self.request.user.is_superuser or self.request.user.is_staff:
+            return reverse('lead_mail_lists')
+        else:
+            return reverse('main')
 
-@method_decorator(login_required, name="dispatch")
+
+
+# @method_decorator(login_required, name="dispatch")
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
 class LeadMailList(ListView):
     model = Lead
@@ -37,29 +45,39 @@ class LeadMailList(ListView):
     context_object_name = "leads"
 
 @method_decorator(login_required, name="dispatch")
+@method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
 class LeadMailView(DetailView):
     model = Lead
     template_name       =   'main/lead_mail_view.html'
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
 
-@method_decorator(login_required, name="dispatch")
+    
+
+# @method_decorator(login_required, name="dispatch")
+@method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
 class LeadMailViewLead(DetailView):
     model = Lead
     template_name       =   'main/lead_mail_view_lead.html'
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
 
+    
+
 @method_decorator(login_required, name="dispatch")
 class LeadMailDelete(DeleteView):
     model = Lead        
-    template_name       =   'main/lead_mail_confirm_delete.html'        
-    pk_url_kwarg        =   'pk'
-    success_url = reverse_lazy("main")
-    context_object_name =   'lead'
+    # template_name       =   'main/lead_mail_confirm_delete.html'        
+    # pk_url_kwarg        =   'pk'
+    success_url = reverse_lazy("lead_mail_lists")
+    # context_object_name =   'lead'
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
 
 
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
+@method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
 class LeadToClient(DetailView):
     model = Lead
     template_name       =   'main/lead_client.html'
@@ -69,12 +87,14 @@ class LeadToClient(DetailView):
     def get_context_data(self, **kwargs):
         context         =    super(LeadToClient, self).get_context_data(**kwargs)
         currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
-        context['lead_mails']     =    Lead.objects.all().filter(email=currentObject.email)
+        context['lead_mails']     =    Lead.objects.all().filter(email=currentObject.email)        
+        context['show_convert']     =  User.objects.filter(email=currentObject.email)
         return context
 
 
 
 @login_required()
+@allowed_users(allowed_roles=['admin', 'staff'])
 def createreglink(request, lead_id):
 
     try:
@@ -101,13 +121,15 @@ def createreglink(request, lead_id):
 
 # @login_required(login_url= '/accounts/login')
 def leadactivation(request, reglink):
-    regForm = UserForm()
+    regForm = UserFormNoEmail()
     currentReglink =   Reglink.objects.get(lead_reglink=reglink)
-    regForm=UserForm (initial={'email': str(currentReglink.lead_mail),
+    regForm=UserFormNoEmail(initial={'email': str(currentReglink.lead_mail),
                                 'first_name': str(currentReglink.lead_firstname), 
                                 'last_name': str(currentReglink.lead_lastname)}, auto_id=False)
+    # regForm.fields['email'].disabled = True
+                                
     if request.method == 'POST':
-        regForm=UserForm(request.POST)
+        regForm=UserFormNoEmail(request.POST)
         regFormEmail = regForm['email'].value()
         if regForm.is_valid():
             user = regForm.save()
@@ -119,15 +141,19 @@ def leadactivation(request, reglink):
             userProfile = Profile.objects.create(user = profileUser )
             userProfile.save()
 
-            clientProfile = Profile.objects.get(user=profileUser)
-            clientProfileCreate = Client.objects.create(profile=clientProfile)
-            clientProfileCreate.save()
-            return HttpResponseRedirect(reverse('accounts:login'))
+            if "client_enabled" in request.POST:
+                clientProfile = Profile.objects.get(user=profileUser)
+                clientProfileCreate = Client.objects.create(profile=clientProfile)
+                clientProfileCreate.save()
+                return HttpResponseRedirect(reverse('accounts:login'))
+            else:
+                return HttpResponseRedirect(reverse('accounts:login'))
 
-    context ={"regForm":regForm}    
+    context ={"regForm":regForm, 'leadmail':str(currentReglink.lead_mail)}    
     return render(request, 'main/lead_regform.html', context)
 
-@login_required()
+# @login_required()
+@allowed_users(allowed_roles=['admin', 'staff', 'client'])
 def userprofile(request):
     # user=request.user
     profileform = ProfileUpdateForm()

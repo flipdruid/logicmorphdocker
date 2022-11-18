@@ -22,10 +22,34 @@
 
                                             <div class="mt-1 text-center align-text-bottom">
                                                 <div class="btn-group">
-                                                    <a href="{% url 'post_view' post.pk %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>
+                                                    
                                                     {% if post.created_by == user %}
-                                                        <a href="{% url 'post_edit' post.pk %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                                        <a href="{% url 'post_delete' post.pk %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                                                        <a href="{% url 'post_update' post.pk %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>    
+                                                        <!-- Modal Start-->
+                                                            <div class="modal fade" id="deletepost" tabindex="-1" aria-labelledby="deletepostLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header bg-primary text-white">
+                                                                            <h5 class="modal-title" id="deletepostLabel">Logic Morph</h5>
+                                                                            <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div> Are you sure you want to delete the '{{ post.title|slice:":20" }}' </div>
+                                                                        </div>
+                                                                        <!-- <div class="modal-footer"> -->
+                                                                            <div class="text-center mb-3">                                                                    
+                                                                                <!-- Button trigger modal -->
+                                                                                <a href="{% url 'post_delete' post.pk %}" type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-circle-xmark"></i> Confirm</a>
+                                                                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-check"></i> Cancel</button>
+                                                                            </div>
+                                                                        <!-- </div> -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <!-- Modal Start-->                                                    
+                                                        <button class="btn btn-sm btn-outline-primary ml-1" data-bs-toggle="modal" data-bs-target="#deletepost" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                                                    {% else %} 
+                                                        <a href="{% url 'post_view' post.pk %}" class="btn btn-sm btn-outline-primary"  role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a> 
                                                     {% endif %}
                                                 </div>
                                             </div>

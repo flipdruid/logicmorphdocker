@@ -19,7 +19,7 @@ class TestLeadModels(TestCase):
         
         self.created_at=self.lead.created_at
         self.updated_at=self.lead.updated_at
-
+        self.leadID = self.lead.id
         return self.lead
 
     
@@ -37,3 +37,38 @@ class TestLeadModels(TestCase):
         self.assertEqual(self.lead.details, "details")
         self.assertEqual(str(self.created_at), str(self.lead.created_at))
         self.assertEqual(str(self.updated_at), str(self.lead.updated_at))
+
+    
+    def test_read_lead(self):
+        self.getLead = Lead.objects.get(id=self.leadID)
+        self.assertEqual(self.getLead.first_name, "Verlien")
+        self.assertEqual(self.getLead.last_name,"Lebios")
+        self.assertEqual(self.getLead.email, "flipdruid@yahoo.com")
+        self.assertEqual(self.getLead.entity_name, "Subject")
+        self.assertEqual(self.getLead.details, "details")
+        self.assertEqual(str(self.created_at), str(self.lead.created_at))
+        self.assertEqual(str(self.updated_at), str(self.lead.updated_at))
+
+    
+    def test_update_lead(self):
+        self.getLead = Lead.objects.get(id=self.leadID)
+        self.getLead.first_name="Berlito"
+        self.getLead.last_name = "Artus"
+        self.getLead.entity_name="New Subject"
+        self.getLead.details="New Details"
+        self.getLead.save()
+        self.updated_at = self.getLead.updated_at
+
+        self.assertEqual(self.getLead.first_name, "Berlito")
+        self.assertEqual(self.getLead.last_name,"Artus")
+        self.assertEqual(self.getLead.email, "flipdruid@yahoo.com")
+        self.assertEqual(self.getLead.entity_name, "New Subject")
+        self.assertEqual(self.getLead.details, "New Details")
+        self.assertEqual(str(self.created_at), str(self.getLead.created_at))
+        self.assertEqual(str(self.updated_at), str(self.getLead.updated_at))
+
+
+    def test_delete_lead(self):
+        Lead.objects.get(id=self.leadID).delete()
+        counts = Lead.objects.filter(id=self.leadID).count()
+        self.assertEqual(counts, 0)

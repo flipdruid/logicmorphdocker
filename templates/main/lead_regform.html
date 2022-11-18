@@ -14,7 +14,22 @@
           <form method="post"  action="">
               {% csrf_token %}
 
-              {{ regForm|crispy }}
+              <!-- {{ regForm|crispy }} --> 
+              <label>Email</label>
+              <input type="text"  value="{{ leadmail }} " class="form-control mb-1" readonly>
+              {{ regForm.email|as_crispy_field }}
+              {{ regForm.username|as_crispy_field }}
+              {{ regForm.first_name|as_crispy_field }}
+              <div class="form-check mb-1">
+                <input class="form-check-input " name = "client_enabled" type="checkbox" value="" id="client_enabled" checked >
+                <label class="form-check-label " for="flexCheckChecked">
+                  Enabled client profile
+                </label>
+              </div>
+              {{ regForm.last_name|as_crispy_field }}
+              {{ regForm.password1|as_crispy_field }}
+              {{ regForm.password2|as_crispy_field }}
+              
               <div class="form-group text-center">
                   <button type="submit" class="btn btn-light border border-primary rounded">
                     <i class="fa-solid fa-paper-plane"></i></span> Submit

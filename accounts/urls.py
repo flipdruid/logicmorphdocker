@@ -12,7 +12,7 @@ app_name = "accounts"
 urlpatterns = (
     [
         path("portal/", Landing.as_view(), name="home"),
-        path("portal/login/", views.Login.as_view(), name="login"),
+        path("logic/login/", views.Login.as_view(), name="login"),
         path("portal/logout/", views.Logout.as_view(), name="logout"),
         path("portal/profile/", views.Profile.as_view(), name="profile"),
         path("portal/register/", views.Register.as_view(), name="register"),

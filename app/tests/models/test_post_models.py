@@ -28,7 +28,9 @@ class TestPostModels(TestCase):
         )
         self.created_at=self.post.created_at
         self.updated_at=self.post.updated_at
+        self.postID = self.post.id
         return self.post
+        
 
     def setUp(self):      
         self.created_by = self.create_user()  
@@ -38,9 +40,37 @@ class TestPostModels(TestCase):
         self.post=None
         self.created_by=None
 
-    def test_title_str(self):
+    def test_create_post(self):
         self.assertEqual(str(self.post.title), "Post")
         self.assertEqual(str(self.post.description), "Post One")
         self.assertEqual(self.post.created_by, self.created_by)
         self.assertEqual(self.post.created_at, self.created_at)
         self.assertEqual(self.post.updated_at, self.updated_at)
+
+    
+    def test_read_post(self):
+        self.getPost = Post.objects.get(id = self.postID)
+
+        self.assertEqual(str(self.getPost.title), "Post")
+        self.assertEqual(str(self.getPost.description), "Post One")
+        self.assertEqual(self.getPost.created_by, self.created_by)
+        self.assertEqual(self.getPost.created_at, self.created_at)
+        self.assertEqual(self.getPost.updated_at, self.updated_at)
+
+    def test_update_post(self):
+        self.getPost = Post.objects.get(id = self.postID)
+        self.getPost.title="Post 2"
+        self.getPost.description="Post Two"
+        self.getPost.save()
+        self.updated_at = self.getPost.updated_at
+
+        self.assertEqual(str(self.getPost.title), "Post 2")
+        self.assertEqual(str(self.getPost.description), "Post Two")
+        self.assertEqual(self.getPost.created_by, self.created_by)
+        self.assertEqual(self.getPost.created_at, self.created_at)
+        self.assertEqual(self.getPost.updated_at, self.updated_at)
+
+    def test_delete_post(self):
+        Post.objects.get(id = self.postID).delete()
+        counts = Post.objects.filter (id = self.postID).count()
+        self.assertEqual(counts, 0)

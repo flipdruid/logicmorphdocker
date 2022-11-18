@@ -34,8 +34,31 @@ class TestProfileModels(TestCase):
         self.user=None
         self.profile=None
 
-    def test_user_profile_object(self):
+    def test_create_user_profile(self):
         self.assertEqual(self.profile.user, self.user)
         self.assertEqual(self.profile.avatar, "logo.jpg")
         self.assertEqual(self.profile.is_logicmorph_staff, True)
         self.assertEqual(self.profile.is_dark_theme, True)
+
+    def test_read_user_profile(self):
+        getUserProfile = Profile.objects.get(user=self.user)
+        self.assertEqual(getUserProfile.user, self.user)
+        self.assertEqual(getUserProfile.avatar, "logo.jpg")
+        self.assertEqual(getUserProfile.is_logicmorph_staff, True)
+        self.assertEqual(getUserProfile.is_dark_theme, True)
+
+    def test_update_user_profilet(self):
+        getUserProfile = Profile.objects.get(user=self.user)
+        getUserProfile.avatar="logo2.jpg"
+        getUserProfile.is_logicmorph_staff=False
+        getUserProfile.is_dark_theme=False
+        getUserProfile.save()
+        self.assertEqual(getUserProfile.user, self.user)
+        self.assertEqual(getUserProfile.avatar, "logo2.jpg")
+        self.assertEqual(getUserProfile.is_logicmorph_staff, False)
+        self.assertEqual(getUserProfile.is_dark_theme, False)
+
+    def test_delete_user_profilet(self):
+        Profile.objects.get(user=self.user).delete()
+        counts = Profile.objects.filter(user=self.user).count()
+        self.assertEqual(counts, 0)

@@ -2,23 +2,50 @@
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 {% block content %}
-
+{% include 'main/inc/leftnav.html' %} 
 <div class="album py-1 bg-light">
     <div class="container">
       <div class = "row">
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
-          <h2 class="text-center text-primary">EDIT POST</h2>
+          <h2 class="text-center text-primary">UPDATE POST</h2>
+          <!-- Modal Start-->
+            <div class="modal fade" id="deleteeditpost" tabindex="-1" aria-labelledby="deleteeditpostLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                          <h5 class="modal-title" id="deleteeditpostLabel">Logic Morph</h5>
+                          <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
+                    </div>
+                    <div class="modal-body text-center ">
+                        <div> Are you sure you want to delete the '{{ post.title|slice:":20" }}' </div>
+                    </div>
+                    <!-- <div class="modal-footer"> -->
+                        <div class="text-center mb-3">                                                                    
+                            <!-- Button trigger modal -->
+                            <a href="{% url 'post_delete' post.pk %}" type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-circle-xmark"></i> Confirm</a>
+                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-check"></i> Cancel</button>
+                        </div>
+                    <!-- </div> -->
+                </div>
+              </div>
+            </div>
+          <!-- Modal Start-->  
+
           <form method="post" novalidate>
               {% csrf_token %}
               {{ form|crispy }}
-              <div class="form-group text-center">
-                  <button type="submit" class="btn btn-light border border-primary rounded">
-                    <i class="fa-solid fa-floppy-disk"></i> Update
-                  </button>
-                  <a href="{% url 'main' %}" class="btn btn-light border border-primary rounded"><i class="fa-solid fa-xmark"></i> Cancel</a>
-              </div>
-          </form>
+              <button type="submit" class="btn btn-sm btn-outline-primary hideupdate_button">
+                <i class="fa-solid fa-floppy-disk "></i> Update
+              </button>
+          </form>  
+                <div class="text-center mb-2">
+                  <button class="btn btn-sm btn-outline-primary trigger_submit" style="width: 90px ;"><i class="fa-solid fa-floppy-disk "></i> Update</button>
+                  <button class="btn btn-sm btn-outline-primary" style="width: 90px ;" data-bs-toggle="modal" data-bs-target="#deleteeditpost" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                  <a href="{% url 'main' %}" class="btn btn-sm btn-outline-primary" style="width: 90px ;"><i class="fa-solid fa-xmark"></i> Cancel</a>
+                </div>  
+                  
+           
         <div class="col-lg-3"></div>
       </div>
     </div>

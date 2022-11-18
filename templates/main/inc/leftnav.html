@@ -33,7 +33,7 @@
                 </li>
             </div>
             <li class="item">
-                <a href="#" class="menu-btn">
+                <a href="{% url 'dashboard' %}" class="menu-btn">
                     <i class="fa-brands fa-dashcube"></i> <span> Dashboard</span>
                 </a>
             </li>
@@ -72,13 +72,14 @@
                         <i class="fa-solid fa-lock"></i><span>  Admin Only</span>
                     </a>
                 </li>
+                <li class="item">
+                    <a href="{% url 'lead_mail_lists' %}" class="menu-btn">
+                        <i class="fa-brands fa-salesforce"></i><span> Leads</span>
+                    </a>
+                </li>
             {% endif %}
 
-            <li class="item">
-                <a href="#" class="menu-btn">
-                    <i class="fa-brands fa-salesforce"></i><span> Leads</span>
-                </a>
-            </li>
+            
             <li class="item">
                 <a href="#" class="menu-btn">
                     <i class="fa-solid fa-chart-pie"></i><span> Analytics</span>

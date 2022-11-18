@@ -10,21 +10,46 @@
         <div class = "col-lg-3"></div>
         <div class = "col-lg-6">
           <h2 class="text-center text-primary">PROJECT</h2>
+            <!-- Modal Start-->
+              <div class="modal fade" id="deleteproject" tabindex="-1" aria-labelledby="deleteprojectLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title" id="deleteprojectLabel">Logic Morph</h5>
+                            <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
+                      </div>
+                      <div class="modal-body text-center ">
+                          <div> Are you sure you want to delete the '{{ project.name|slice:":20" }}' </div>
+                      </div>
+                      <!-- <div class="modal-footer"> -->
+                          <div class="text-center mb-3">                                                                    
+                              <!-- Button trigger modal -->
+                              <a href="{% url 'delete_client_project' project.pk %}" type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-circle-xmark"></i> Confirm</a>
+                              <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-check"></i> Cancel</button>
+                          </div>
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            <!-- Modal Start-->  
           <form method="post" novalidate>
               {% csrf_token %}
               {{ form|crispy }}
               <div class="form-group text-center">
-                  <button type="submit" class="btn btn-light border border-primary rounded" style="width: 90px;">
-                    <i class="fa-regular fa-floppy-disk"></i></span> Save
-                  </button>
-                  <a href="{% url 'delete_client_project' projects.id %}" class="btn btn-light border border-primary rounded" style="width: 90px;"><i class="fa-solid fa-trash-can"></i> Delete</a>
-                  {% if request.user.is_staff or request.user.is_superuser %}
-                    <a href="{% url 'list_project' %}" class="btn btn-light border border-primary rounded" style="width: 90px;"><i class="fa-solid fa-left-long"></i> Back</a>
-                  {% else %}
-                  <a href="{% url 'list_client_project' %}" class="btn btn-light border border-primary rounded" style="width: 90px;"><i class="fa-solid fa-left-long"></i> Back</a>
-                  {% endif %}
-                  </div>
+                  <button type="submit" class="btn btn-sm btn-outline-primary hideupdate_button" style="width: 90px;" >
+                    <i class="fa-regular fa-floppy-disk"></i></span> Update</button>
+              </div>
           </form>
+              <div class="text-center mb-2">
+                  <button class="btn btn-sm btn-outline-primary  trigger_submit" style="width: 90px ;"><i class="fa-solid fa-floppy-disk "></i> Update</button>
+                  <button class="btn btn-sm btn-outline-primary " style="width: 90px;" data-bs-toggle="modal" data-bs-target="#deleteproject" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                  {% if request.user.is_staff or request.user.is_superuser %}
+                    <a href="{% url 'list_project' %}" class="btn btn-sm btn-outline-primary" style="width: 90px;"><i class="fa-solid fa-left-long"></i> Back</a>
+                  {% else %}
+                  <a href="{% url 'list_client_project' %}" class="btn btn-sm btn-outline-primary" style="width: 90px;"><i class="fa-solid fa-left-long"></i> Back</a>
+                  {% endif %}
+              </div>       
+          
         </div>
         <div class = "col-lg-3"></div>
     </div>

@@ -24,7 +24,7 @@ class TestPostViews(TestCase):
     def test_lead_create(self):
         response = self.client.get(self.leadcreate_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response,"main/contact_us.html")
+        self.assertTemplateUsed(response,"main/contact_us_mail.html")
 
     def test_post_create(self):
         self.client.login(username=self.user.username, password=self.user.password)

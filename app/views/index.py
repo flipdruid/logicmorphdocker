@@ -1,6 +1,9 @@
 from django.views.generic import ListView
 from django.views.generic import TemplateView
-
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from accounts.decorators import allowed_users
 
 from app.models import Post
 
@@ -24,5 +27,9 @@ class Error500(TemplateView):
 class Landing(ListView):
     model = Post
     template_name = "main/landing.html"
-    paginate_by = 3
+    paginate_by = 9
     context_object_name = "posts"
+
+@method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
+class Dashboard(TemplateView):
+    template_name = "main/dashboard.html"

@@ -36,13 +36,13 @@ class Client(models.Model):
     profile = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name="profile_client"
     )
-    business_name = models.CharField(max_length=150, default="input business name")
+    business_name = models.CharField(max_length=150, blank=True, null=True)
     business_logo = models.ImageField(
         upload_to=image_path, default="business_logo/lmlt.png"
     )
-    address = models.CharField(max_length=200, default="input address")
-    telephone_no = models.CharField(max_length=100, default="input number")
-    position = models.CharField(max_length=100, default="input position")
+    address = models.CharField(max_length=200, blank=True, null=True)
+    telephone_no = models.CharField(max_length=100, blank=True, null=True)
+    position = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return str(self.profile)

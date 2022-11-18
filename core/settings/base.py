@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+ADMIN_PAGE_ADMIN_ONLY = False
 
 def get_env_bool(variable_name, default=False):
     """

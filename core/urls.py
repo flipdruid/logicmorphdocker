@@ -13,12 +13,12 @@
 #     1. Import the include() function: from django.urls import include, path
 #     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# from cgitb import handler
-from accounts.decorators import admindashaccess
-
+from django.conf import settings
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
+
+
 
 from app.views.index import Error400
 from app.views.index import Error403
@@ -26,12 +26,15 @@ from app.views.index import Error404
 from app.views.index import Error500
 
 
+
 urlpatterns = [
     path("", include("app.urls")),
     path("accounts/", include("accounts.urls")),
-    path("admin/", admin.site.urls),
-    # path("admin/", admindashaccess(admin.site.urls), name="adminpage"),
-]
+    path("lm-super-admin/",admin.site.urls),
+    ]
+
+# if settings.ADMIN_PAGE_ADMIN_ONLY:
+#     urlpatterns += [path("logic/admin/", admin.site.urls,name="adminpage"),]
 
 handler400 = Error400.as_view()
 handler403 = Error403.as_view()

@@ -22,4 +22,12 @@ class Project(models.Model):
 
     @transition(field=state, source="new", target="progress")
     def progress(self):
-        pass
+        return "new to progress"
+
+    @transition(field=state, source="progress", target="done")
+    def done(self):
+        return "progress to done"
+
+    @transition(field=state, source="progress", target="terminated")
+    def terminated(self):
+        return "progress to terminated"

@@ -1,7 +1,5 @@
-import email
-from http.client import HTTPResponse
-from urllib import request
-
+from django.shortcuts import reverse
+from django.conf import settings
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.views import PasswordChangeDoneView
@@ -23,17 +21,21 @@ from django.contrib.auth.decorators import login_required
 from accounts.decorators import currentauth_user
 
 
-
 class IndexView(TemplateView):
     template_name = "accounts/home.html"
 
 @method_decorator(currentauth_user, name="dispatch")
 class Login(LoginView):
     template_name = "accounts/login.html"
-
+    
+    def get_success_url(self):    
+        return reverse('dashboard')
 
 class Logout(LogoutView):
     template_name = "accounts/logged_out.html"
+
+    def get_success_url(self):    
+        return reverse('main')
 
 
 class Profile(UpdateView):

@@ -31,6 +31,6 @@ class Lead(models.Model):
             "app.tasks.contactuser_sendmail.contactuser_sendmail", args=(str(self.id),)
         )
 
-    @transition(field=state, source="new", target="partnered")
-    def partnered(self):
+    @transition(field=state, source="new", target="viewed")
+    def viewed(self):
         pass

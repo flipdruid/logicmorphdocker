@@ -14,7 +14,7 @@ from app.models.reglink import Reglink
 def sendreglink(reglink_id):
     reglink = Reglink.objects.get(pk=reglink_id)
     namesubject = ("Registration Link for " + str(reglink.lead_mail))
-    details = ("http://localhost:8000/leadactivation/"+ str(reglink.lead_reglink))
+    details = ("http://localhost:8000/portal/leadactivation/"+ str(reglink.lead_reglink))
     email = str(reglink.lead_mail)
     send_mail(
         subject=namesubject,

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'main/inc/leftnav.html' %} 
-<div class="container-fluid">
+<div class="container-fluid bg-light">
     <div class="row">
        <div class="col-lg-4"></div>
            <div class="col-lg-4">
@@ -11,14 +11,16 @@
                     </p>
                 {% endif %}
                 <div class="card box-shadow mt-5">
-                    <div class="bg-info text-white text-center align-middle">Lead Information</div>
+                    <div class="bg-primary text-white text-center align-middle">Lead Information</div>
                         <div class = "card-body text-center">
                             <h3 class="text-muted ">{{lead.first_name}} {{lead.last_name}}</h3>
                             <small class="text-muted">{{lead.email}}</small>
                             <div class="mt-2">
                                 <div class="btn-group">
-                                    <a href="{% url 'lead_mail_lists' %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true" style="width:140px ;"><i class="fa-solid fa-left-long"></i> Back</a>
-                                    <a href="{% url 'create_reg_link' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true" style="width:140px ;"><i class="fa-regular fa-circle-up"></i> Convert to Client</a>
+                                    <a href="{% url 'lead_mail_lists' %}" class="btn btn-sm btn-outline-primary mr-2" role="button" aria-pressed="true" style="width:150px ;"><i class="fa-solid fa-left-long"></i> Back</a>
+                                    {% if not show_convert %}
+                                        <a href="{% url 'create_reg_link' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true" style="width:150px ;"><i class="fa-regular fa-circle-up"></i> Convert to Client</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -37,7 +39,9 @@
                         <div class = "card-body">
                             <h3 class="text-muted">{{lead_mail.entity_name}}</h3>
                             <p><small class="text-muted"> {{lead_mail.details|slice:":100"}}</small></p>  
-                            <a href="{% url 'lead_mail_view_lead' lead_mail.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>                                  
+                            <div class="text-center">
+                                <a href="{% url 'lead_mail_view_lead' lead_mail.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>                                  
+                            </div>
                         </div>
                 </div>
             {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}

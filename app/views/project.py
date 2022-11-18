@@ -12,7 +12,8 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
+@method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
 class CreateProjectClient(CreateView):
     model = Project
     template_name = "main/project_create.html"
@@ -34,7 +35,7 @@ class CreateProject(CreateView):
     success_url = reverse_lazy("list_project")
     
 
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
 class ListProject(ListView):
     model = Project
@@ -43,7 +44,8 @@ class ListProject(ListView):
     fields = ("name", "state","client","created_at", "updated_at")
     context_object_name = "projects"
 
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
+@method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
 class ListClientProject(ListView):
     queryset = Project.objects.all()
     paginate_by = 9
@@ -52,19 +54,23 @@ class ListClientProject(ListView):
 
     def get_queryset(self):
         queryset = super(ListClientProject, self).get_queryset()
-        client = Client.objects.get(profile=self.request.user.profile_user.all()[0])
+        # client = Client.objects.get(profile=self.request.user.profile_user.all()[0])
+        profile = Profile.objects.get(user=self.request.user)
+        client = Client.objects.get(profile=profile)
         return queryset.filter(client=client)
     
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
+@method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
 class ClientProjectUpdate(UpdateView):
     model               =   Project
     template_name       =   'main/project_update.html'
     fields              =   ("name",)
     pk_url_kwarg        =   'pk'
-    context_object_name =   "projects"
+    context_object_name =   "project"
     success_url         =   reverse_lazy('list_client_project')
+    
 
-
+@method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
 class ClientProjectDelete(DeleteView):    
     model               =   Project        
 
