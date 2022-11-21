@@ -15,6 +15,7 @@ coverage==6.5.0
 cssbeautifier==1.14.6
 Deprecated==1.2.13
 distlib==0.3.6
+dj-database-url==1.0.0
 Django==4.1.1
 django-celery-beat==2.3.0
 django-celery-results==2.4.0
@@ -22,6 +23,7 @@ django-crispy-forms==1.14.0
 django-fsm==2.8.1
 django-hashid-field==3.3.6
 django-i18n==1.0.4
+django-on-heroku==1.1.2
 django-registration==3.3
 django-timezone-field==5.0
 django-widget-tweaks==1.4.12
@@ -48,6 +50,7 @@ psycopg2-binary==2.9.4
 pyparsing==3.0.9
 python-crontab==2.6.0
 python-dateutil==2.8.2
+python-decouple==3.6
 python-dotenv==0.21.0
 pytz==2022.4
 PyYAML==6.0
