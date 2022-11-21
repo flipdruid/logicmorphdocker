@@ -56,4 +56,3 @@ Run djlint
 ```
 [logicmorph] celery -A core.celery worker --concurrency=5 -l info
 ```
-

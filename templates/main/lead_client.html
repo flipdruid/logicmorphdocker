@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'main/inc/leftnav.html' %} 
+<div class="container-fluid bg-light">
+    <div class="row">
+       <div class="col-lg-4"></div>
+           <div class="col-lg-4">
+                {% if error_message %}
+                    <p class="alert alert-danger">
+                       <strong>{{ error_message }}</strong>
+                    </p>
+                {% endif %}
+                <div class="card box-shadow mt-5">
+                    <div class="bg-primary text-white text-center align-middle">Lead Information</div>
+                        <div class = "card-body text-center">
+                            <h3 class="text-muted ">{{lead.first_name}} {{lead.last_name}}</h3>
+                            <small class="text-muted">{{lead.email}}</small>
+                            <div class="mt-2">
+                                <div class="btn-group">
+                                    <a href="{% url 'lead_mail_lists' %}" class="btn btn-sm btn-outline-primary mr-2" role="button" aria-pressed="true" style="width:150px ;"><i class="fa-solid fa-left-long"></i> Back</a>
+                                    {% if not show_convert %}
+                                        <a href="{% url 'create_reg_link' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true" style="width:150px ;"><i class="fa-regular fa-circle-up"></i> Convert to Client</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+
+            </div>
+       <div class="col-lg-4"></div>
+    </div>
+    <h3 class="text-center text-muted">Lead Email(s)</h3>
+    {% if lead_mails %}
+        {% for lead_mail in lead_mails %}
+            {% if forloop.counter0|divisibleby:3 %} <div class="row d-flex justify-content-center"> {%  endif %}
+                <div class="card box-shadow" style="width: 300px; margin: 5px;">
+                    <div class="bg-primary text-white  text-center" style="height:25px;">{{lead_mail.created_at}}</div>
+                        <div class = "card-body">
+                            <h3 class="text-muted">{{lead_mail.entity_name}}</h3>
+                            <p><small class="text-muted"> {{lead_mail.details|slice:":100"}}</small></p>  
+                            <div class="text-center">
+                                <a href="{% url 'lead_mail_view_lead' lead_mail.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>                                  
+                            </div>
+                        </div>
+                </div>
+            {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}

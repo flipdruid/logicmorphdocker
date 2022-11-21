@@ -1,5 +1,79 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h1 style="text-align: center;">HELLO</h1>
+{% include 'main/inc/leftnav.html' %} 
+<div class="album py-1 bg-light">
+    
+    <div class="container-fluid">
+        
+        <h2 class="text-center text-primary">CURRENT POSTS</h2>
+        <div class="row">
+                        <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                            {% for post in posts %}
+                                {% if forloop.counter0|divisibleby:3 %} <div class="row d-flex justify-content-center"> {%  endif %}
+                                    <div class="card box-shadow rounded-top text-center" style="width: 300px; height:240px ; margin: 5px;">
+                                        <div class="bg-primary text-white  text-center" style="height:25px;">{{post.created_at}}</div>
+                                        <div class = "card-body">                                            
+                                            <h4> {{ post.title|slice:":20" }} </h4>
+                                            <div>
+                                                <medium class="text-muted" >{{post.description|slice:":50"}}</medium> <br/>
+                                            </div>
+                                            <small class="text-muted">Author: {{post.created_by}}</small>
+
+                                            <div class="mt-1 text-center align-text-bottom">
+                                                <div class="btn-group">
+                                                    
+                                                    {% if post.created_by == user %}
+                                                        <a href="{% url 'post_update' post.pk %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>    
+                                                        <!-- Modal Start-->
+                                                            <div class="modal fade" id="deletepost" tabindex="-1" aria-labelledby="deletepostLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header bg-primary text-white">
+                                                                            <h5 class="modal-title" id="deletepostLabel">Logic Morph</h5>
+                                                                            <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div> Are you sure you want to delete the '{{ post.title|slice:":20" }}' </div>
+                                                                        </div>
+                                                                        <!-- <div class="modal-footer"> -->
+                                                                            <div class="text-center mb-3">                                                                    
+                                                                                <!-- Button trigger modal -->
+                                                                                <a href="{% url 'post_delete' post.pk %}" type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-circle-xmark"></i> Confirm</a>
+                                                                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-check"></i> Cancel</button>
+                                                                            </div>
+                                                                        <!-- </div> -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <!-- Modal Start-->                                                    
+                                                        <button class="btn btn-sm btn-outline-primary ml-1" data-bs-toggle="modal" data-bs-target="#deletepost" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                                                    {% else %} 
+                                                        <a href="{% url 'post_view' post.pk %}" class="btn btn-sm btn-outline-primary"  role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a> 
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
+                            {% endfor %}
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item"><a href="?page=1" class="page-link" ><i class="fa-solid fa-angles-left"></i> First</a></li>
+                                        <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"><i class="fa-solid fa-arrow-left"></i> Previous</a></li>
+                                    {% endif %}
+
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"><i class="fa-solid fa-arrow-right"></i> Next</a></li>
+                                        <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link"><i class="fa-solid fa-angles-right"></i> Last</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
+
+
+
 {% endblock %}
