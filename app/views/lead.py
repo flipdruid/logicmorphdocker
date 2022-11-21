@@ -44,7 +44,7 @@ class LeadMailList(ListView):
     fields = ("first_name", "last_name","email","entity_name", "details")
     context_object_name = "leads"
 
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
 class LeadMailView(DetailView):
     model = Lead

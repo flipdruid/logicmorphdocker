@@ -20,7 +20,7 @@ class Project(models.Model):
     class Meta:
         ordering = ["-created_at"]
 
-    @transition(field=state, source="new", target="progress")
+    @transition(field=state, source="new", target=" in-progress")
     def progress(self):
         return "new to progress"
 
