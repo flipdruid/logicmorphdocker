@@ -17,7 +17,6 @@ $(document).ready(function(){
 
     });
 
-    // let currentVal ="";
     $(".user_group_current").on("change", function(){
         let currentVal = $(this).val();
         let currentGroup = $(this).attr("curvalue");
@@ -42,7 +41,6 @@ $(".btnupdate_click").on("click", function(){
         'currentid': currentID,
         'getselectvalue': getselectValue
     }
-    // var confirmResult = confirm("Change " + currentEmail +" user's group from " + curvalue + " to " + getselectValue + "?");
     $.ajax({       
         
         url: '../usergroupchange/',   
