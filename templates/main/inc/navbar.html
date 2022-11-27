@@ -55,7 +55,7 @@
 
                                     <a class="navbar-brand ml-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                                         <!-- <img src = "media/{{profile.avatar}" alt="profileavatar" height="35" class="rounded-circle"> -->
-                                        <img src="/media/{{userprofile.avatar}}"alt="profileavatar" height="35" class="rounded-circle">
+                                        <img src="/portal/media/{{userprofile.avatar}}"alt="profileavatar" height="35" width="35"  class="rounded-circle">
                                     </a>
 
                                         <div class="dropdown-menu dropdown-menu-right mt-3" aria-labelledby="navbarDropdown">
@@ -66,8 +66,15 @@
                                             </div>
                                             <div class="dropdown-divider"></div>
                                             <a href="{% url 'user_profile' %}" class="dropdown-item">
-                                                <i class="fa-regular fa-user"></i> Profile
+                                                <i class="fa-solid fa-user-tie"></i> Profile
                                             </a>
+
+                                            {% if request.user.is_superuser %}
+                                            <a href="{% url 'current_users' %}" class="dropdown-item">
+                                                <i class="fa-solid fa-users"></i> Users
+                                            </a>
+                                            {% endif %}
+
                                             <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirm_logout" role="button" aria-pressed="true">
                                                 <i class="fa-solid fa-power-off"></i> Logout
                                             </button>

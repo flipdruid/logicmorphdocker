@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'main/inc/leftnav.html' %} 
-<div class="container-fluid">
+<div class="container-fluid bg-light">
     <div class="row">
        <div class="col-lg-4"></div>
            <div class="col-lg-4">            
-            <div class="card box-shadow text-center">
+            <div class="card box-shadow text-center mt-2 mb-2">
                 <div class="bg-primary text-white   text-center" style="height:25px;">{{lead.created_at}}</div>
                 <div class = "card-body">
                     <h4 class="lead"> <a class="text-dark" href="{% url 'lead_mail_view' lead.id %}">{{ lead.entity_name }}</a> <span class="badge badge-info">{{ lead.state }}</span></h4>
@@ -26,5 +26,4 @@
        <div class="col-lg-4"></div>
     </div>
 </div>
-
 {% endblock %}

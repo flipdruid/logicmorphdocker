@@ -67,7 +67,12 @@ class ClientProjectUpdate(UpdateView):
     fields              =   ("name",)
     pk_url_kwarg        =   'pk'
     context_object_name =   "project"
-    success_url         =   reverse_lazy('list_client_project')
+
+    def get_success_url(self):
+        if self.request.user.is_superuser or self.request.user.is_staff:
+            return reverse('list_project')
+        else:
+            return reverse('list_client_project')
     
 
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")

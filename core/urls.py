@@ -17,6 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
+from app.views.index import Landing
 
 
 
@@ -28,7 +29,9 @@ from app.views.index import Error500
 
 
 urlpatterns = [
-    path("", include("app.urls")),
+    path("", Landing.as_view(), name="main"),
+    # path("", include("app.urls")),
+    path("portal/", include("app.urls")),
     path("accounts/", include("accounts.urls")),
     path("lm-super-admin/",admin.site.urls),
     ]

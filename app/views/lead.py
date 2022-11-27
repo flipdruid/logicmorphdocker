@@ -2,7 +2,9 @@ from django.forms.models import model_to_dict
 from app.models.project import Project
 import celery
 import email
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, reverse
+from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import allowed_users
@@ -14,9 +16,9 @@ from accounts.models.user import User
 from app.models.profile import Profile
 from app.models.lead import Lead
 from app.models.reglink import Reglink
-from accounts.forms import UserForm, UserUpdateForm, UserFormNoEmail
+from accounts.forms import UserForm, UserUpdateForm, UserFormNoEmail, UserViewForm
 from app.models.client import Client
-from app.forms.profile import ProfileUpdateForm
+from app.forms.profile import ProfileUpdateForm, ProfileViewForm
 from app.forms.client import ClientForm
 from accounts.models.user import User
 from django.contrib.auth.models import Group
@@ -134,20 +136,16 @@ def leadactivation(request, reglink):
         if regForm.is_valid():
             user = regForm.save()
             group = Group.objects.get(name='client')
-            user.groups.add(group)
-            
+            user.groups.add(group)           
 
             profileUser=User.objects.get(email=regFormEmail)
             userProfile = Profile.objects.create(user = profileUser )
             userProfile.save()
 
-            if "client_enabled" in request.POST:
-                clientProfile = Profile.objects.get(user=profileUser)
-                clientProfileCreate = Client.objects.create(profile=clientProfile)
-                clientProfileCreate.save()
-                return HttpResponseRedirect(reverse('accounts:login'))
-            else:
-                return HttpResponseRedirect(reverse('accounts:login'))
+            clientProfile = Profile.objects.get(user=profileUser)
+            clientProfileCreate = Client.objects.create(profile=clientProfile)
+            clientProfileCreate.save()
+            return HttpResponseRedirect(reverse('accounts:login'))
 
     context ={"regForm":regForm, 'leadmail':str(currentReglink.lead_mail)}    
     return render(request, 'main/lead_regform.html', context)
@@ -156,7 +154,7 @@ def leadactivation(request, reglink):
 @allowed_users(allowed_roles=['admin', 'staff', 'client'])
 def userprofile(request):
     # user=request.user
-    profileform = ProfileUpdateForm()
+    # profileform = ProfileUpdateForm()
     currentUser = request.user    
     currentProfile = Profile.objects.get(user=currentUser)
     profileform = ProfileUpdateForm(initial={
@@ -171,30 +169,94 @@ def userprofile(request):
         'last_name':currentUser.last_name
     })    
     if request.method == 'POST': 
-        if UserUpdateForm(request.POST, instance=request.user):
-            userform=UserUpdateForm(request.POST, instance=request.user)
-            if userform.is_valid():
-                userform.save()
-                return HttpResponseRedirect(reverse('user_profile'))
-            # else:
-            #     return HttpResponseRedirect(reverse('accounts:home'))
-        
-        # if UserUpdateForm(request.POST, instance=request.user):
+        userform=UserUpdateForm(request.POST, instance=request.user)
+        if userform.is_valid():
+            userform.save(commit=False)
+            currentU = User.objects.get(id=currentUser.id)
+            currentU.first_name=userform.cleaned_data['first_name']
+            currentU.last_name=userform.cleaned_data['last_name']
+            currentU.save()
 
-        if ProfileUpdateForm(request.POST, instance=currentProfile):
-            profileform=ProfileUpdateForm(request.POST,  request.FILES, instance=currentProfile)
-            if profileform.is_valid():
-                profileform.save()
-                return HttpResponseRedirect(reverse('user_profile'))
-            # else:
-            #     return HttpResponseRedirect(reverse('accounts:home'))
-        
-
+        profileform=ProfileUpdateForm(request.POST,  request.FILES, instance=currentProfile)
+        if profileform.is_valid():
+            profileform.save()
+            return HttpResponseRedirect(reverse('user_profile'))
         
     # Update user form (username, fname, lname) -- END
 
-    context ={"userform":userform, "profileform":profileform}
+    context ={"userform":userform, 'currentProf':currentProfile, 'currentUser':currentUser, 'profileform': profileform}
 
     return render(request, 'main/userprofile.html', context)
+
+
+@allowed_users(allowed_roles=['admin'])
+def userprofileview(request,pk):
+
+    getUser = User.objects.get(id=pk)
+    getProfile = Profile.objects.get(user=getUser)
+
+    userinfo = {
+        "first_name" : getUser.first_name,
+        "last_name" : getUser.last_name
+    }
+
+    userform = UserViewForm(initial ={
+        'username': getUser.username,
+        'first_name': getUser.first_name,
+        'last_name':getUser.last_name
+    })    
+
+    profileform = ProfileViewForm(initial={
+        "avatar" : getProfile.avatar,
+        "is_logicmorph_staff":getProfile.is_logicmorph_staff,
+        "is_dark_theme":getProfile.is_dark_theme
+    },  auto_id=False)
+
+    context = {
+        'userform':userform,
+        'profileform': profileform,
+        'profileinfo':getProfile,
+        'userinfo': {
+                "first_name" : getUser.first_name,
+                "last_name" : getUser.last_name
+                }
+    }
+
+    return render(request, 'main/userprofile_view.html', context)
+    
+
+
+@allowed_users(allowed_roles=['admin'])
+def currentusers(request):
+    currentGroups = Group.objects.values('name')
+    currentUsers= User.objects.all()
+    context ={
+        'currentGroups':currentGroups,
+        'currentUsers': currentUsers
+    }
+
+    return render(request, 'main/users_list.html', context)
+
+@allowed_users(allowed_roles=['admin'])
+def usergroupchange(request):
+    changeStatus =""
+    if request.method == 'POST':
+        userID = request.POST['currentid']
+        userGroup = request.POST['getselectvalue']
+        requestedgroup = Group.objects.get(name=userGroup)
+        currentuser = User.objects.get(id=userID)
+        currentUserGroup = currentuser.groups.all()[0].name
+        
+
+        if userGroup != currentUserGroup:
+            currentuser.groups.clear()
+            currentuser.groups.add(requestedgroup)            
+            print("Successfully save changes " + currentUserGroup + " to " + userGroup)
+            changeStatus = "successfully save changes"
+        else:
+            print("save changes Failed " + currentUserGroup + " to " + userGroup)   
+            changeStatus = "save changes failed"        
+        
+    return JsonResponse({'changeStatus':changeStatus})
 
     

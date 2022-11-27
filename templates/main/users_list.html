@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+<!-- {% load crispy_forms_tags %} -->
+{% block content %}
+<div class="album py-1 bg-light">
+    {% include 'main/inc/leftnav.html' %} 
+    <div class="container-fluid">        
+        <h2 class="text-center text-primary">CURRENT USERS</h2>
+        <div class="row">
+                        <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                                <table class = "table table-bordered table-striped table-hover table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Email</th>
+                                            <th>Username</th>
+                                            <th>Full Name</th>
+                                            <th class="text-center">Current Group</th>
+                                            <th class="text-center">Groups</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>     
+                                    </thead>
+                    
+                                    <tbody id="bodybuild">
+                                        {% for currentUser in currentUsers %}
+                                            <!-- Update Modal Start-->
+                                            <div class="modal fade" id="updateusergroup_{{currentUser.id}}" tabindex="-1" aria-labelledby="updateusergroupLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="updateusergroupLabel">Logic Morph</h5>
+                                                            <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
+                                                    </div>
+                                                    <div class="modal-body text-center ">
+                                                        <div> Update changes? </div>
+                                                    </div>
+                                                    <!-- <div class="modal-footer"> -->
+                                                        <div class="text-center mb-3">                                                                    
+                                                            <!-- Button trigger modal -->
+                                                            <button type="button" class="btn btn-sm btn-outline-primary btnupdate_click" 
+                                                            id = "{{currentUser.id}}" csrftoken="{{csrf_token}}" uemail="{{ currentUser.email }}">
+                                                                <i class="fa-regular fa-circle-check"></i> Confirm</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i> Cancel</button>
+                                                        </div>
+                                                    <!-- </div> -->
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- Update Modal Start-->  
+
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td><a href="{% url 'user_profile_view' currentUser.id %}">
+                                                {{ currentUser.email }}
+                                            </a></td>
+                                            <td>{{ currentUser.username }}</td>
+                                            <td>{{ currentUser.first_name }} {{ currentUser.last_name }}</td>
+                                            <td name="curGroup" id="curGroup" class="text-center">{{currentUser.groups.all.0}}</td> 
+                                            <td class="text-center">
+                                                <select name = "user_group" group-sid="{{currentUser.id}}"  curvalue = "{{currentUser.groups.all.0}}" class="custom-select custom-select-sm user_group_current getselectval_{{currentUser.id}}" required>
+                                                    <option selected>{{currentUser.groups.all.0}}</option>
+                                                        {% for currentGroup in currentGroups %}
+                                                    <option value="{{currentGroup.name}}">{{currentGroup.name}}</option>
+                                                        {% endfor %}
+                                                <select>
+                                            </td>    
+                                            <td class="text-center">
+                                            <button  curvalue = "{{currentUser.groups.all.0}}" role="button" 
+                                            class="btn btn-sm btn-outline-primary btnupdate_{{currentUser.id}} btnupdateupdate" id = "{{currentUser.id}}" 
+                                            data-bs-toggle="modal" data-bs-target="#updateusergroup_{{currentUser.id}}" role="button" aria-pressed="true">
+                                                <i class="fa-regular fa-floppy-disk"></i> Update
+                                            </button> 
+                                            </td>   
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                           
+                                
+                            </div>
+                        <div class="col-lg-2"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

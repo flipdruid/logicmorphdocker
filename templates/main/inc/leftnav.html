@@ -22,7 +22,7 @@
         </div>
         <div class="sidebar-menu">
             <div class="profile text-center">
-                <img src="/media/{{userprofile.avatar}}" alt="">
+                <img src="/portal/media/{{userprofile.avatar}}" alt="">
                 <p>{{user.first_name}} {{user.last_name}}</p>
             </div>
             <div class="menubars">
@@ -42,24 +42,13 @@
                     <i class="fa-solid fa-user-tie"></i> <span> Account Settings</span>
                 </a>
             </li>
-            <li class="item" id="project">
-                <a href="#project" class="menu-btn">
-                    <i class="fa-solid fa-diagram-project"></i><span> Projects <i class="fa-solid fa-caret-down dropdown"></i></span>
-                </a>
-                <div class="sub-menu">
-
+            <li class="item" >
                     {% if user.is_superuser %}
-                        <a href="{% url 'create_project' %}"><i class="fa-solid fa-diagram-project"></i><span> Create</span></a>
+                        <a href="{% url 'list_project' %}" class="menu-btn"><i class="fa-solid fa-diagram-project"></i><span> Projects</span></a>
                     {% else %}
-                        <a href="{% url 'create_client_project' %}"><i class="fa-solid fa-diagram-project"></i><span> Create</span></a>
+                        <a href="{% url 'list_client_project'%}" class="menu-btn"><i class="fa-solid fa-diagram-project"></i><span> Projects</span></a>
                     {% endif %}
-
-                    {% if user.is_superuser %}
-                        <a href="{% url 'list_project' %}"><i class="fa-solid fa-diagram-project"></i><span> Current</span></a>
-                    {% else %}
-                        <a href="{% url 'list_client_project'%}"><i class="fa-solid fa-diagram-project"></i><span> Current</span></a>
-                    {% endif %}
-                </div>
+               
             </li>
             <li class="item">
                 <a href="#" class="menu-btn">

@@ -29,6 +29,7 @@ class Landing(ListView):
     template_name = "main/landing.html"
     paginate_by = 9
     context_object_name = "posts"
+    
 
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
 class Dashboard(TemplateView):

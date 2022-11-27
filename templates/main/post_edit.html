@@ -9,7 +9,31 @@
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
           <h2 class="text-center text-primary">UPDATE POST</h2>
-          <!-- Modal Start-->
+
+          <!-- Update Modal Start-->
+          <div class="modal fade" id="updatepost" tabindex="-1" aria-labelledby="updatepostLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="updatepostLabel">Logic Morph</h5>
+                        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
+                  </div>
+                  <div class="modal-body text-center ">
+                      <div> Update changes? </div>
+                  </div>
+                  <!-- <div class="modal-footer"> -->
+                      <div class="text-center mb-3">                                                                    
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-sm btn-outline-primary trigger_submit"><i class="fa-regular fa-circle-check"></i> Confirm</button>
+                          <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i> Cancel</button>
+                      </div>
+                  <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        <!-- Update Modal Start-->  
+
+          <!-- Delete Modal Start-->
             <div class="modal fade" id="deleteeditpost" tabindex="-1" aria-labelledby="deleteeditpostLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -30,7 +54,7 @@
                 </div>
               </div>
             </div>
-          <!-- Modal Start-->  
+          <!-- Delete Modal Start-->  
 
           <form method="post" novalidate>
               {% csrf_token %}
@@ -40,7 +64,7 @@
               </button>
           </form>  
                 <div class="text-center mb-2">
-                  <button class="btn btn-sm btn-outline-primary trigger_submit" style="width: 90px ;"><i class="fa-solid fa-floppy-disk "></i> Update</button>
+                  <button class="btn btn-sm btn-outline-primary" style="width: 90px ;" data-bs-toggle="modal" data-bs-target="#updatepost" role="button" aria-pressed="true"><i class="fa-solid fa-floppy-disk "></i> Update</button>
                   <button class="btn btn-sm btn-outline-primary" style="width: 90px ;" data-bs-toggle="modal" data-bs-target="#deleteeditpost" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
                   <a href="{% url 'main' %}" class="btn btn-sm btn-outline-primary" style="width: 90px ;"><i class="fa-solid fa-xmark"></i> Cancel</a>
                 </div>  
@@ -50,7 +74,4 @@
       </div>
     </div>
 </div>
-
-
-
 {% endblock %}

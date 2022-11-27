@@ -42,8 +42,8 @@
                                                                 <!-- <div class="modal-footer"> -->
                                                                     <div class="text-center mb-3">                                                                    
                                                                         <!-- Button trigger modal -->
-                                                                        <a href="{% url 'delete_client_project' project.id %}" type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-circle-xmark"></i> Confirm</a>
-                                                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-check"></i> Cancel</button>
+                                                                        <a href="{% url 'delete_client_project' project.id %}" type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-circle-check"></i> Confirm</a>
+                                                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i> Cancel</button>
                                                                     </div>
                                                                 <!-- </div> -->
                                                             </div>
@@ -55,11 +55,19 @@
                                                     
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                      
                                     {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
                                 {% endfor %}
+
+                                <div class="text-center">
+                                    {% if user.is_superuser %}
+                                        <a href="{% url 'create_project' %}" class="btn btn-sm btn-primary ml-1 text-white" style="width:150px ;"><i class="fa-solid fa-plus"></i><span> Add Project</span></a>
+                                    {% else %}
+                                        <a href="{% url 'create_client_project' %}" class="btn btn-sm btn-primary ml-1 text-white" style="width:150px ;"><i class="fa-solid fa-plus"></i><span> Add Project</span></a>
+                                    {% endif %}
+                                </div>
                             
                             {% endif %}
                                 <ul class="pagination">
@@ -78,7 +86,4 @@
         </div>
     </div>
 </div>
-
-
-
 {% endblock %}

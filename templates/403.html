@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-{% include 'main/inc/leftnav.html' %}
 
 <div class="album py-5 bg-light">
     <div class="container pt-5">
@@ -16,7 +15,7 @@
                 </div>
                 <div class="error-actions">
                     <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                        Return Home </a><a href="/contactus" class="btn btn-info btn-lg ml-1"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                        Return Home </a><a href="{% url 'contact_us' %}" class="btn btn-info btn-lg ml-1"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
                 </div>
             </div>
             <div class="col-md-3 "></div>
@@ -24,7 +23,4 @@
     </div>
     </div>
 </div>
-
-
-
 {% endblock %}

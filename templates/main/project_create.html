@@ -16,14 +16,15 @@
                   <button type="submit" class="btn btn-sm btn-outline-primary" style="width: 90px;">
                     <i class="fa-regular fa-floppy-disk"></i></span> Save
                   </button>
+                  {% if request.user.is_superuser %}
+                  <a href="{% url 'list_project' %}" class="btn btn-sm btn-outline-primary" style="width: 90px;"><i class="fa-solid fa-xmark"></i> Cancel</a>
+                  {% else %}
                   <a href="{% url 'list_client_project' %}" class="btn btn-sm btn-outline-primary" style="width: 90px;"><i class="fa-solid fa-xmark"></i> Cancel</a>
-              </div>
+                  {% endif %}
+                </div>
           </form>
         </div>
         <div class = "col-lg-3"></div>
     </div>
 </div>
-
-
-
 {% endblock %}

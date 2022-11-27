@@ -15,17 +15,15 @@
             {% block head_title %}{% endblock %}
         </title>
     </head>
-    <body>
+    <body class="bg-light">
         {% include 'main/inc/navbar.html' %}
         <main class="main" id="top">
-            {% block content %}{% endblock %}
+            {% block content %}{% endblock %}        
         </main>
-
+        {% include 'main/inc/footer.html' %} 
         <!-- Optional JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src = "{% static 'js/bootstrap.bundle.min.js' %}"></script>
-        <script src = "{% static 'js/custom.js' %}"></script>
-        
-        
+        <script src = "{% static 'js/custom.js' %}"></script>  
     </body>
 </html>

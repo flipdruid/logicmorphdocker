@@ -20,12 +20,6 @@
               {{ regForm.email|as_crispy_field }}
               {{ regForm.username|as_crispy_field }}
               {{ regForm.first_name|as_crispy_field }}
-              <div class="form-check mb-1">
-                <input class="form-check-input " name = "client_enabled" type="checkbox" value="" id="client_enabled" checked >
-                <label class="form-check-label " for="flexCheckChecked">
-                  Enabled client profile
-                </label>
-              </div>
               {{ regForm.last_name|as_crispy_field }}
               {{ regForm.password1|as_crispy_field }}
               {{ regForm.password2|as_crispy_field }}
@@ -43,8 +37,6 @@
     <!-- </div> -->
     </div>
 </div>
-
-
-
-{% endblock %}>
 </div>
+{% endblock %}>
+

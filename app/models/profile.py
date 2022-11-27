@@ -7,7 +7,7 @@ from django.db import models
 from hashid_field import HashidAutoField
 
 from accounts.models import User
-
+randomstr=""
 
 def image_path(instance, filename):
     basefilename, file_extension = os.path.splitext(filename)
@@ -33,7 +33,7 @@ class Profile(models.Model):
         primary_key=True, salt=f"profilemodel{settings.HASHID_FIELD_SALT}"
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile_user")
-    avatar = models.ImageField(upload_to=image_path, default="avatar/lmlt.png")
+    avatar = models.ImageField(upload_to=image_path, default="avatar/logicmorph" + random.choice("0123456789")+".png")
     is_logicmorph_staff = models.BooleanField(default=False)
     is_dark_theme = models.BooleanField(default=False)
 
