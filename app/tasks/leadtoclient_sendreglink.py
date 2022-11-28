@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags, format_html
+from django.contrib.sites.models import Site
 
 from time import sleep
 from app.models import reglink
@@ -16,7 +17,7 @@ from app.models.reglink import Reglink
 def sendreglink(reglink_id):
     reglink = Reglink.objects.get(pk=reglink_id)
     namesubject = ("Registration Link for " + str(reglink.lead_mail))
-    details = ("http://localhost:8000/portal/leadactivation/"+ str(reglink.lead_reglink))
+    details = (str(Site.objects.get_current())+"/portal/leadactivation/"+ str(reglink.lead_reglink))
     html_content = render_to_string("main/email_template.html", {'details' : details, 'fname':reglink.lead_firstname})
     # html_content = "<p>" + details + "</p>"
     # html_content = strip_tags(html_content)
