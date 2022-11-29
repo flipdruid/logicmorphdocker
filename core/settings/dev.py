@@ -25,3 +25,27 @@ else:
         }
     }
 
+
+# #S3
+# AWS_ACCESS_KEY_ID ="REMOVED_AWS_KEY_ID"
+# AWS_SECRET_ACCESS_KEY="REMOVED"
+# AWS_STORAGE_BUCKET_NAME="lm-s3bucket"
+# AWS_S3_CUSTOM_DOMAIN= f'{AWS_STORAGE_BUCKET_NAME}.s3.amazon.com'
+# AWS_DEFAULT_ACL='public-read'
+# AWS_S3_FILE_OVERWRITE =False
+# AWS_S3_OBJECT_PARAMETERS ={
+# 	'CacheControl': 'max-age=86400'
+# }
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+# # AWS_LOCATION = 'static'
+
+
+# AWS_QUERYSTRING_AUTH = False
+
+# AWS_HEADERS = {
+# 	'Access-Control-Allow-Origin':'*', 
+	
+# }
+# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
