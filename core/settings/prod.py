@@ -40,7 +40,7 @@ DATABASES = {
     "default": dj_database_url.config(default='sqlite://db.sqlite3', 
     conn_max_age=600, ssl_require=False)
 }
-
+STATICFILES_STORAGE =  'whitenoise.django.GzipManifestStaticFilesStorage'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
