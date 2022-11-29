@@ -33,6 +33,29 @@ HASHID_FIELD_SALT = config("HASHID_FIELD_SALT")
 
 DEBUG = False
 
+#S3
+AWS_ACCESS_KEY_ID =config("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY=config("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME=config("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_CUSTOM_DOMAIN= f'{AWS_STORAGE_BUCKET_NAME}.s3.amazon.com'
+AWS_DEFAULT_ACL='public-read'
+AWS_S3_FILE_OVERWRITE =False
+AWS_S3_OBJECT_PARAMETERS ={
+	'CacheControl': 'max-age=86400'
+}
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+# AWS_LOCATION = 'static'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media'
+
+AWS_QUERYSTRING_AUTH = False
+
+AWS_HEADERS = {
+	'Access-Control-Allow-Origin':'*', 
+	
+}
+
 load_dotenv(find_dotenv())
 
 import dj_database_url
@@ -40,7 +63,7 @@ DATABASES = {
     "default": dj_database_url.config(default='sqlite://db.sqlite3', 
     conn_max_age=600, ssl_require=False)
 }
-STATICFILES_STORAGE =  'whitenoise.django.GzipManifestStaticFilesStorage'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
