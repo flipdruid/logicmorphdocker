@@ -1,3 +1,4 @@
+
 /* * {
     margin: 0;
     padding: 0;
@@ -7,10 +8,348 @@
     font-family: "Roboto", sans-serif;
 } */
 
-body{
-    background: #0275d8 ;
+.itsols{
+   max-width: 80%;
+   margin:0 auto;  
 }
 
+.itsolssub {
+   
+   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),  url('../image/eb081e-20220829-retotech-webp1400.png');
+   /* background-color: ; */
+   background-repeat: no-repeat;
+   background-position: center;
+   height: 509px;
+   /* max-width: 80%;
+   margin:0 auto;   */
+} 
+
+.colfour {
+   color: white;
+   /* align-items: center; */
+   display: inline;
+   align-items: center;
+   margin-top: 100px;   
+   /* margin-left: 10px; */
+   /* text-align: center;
+   align-items: center; */
+}
+
+.colfour p{
+   margin-top: 30px;
+
+}
+.colfour button{
+   margin-top: 60px;
+   height: 51px;
+
+}
+
+.btncolfour {
+   height: 48px;
+   width: 48px;
+   background: #D9D9D9;
+   border-radius: 8px;
+   
+}
+
+.colfourcenter {
+   text-align: center;
+   align-items: center;
+   margin-top: 200px;   
+   color: white;
+}
+
+.colfourcenter img {
+   text-align: center;
+   align-items: center;
+   margin-left: -5px;
+}
+
+.colfourcenter h6 {
+   /* h6 */
+   font-family: 'Helvetica';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 18px;
+   line-height: 25px;
+   text-align: center;
+   margin-top: 35px;
+   margin-bottom: 30px;
+}
+
+.contactus {
+   font-family: 'Helvetica';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 30px;
+   line-height: 41px;
+   text-align: center;
+   color: #292A3C;
+   margin-top: 80px;
+   margin-bottom: 40px ;
+}
+
+.contactusnow{
+   font-family: 'Segoe UI';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 14px;
+   line-height: 20px;
+   text-align: center;
+   color: #FFFFFF;
+   width: 216px;
+   height: 51px;
+   /* #4649FF */
+   background: #4649FF;
+   /* shadow_002 */
+   box-shadow: 0px 4px 23px -5px #3C3DA5;
+   border-radius: 100px;
+   text-align: center;
+   align-items: center;
+}
+
+.parag{
+   font-family: 'Segoe UI';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 25px;
+   text-align: center;
+   max-width: 50%;
+   margin: 0 auto;
+}
+
+.pydjang {
+   margin-top: 60px;
+   max-width: 80%;
+}
+
+.pydjang h2 {
+   /* width: 349px; */
+   /* height: 41px;   */
+   /* h2 */   
+   font-family: 'Helvetica';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 30px;
+   line-height: 41px; 
+}
+
+.pydjang p {
+width: 439px;
+height: 127px;
+font-family: 'Segoe UI';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 25px;
+color: #292A3C;
+text-align:justify ;
+}
+
+.djflask{
+   max-width: 80%;
+   margin:0 auto;   
+   margin-bottom: 50px;
+}
+
+.techtools {
+margin-top: 80px;
+margin-bottom: 70px;
+/* /* width: 418px; */
+/* height: 41px;  */
+/* h2 */
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 700;
+font-size: 30px;
+line-height: 41px;
+/* text-align: center; */
+/* identical to box height */
+/* Darc_01 */
+color: #292A3C;
+
+}
+
+.dividerian {
+   width: 85%;
+   height: 5px !important;
+   background-color:#760B97;
+   /* background-color: #3C3DA5; */
+   border-radius: 2px;
+   margin-bottom: 15px;
+   margin-top: 15px;
+}
+
+.social-wrapper{
+   /* position: absolute; */
+   width: 165px;
+   height: 51px;
+   left: 0;
+   top: 300px;
+   }
+
+.landingbtn {
+   /* position: absolute; */
+   width: 165px;
+   height: 51px;
+   left: 0;
+   /* top: 260px; */
+
+   /* #4649FF */
+
+   background: #4649FF;
+   /* shadow_002 */
+
+   box-shadow: 0px 4px 23px -5px #3C3DA5;
+   border-radius: 100px;
+   
+      }
+.socialbtn {
+   width: 22px;
+   height: 29px;
+   font-family: 'Font Awesome 5 Brands';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 25px;
+   line-height: 29px;
+   color: #4649FF;
+   margin-top: 50px;
+   
+}
+
+.landingheader {
+   font-family: Inter;
+   font-size: 43px;
+   font-weight: 700;
+   line-height: 52px;
+   letter-spacing: 0em;
+   text-align: left;
+   margin-top: -150px;
+}
+
+.landingparag {
+   font-family: Segoe UI;
+   font-size: 14px;
+   font-weight: 400;
+   line-height: 25px;
+   letter-spacing: 0em;
+   text-align: left;
+
+   }
+
+
+
+.navbar {
+   max-width: 80%;
+   margin:0 auto;
+}
+
+.landingrow{
+   background-image: url('../image/stacks.png');
+   background-repeat: no-repeat;
+   /* background-attachment: fixed; */
+   /* background-position: center right; */
+   background-position:right 4em top 1px;
+   padding-top: 280px;
+   padding-bottom: 100px;
+   
+}
+
+
+.inside-main-row {
+   max-width: 80%;
+   margin:0 auto;
+   /* margin-left: 0 auto;
+   margin-right: 0 auto; */
+}
+
+.landingrow2 {
+   /* position: absolute; */
+   /* width: 1076px;
+   height: 301px; */
+   background: #191926;
+   /* left: 0; */
+   /* top: 350px; */
+   border-radius: 13px;
+   max-width: 80%;
+   width: 80%;
+   margin:0 auto;
+   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.row2col {
+   max-width: 33.33%;
+   /* width: 386px; */
+   height: 250px;
+   margin-top: 20px;
+}
+
+.landingrow2 .row2col span {
+   width: 33px;
+   height: 30px;
+   /* left: 463px; */
+   /* right: 0; */
+   float: right;
+   /* display: flexbox; */
+   /* padding-top: 20px !important; */
+   font-family: 'Proxima Nova';
+   font-style: normal;
+   font-weight: 800;
+   font-size: 30px;
+   line-height: 30px;
+   /* text-align: right; */
+   /* identical to box height */
+   /* #B3B5C5 */
+   color: #B3B5C5;
+   }
+
+.landingrow2 .row2col h2 {
+   width: 171px;
+   height: 82px;
+   /* h2 */
+   font-family: 'Helvetica';
+   font-style: normal;
+   font-size: 30px;
+   line-height: 41px;
+   color: #E1E3F3;
+   }
+
+.landingrow2 .row2col p {
+   width: 271px;
+   height: 75px;
+   /* paragraph */
+   font-family: 'Segoe UI';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 25px;
+   /* or 179% */
+   color: #E1E3F3;
+   }
+
+body{
+    /* background: #0275d8 ; */
+    background-image: linear-gradient(rgba(179, 181, 197, 0.4), rgba(179, 181, 197, 0.4)), url('../image/lmbg.png');
+    background-repeat: no-repeat;
+    /* max-width: 85%; */
+    margin:0 auto;
+
+    background-position: center;
+    /* background-attachment: fixed; */
+    
+
+}
+
+
+.navbar .collapse .navbar-nav li a {
+   color: black;
+}
+
+.navbar .collapse .navbar-nav li a:hover {
+   color: #0275d8;
+}
 /* .wrapper .header {
     z-index: 1;
     background: #0275d8 ;

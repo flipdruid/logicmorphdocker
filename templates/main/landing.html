@@ -1,73 +1,145 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="album py-1 bg-light">
+<div class="album py-1">
     <div class="container-fluid">        
-        <h2 class="text-center text-primary">CURRENT POSTS</h2>
-        <div class="row bg-light">
-                        <div class="col-lg-2"></div>
-                            <div class="col-lg-8">
-                            {% for post in posts %}
-                                {% if forloop.counter0|divisibleby:3 %} <div class="row d-flex justify-content-center"> {%  endif %}
-                                    <div class="card box-shadow rounded-top text-center" style="width: 300px; height:240px ; margin: 5px;">
-                                        <div class="bg-primary text-white  text-center" style="height:25px;">{{post.created_at}}</div>
-                                        <div class = "card-body">                                            
-                                            <h4> {{ post.title|slice:":20" }} </h4>
-                                            <div>
-                                                <medium class="text-muted" >{{post.description|slice:":50"}}</medium> <br/>
-                                            </div>
-                                            <small class="text-muted">Author: {{post.created_by}}</small>
+        <!-- <h2 class="text-center text-primary headertext">CURRENT POSTS</h2> -->
 
-                                            <div class="mt-1 text-center align-text-bottom">
-                                                <div class="btn-group">
-                                                    
-                                                    {% if post.created_by == user %}
-                                                        <a href="{% url 'post_update' post.pk %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>    
-                                                        <!-- Modal Start-->
-                                                            <div class="modal fade" id="deletepost" tabindex="-1" aria-labelledby="deletepostLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header bg-primary text-white">
-                                                                            <h5 class="modal-title" id="deletepostLabel">Logic Morph</h5>
-                                                                            <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <div> Are you sure you want to delete the '{{ post.title|slice:":20" }}' </div>
-                                                                        </div>
-                                                                        <!-- <div class="modal-footer"> -->
-                                                                            <div class="text-center mb-3">                                                                    
-                                                                                <!-- Button trigger modal -->
-                                                                                <a href="{% url 'post_delete' post.pk %}" type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-circle-check"></i> Confirm</a>
-                                                                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i> Cancel</button>
-                                                                            </div>
-                                                                        <!-- </div> -->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        <!-- Modal Start-->                                                    
-                                                        <button class="btn btn-sm btn-outline-primary ml-1" data-bs-toggle="modal" data-bs-target="#deletepost" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
-                                                    {% else %} 
-                                                        <a href="{% url 'post_view' post.pk %}" class="btn btn-sm btn-outline-primary"  role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a> 
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
-                            {% endfor %}
-                                <ul class="pagination">
-                                    {% if page_obj.has_previous %}
-                                        <li class="page-item"><a href="?page=1" class="page-link" ><i class="fa-solid fa-angles-left"></i> First</a></li>
-                                        <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"><i class="fa-solid fa-arrow-left"></i> Previous</a></li>
-                                    {% endif %}
+        <!-- landingrow Start -->
+        <div class="row landingrow">
+            <div class="col-lg-12">
+                <div class="row inside-main-row">
+                    <div class="col-lg-6"> 
+                        <div>
+                            <h1 class="landingheader">We Provide
+                                The Most Exciting 
+                                Startup Business Solution
+                            </h1>
+                            <p class="landingparag">
+                                Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium. Donec lobortis iaculis neque a laoreet.
+                            </p>
+                        </div>
 
-                                    {% if page_obj.has_next %}
-                                        <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"><i class="fa-solid fa-arrow-right"></i> Next</a></li>
-                                        <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link"><i class="fa-solid fa-angles-right"></i> Last</a></li>
-                                    {% endif %}
-                                </ul>
-                            </div>
-                        <div class="col-lg-2"></div>
+                        <div class="mt-5">
+                            <button type="button" class="btn btn-primary landingbtn">Get A Free Quote</button>
+                        </div>
+                        <div class="social-wrapper mt-3">
+                            <a href="#" type="button" class="btn socialbtn"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#" type="button" class="btn socialbtn ml-3 mr-3"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" type="button" class="btn socialbtn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                                
+                        </div>
+                    <div class="col-lg-6"></div>
+                </div>               
+                
+                <!-- <div class="col-lg-2"></div> -->
+            </div>
+                        
         </div>
+        <!-- landingrow2 Start -->
+        <div class="row landingrow2">
+
+            <div class="col-lg-4 row2col">
+                <div class="mb-3"><span>01</span></div>
+                <h2>Consumer Satisfaction</h2>
+                <li class="dividerian"></li>
+                <p>Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium neque a laoreet.</p>
+            </div>
+
+            <div class="col-lg-4 row2col">
+                <div class="mb-3"><span>02</span></div>
+                <h2>Unlimited Ideas</h2>
+                <li class="dividerian"></li>
+                <p>Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium neque a laoreet.</p>
+            </div>
+
+            <div class="col-lg-4 row2col">
+                <div class="mb-3"><span>03</span></div>
+                <h2>Business Planning</h2>
+                <li class="dividerian"></li>
+                <p>Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium neque a laoreet.</p>
+            </div>
+
+        </div>
+        <!-- landingrow2 Start -->
+        <div class="text-center"> <h2 class="techtools">Technologies & Tools We Use</h2></div>
+
+        <div class="row djflask">
+            <div class="col-lg-6"><img src="static/image/django-flask.png" /> </div>
+            <div class="col-lg-6">
+                <div class="pydjang">
+                    <h2>Python Django / Flask</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque dui ante, nec ultricies lectus aliquet vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque rutrum ligula sit amet augue cursus posuere. Integer dictum mauris in bibendum auctor.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row djflask">            
+            <div class="col-lg-6">
+                <div class="pydjang">
+                    <h2>HTML5 CSS3 & JAVASCRIPT</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque dui ante, nec ultricies lectus aliquet vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque rutrum ligula sit amet augue cursus posuere. Integer dictum mauris in bibendum auctor.</p>
+                </div>
+            </div>
+            <div class="col-lg-6"><img src="static/image/html5-css.png" /> </div>
+        </div>
+
+        <div class="row djflask">
+            <div class="col-lg-6"><img src="static/image/databases.png" /> </div>
+            <div class="col-lg-6">
+                <div class="pydjang">
+                    <h2>MySql Database</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque dui ante, nec ultricies lectus aliquet vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque rutrum ligula sit amet augue cursus posuere. Integer dictum mauris in bibendum auctor.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row djflask">            
+            <div class="col-lg-6">
+                <div class="pydjang">
+                    <h2>FIGMA UI / UX</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque dui ante, nec ultricies lectus aliquet vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque rutrum ligula sit amet augue cursus posuere. Integer dictum mauris in bibendum auctor.</p>
+                </div>
+            </div>
+            <div class="col-lg-6"><img src="static/image/figma.png" /> </div>
+        </div>
+
+        <div class="row itsols">            
+            <div class="col-lg-12 itsolssub">
+                <div class="row">
+                    <div class="col-lg-4 colfour">
+                        <h2>I.T. Solutions That Saves Your Time!</h2>
+                        <p>Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium. Donec lobortis iaculis neque a laoreet.</p>
+                        <button type="button" class="btn btn-primary rounded-pill">Schedule An Appointment</button>
+                    </div>
+                    <div class="col-lg-4 colfourcenter">
+                        <button class="btn btncolfour"> <img src="static/image/dollar.png"/></button>
+                        <h6>Transparent Pricing</h6>
+                        <p>Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium.</p>
+                    </div>
+                    <div class="col-lg-4 colfourcenter">
+                        <button class="btn btncolfour"> <img src="static/image/clock.png"/></button>
+                        <h6>Transparent Pricing</h6>
+                        <p>Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contactus">Contact Us</div>
+                <p class="parag">If you have any questions or queries, a member from our team will always be happy to help. Feel free to contact us and we will be sure to get back to you as soon as possible. </p>
+                <div class="text-center mt-5">
+                    <button class="btn rounded-pill contactusnow">Contact Us Now</button>
+                </div>
+            </div>
+
+        </div>
+
     </div>
+    
+    
 </div>
 {% endblock %}
