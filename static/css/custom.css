@@ -447,7 +447,7 @@ body{
     z-index: 1;
     background: #2f323a;
     position: fixed;
-    top: 75px;
+    top: 68px;
     width: 250px;
     height: calc(100%);
     transition: 0.3s;
