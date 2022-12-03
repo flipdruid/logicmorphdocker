@@ -7,6 +7,19 @@
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 } */
+.navbar h4{
+   color: gray;
+   font-size: 30px;
+}
+
+.nav-link {
+   font-family: 'Segoe UI', sans-serif;      
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 19px;
+   margin-left: 20px;
+}
 
 .itsols{
    max-width: 80%;
@@ -96,7 +109,6 @@
    font-weight: 700;
    font-size: 14px;
    line-height: 20px;
-   text-align: center;
    color: #FFFFFF;
    width: 216px;
    height: 51px;
@@ -107,6 +119,10 @@
    border-radius: 100px;
    text-align: center;
    align-items: center;
+}
+
+.contactusnow h6{
+   margin-top: 10px;
 }
 
 .parag{
@@ -294,7 +310,7 @@ color: #292A3C;
    float: right;
    /* display: flexbox; */
    /* padding-top: 20px !important; */
-   font-family: 'Proxima Nova';
+   font-family: 'Proxima Nova', sans-serif;                                                
    font-style: normal;
    font-weight: 800;
    font-size: 30px;
@@ -342,6 +358,10 @@ body{
 
 }
 
+
+.navbar-nav {
+   text-align: right;
+}
 
 .navbar .collapse .navbar-nav li a {
    color: black;

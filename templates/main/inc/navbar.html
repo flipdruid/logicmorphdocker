@@ -30,27 +30,36 @@
     <!-- Modal End--> 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top"> -->
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-        <span class="navbar-toggler-icon"></span>
+        <button 
+        class="navbar-toggler" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#collapse_target"
+        aria-controls="toggleMobileMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        >
+        <!-- <span class="navbar-toggler-icon"></span> -->
+        <h4>
+            <i class="fa-solid fa-bars"></i>
+        </h4>
         </button>
 
             <!-- <div class="row"> -->
-
-                
-
-
                 <div class="collapse navbar-collapse  border-bottom  border-secondary" id ="collapse_target">
-                    <!-- <div class="col-lg-3 "> -->                        
-                        <a class="navbar-brand"><img src="{% static 'image/lmlt.png' %}"style="width: 50px; height: 50px;"></a>
-                        <a href ="/" class = "align-middle"><span class="navbar-text text-dark">LogicMorph</span></a>
+                    <!-- <div class="col-lg-3 "> -->    
+                        <div class="navbar-collapse">                 
+                            <a class="navbar-brand"><img src="{% static 'image/lmlt.png' %}"style="width: 50px; height: 50px;"></a>
+                            <a href ="/" class = "align-middle"><span class="navbar-text text-dark">LogicMorph</span></a>
+                        </div>   
                     <!-- </div> -->
-                    <!-- <div class="col-lg-9"> -->
-                        <ul class="navbar-nav ml-auto">
-                                <li class="nav-item"><a class="nav-link"  href="#"><i class="fa-solid fa-toolbox"></i> Solutions</a></li>
-                                <li class="nav-item"><a class="nav-link"  href="#"><i class="fa-brands fa-servicestack"></i> Our Stacks</a></li>
-                                <li class="nav-item"><a class="nav-link"  href="#"><i class="fa-brands fa-sourcetree"></i> Resources</a></li>
-                                <li class="nav-item"><a class="nav-link"  href="#"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
-                                <li><a href="{% url 'contact_us' %}" class="nav-link btn btn-outline-secondary"><i class="fa-regular fa-envelope"></i> Contact Us</a></li>
+                    <!-- <div class="col-lg-9"> -->                        
+                        <!-- <ul class="navbar-nav ml-auto"> -->
+                        <ul class="navbar-nav text-left">
+                                <li class="nav-item"><a class="nav-link"  href="#">Solutions</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#">Our Stacks</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#">Resources</a></li>
+                                <li class="nav-item"><a class="nav-link"  href="#">About Us</a></li>
+                                <!-- <li><a href="{% url 'contact_us' %}" class="nav-link btn btn-outline-secondary"><i class="fa-regular fa-envelope"></i> Contact Us</a></li> -->
                                 <li class="nav-item dropdown ">
                                     {% if user.is_authenticated %}
 
@@ -67,12 +76,12 @@
                                             </div>
                                             <div class="dropdown-divider"></div>
                                             <a href="{% url 'user_profile' %}" class="dropdown-item">
-                                                <i class="fa-solid fa-user-tie"></i> Profile
+                                                Profile
                                             </a>
 
                                             {% if request.user.is_superuser %}
                                             <a href="{% url 'current_users' %}" class="dropdown-item">
-                                                <i class="fa-solid fa-users"></i> Users
+                                               Users
                                             </a>
                                             {% endif %}
 
@@ -82,8 +91,6 @@
                                             <!-- <div class="dropdown-divider"></div> --> 
                                             
                                         </div>
-                                    {% else %}
-                                        <a href="{% url 'accounts:login' %}" class="nav-link"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                                     {% endif %}
                                 </li>
 
