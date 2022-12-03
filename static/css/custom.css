@@ -347,7 +347,8 @@ color: #292A3C;
 
 body{
     /* background: #0275d8 ; */
-    background-image: linear-gradient(rgba(179, 181, 197, 0.4), rgba(179, 181, 197, 0.4)), url('../image/lmbg.png');
+    /* background-image: linear-gradient(rgba(179, 181, 197, 0.3), rgba(179, 181, 197, 0.3)), url('../image/lmbg.png'); */
+    background-image:url('../image/lmbg.png');
     background-repeat: no-repeat;
     /* max-width: 85%; */
     margin:0 auto;
