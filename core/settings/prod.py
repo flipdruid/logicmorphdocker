@@ -44,7 +44,7 @@ else:
 
   
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #S3
 # AWS_ACCESS_KEY_ID =config("AWS_ACCESS_KEY_ID")
