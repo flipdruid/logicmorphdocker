@@ -33,8 +33,6 @@ HASHID_FIELD_SALT = config("HASHID_FIELD_SALT")
 
 DEBUG = False
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 #S3
 # AWS_ACCESS_KEY_ID =config("AWS_ACCESS_KEY_ID")
 # AWS_SECRET_ACCESS_KEY=config("AWS_SECRET_ACCESS_KEY")
