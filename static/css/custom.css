@@ -81,7 +81,7 @@
 
 .colfourcenter h6 {
    /* h6 */
-   font-family: 'Helvetica';
+   font-family: 'Helvetica', sans-serif;
    font-style: normal;
    font-weight: 700;
    font-size: 18px;
@@ -92,7 +92,7 @@
 }
 
 .contactus {
-   font-family: 'Helvetica';
+   font-family: 'Helvetica', sans-serif;
    font-style: normal;
    font-weight: 700;
    font-size: 30px;
@@ -104,7 +104,7 @@
 }
 
 .contactusnow{
-   font-family: 'Segoe UI';
+   font-family: 'Segoe UI', sans-serif;
    font-style: normal;
    font-weight: 700;
    font-size: 14px;
@@ -126,7 +126,7 @@
 }
 
 .parag{
-   font-family: 'Segoe UI';
+   font-family: 'Segoe UI', sans-serif;
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
@@ -145,7 +145,7 @@
    /* width: 349px; */
    /* height: 41px;   */
    /* h2 */   
-   font-family: 'Helvetica';
+   font-family: 'Helvetica', sans-serif;
    font-style: normal;
    font-weight: 700;
    font-size: 30px;
@@ -155,7 +155,7 @@
 .pydjang p {
 width: 439px;
 height: 127px;
-font-family: 'Segoe UI';
+font-family: 'Segoe UI', sans-serif;
 font-style: normal;
 font-weight: 400;
 font-size: 14px;
@@ -176,7 +176,7 @@ margin-bottom: 70px;
 /* /* width: 418px; */
 /* height: 41px;  */
 /* h2 */
-font-family: 'Helvetica';
+font-family: 'Helvetica', sans-serif;
 font-style: normal;
 font-weight: 700;
 font-size: 30px;
@@ -225,7 +225,7 @@ color: #292A3C;
 .socialbtn {
    width: 22px;
    height: 29px;
-   font-family: 'Font Awesome 5 Brands';
+   font-family: 'Font Awesome 5 Brands', sans-serif;
    font-style: normal;
    font-weight: 400;
    font-size: 25px;
@@ -236,7 +236,7 @@ color: #292A3C;
 }
 
 .landingheader {
-   font-family: Inter;
+   font-family: 'Inter', sans-serif;
    font-size: 43px;
    font-weight: 700;
    line-height: 52px;
@@ -246,7 +246,7 @@ color: #292A3C;
 }
 
 .landingparag {
-   font-family: Segoe UI;
+   font-family: 'Segoe UI', sans-serif;
    font-size: 14px;
    font-weight: 400;
    line-height: 25px;
@@ -325,7 +325,7 @@ color: #292A3C;
    width: 171px;
    height: 82px;
    /* h2 */
-   font-family: 'Helvetica';
+   font-family: 'Helvetica', sans-serif;
    font-style: normal;
    font-size: 30px;
    line-height: 41px;
@@ -336,7 +336,7 @@ color: #292A3C;
    width: 271px;
    height: 75px;
    /* paragraph */
-   font-family: 'Segoe UI';
+   font-family: 'Segoe UI', sans-serif;
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
@@ -345,15 +345,92 @@ color: #292A3C;
    color: #E1E3F3;
    }
 
+#footerwrapper {
+    background-image:url('../image/footerbg.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+   }
+
+#lm-footer{
+   max-width: 80%;
+   margin:0 auto;
+}
+
+#lm-footer span{
+   color: black;
+}
+
+.imgspan {
+   margin-top: 50px;
+}
+
+/* Footer link Start */
+
+.footerlink {
+   margin-top: 20px;
+}
+.footerlink a {
+   margin-left: 20px;
+}
+.footerlink a:link{
+   color: black;
+   background-color: transparent;
+   text-decoration: none;
+
+}
+
+.footerlink a:hover {
+   color: #4649FF;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ /* Footer link end */
+
+ /* Footer Social Start */
+.footersocial {
+   margin-top: 20px;
+}
+.footersocial a {
+   margin-left: 20px;   
+   font-size: 27px;
+}
+.footersocial a:link{
+   color: black;
+   background-color: transparent;
+   text-decoration: none;
+
+}
+
+.footersocial a:hover {
+   color: #4649FF;
+   background-color: transparent;
+   text-decoration: underline;
+ }
+ /* Footer Social end */
+
+ .footercopyrights {
+   max-width: 60%;
+   margin: 0 auto;
+ }
+
+ .footercopyrights p{
+   font-family: 'Segoe UI', sans-serif;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 25px;
+   text-align: center;
+ }
+
 body{
-    /* background: #0275d8 ; */
+   /* background-color: #191926; */
     /* background-image: linear-gradient(rgba(179, 181, 197, 0.3), rgba(179, 181, 197, 0.3)), url('../image/lmbg.png'); */
     background-image:url('../image/lmbg.png');
     background-repeat: no-repeat;
     /* max-width: 85%; */
     margin:0 auto;
 
-    background-position: center;
+    background-position: top;
     /* background-attachment: fixed; */
     
 

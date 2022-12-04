@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from app.views.index import Landing, Dashboard
-from app.views.lead import LeadCreate, LeadMailList, LeadToClient, LeadMailView, LeadMailDelete, LeadMailViewLead, createreglink, leadactivation, userprofile, userprofileview, currentusers, usergroupchange
+from app.views.lead import LeadCreate, LeadMailList, LeadToClient, LeadMailView, LeadMailDelete, LeadMailViewLead, createreglink, leadactivation, userprofile, userprofileadminupdate, currentusers, usergroupchange
 from app.views.post import PostCreate, PostDelete, PostUpdate, PostView
 from app.views.project import CreateProjectClient, CreateProject, ListProject, ListClientProject, ClientProjectUpdate, ClientProjectDelete
 
@@ -22,7 +22,7 @@ urlpatterns = [
     path("createreglink/<str:lead_id>/", createreglink, name="create_reg_link"),
     path("leadactivation/<str:reglink>/", leadactivation, name="lead_activation_to_client"),
     path("userprofile/", userprofile, name="user_profile"),
-    path("userprofileview/<str:pk>/", userprofileview, name="user_profile_view"),
+    path("userprofileview/<str:pk>/", userprofileadminupdate, name="user_profile_adminupdate"),
     path("createclientproject/", CreateProjectClient.as_view(), name="create_client_project"),
     path("createproject/", CreateProject.as_view(), name="create_project"),
     path("projects/", ListProject.as_view(), name="list_project"),

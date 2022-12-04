@@ -10,7 +10,7 @@
             <div class = "col-lg-10">
               <h2 class="text-center text-primary">Account</h2>
 
-              <!-- Update Modal Start-->
+                <!-- Update Modal Start-->
                 <div class="modal fade" id="updateuserprofile" tabindex="-1" aria-labelledby="updateuserprofileLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
@@ -35,8 +35,8 @@
               
                 <div class="card box-shadow rounded-top text-center bg-primary">
                     <div class="text-white  text-center align-middle">
-                        <img src="/portal/media/{{userprofile.avatar}}" alt="" style="width: 70px; height: 70px;" class=" rounded-circle mt-2"><br/>
-                        <p class="mb-1">{{currentUser.first_name}} {{currentUser.last_name}} </p>
+                        <img src="/portal/media/{{profileinfo.avatar}}" alt="" style="width: 85px; height: 85px;" class=" rounded-circle mt-2"><br/>
+                        <p class="mt-1">{{userinfo.first_name}} {{userinfo.last_name}} </p>
                     </div>                   
                 </div>
 
@@ -49,28 +49,26 @@
                             <div class = "col-lg-6" style="text-align: left;">
                                 <form method="post"  action="" enctype='multipart/form-data'>
                                     {% csrf_token %}               
-                                        <label>Username</label>
-                                        <input type="text"  value="{{currentUser.username}}" class="form-control mb-1" readonly> 
                                         {{userform|crispy}}
-                                        {{profileform|crispy}}
+                                        {{profileform|crispy}}     
                                         
                                     <div class="form-group text-center">
                                         <button type="submit" class="btn btn-light btn-outline-primary hideupdate_button" style="width:180px ;">
                                             <i class="fa-regular fa-floppy-disk"></i> Update
                                         </button>                                        
                                     </div>
+                                   
                                 </form>
 
-                                    <div clas="text-center">
+                                    <div class="text-center">  
 
                                         <button class="btn btn-light btn-outline-primary" style="width: 180px ;" 
                                             data-bs-toggle="modal" data-bs-target="#updateuserprofile" role="button" 
                                             aria-pressed="true"><i class="fa-solid fa-floppy-disk "></i> Update
-                                        </button>
+                                        </button>   
 
-                                        <a href="{% url 'accounts:change_password'%}" style="width:180px ;" 
-                                            class="btn btn-light btn-outline-primary">
-                                            <i class="fa-regular fa-id-badge"></i> Change Password
+                                        <a href="{% url 'current_users'%}" class="btn btn-light btn-outline-primary" style="width:180px;">
+                                            <i class="fa-regular fa-id-badge"></i> Back
                                         </a>
 
                                     </div>
@@ -90,4 +88,5 @@
 
           <div class = "col-lg-1"></div>
         </div>
+
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 <!-- {% load crispy_forms_tags %} -->
 {% block content %}
-<div class="album py-1 bg-light">
+<div class="album py-1">
     {% include 'main/inc/leftnav.html' %} 
     <div class="container-fluid">
         
@@ -60,16 +60,19 @@
                                      
                                     {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
                                 {% endfor %}
-
-                                <div class="text-center">
-                                    {% if user.is_superuser %}
-                                        <a href="{% url 'create_project' %}" class="btn btn-sm btn-primary ml-1 text-white" style="width:150px ;"><i class="fa-solid fa-plus"></i><span> Add Project</span></a>
-                                    {% else %}
-                                        <a href="{% url 'create_client_project' %}" class="btn btn-sm btn-primary ml-1 text-white" style="width:150px ;"><i class="fa-solid fa-plus"></i><span> Add Project</span></a>
-                                    {% endif %}
-                                </div>
                             
                             {% endif %}
+
+                            
+
+                            <div class="text-center">
+                                {% if user.is_superuser %}
+                                    <a href="{% url 'create_project' %}" class="btn btn-sm btn-primary ml-1 text-white" style="width:150px ;"><i class="fa-solid fa-plus"></i><span> Add Project</span></a>
+                                {% else %}
+                                    <a href="{% url 'create_client_project' %}" class="btn btn-sm btn-primary ml-1 text-white" style="width:150px ;"><i class="fa-solid fa-plus"></i><span> Add Project</span></a>
+                                {% endif %}
+                            </div>
+
                                 <ul class="pagination">
                                     {% if page_obj.has_previous %}
                                         <li class="page-item"><a href="?page=1" class="page-link" ><i class="fa-solid fa-angles-left"></i> First</a></li>

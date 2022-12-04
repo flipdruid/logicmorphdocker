@@ -13,9 +13,14 @@ class ProfileUpdateForm(ModelForm):
         fields = ["avatar", "is_dark_theme","is_logicmorph_staff"]
 
 class ProfileViewForm(ModelForm):
-    avatar = DateField(widget=TextInput, disabled=True)
-    is_dark_theme = DateField(widget=TextInput, disabled=True)
-    is_logicmorph_staff = DateField(widget=TextInput, disabled=True)
+    # avatar = DateField(widget=FileInput)
+    # is_dark_theme = DateField(widget=TextInput, disabled=True)
+    # is_logicmorph_staff = DateField(widget=TextInput, disabled=True)
     class Meta:
         model = Profile
-        fields = ["avatar", "is_dark_theme","is_logicmorph_staff"]
+        fields = ["is_dark_theme","is_logicmorph_staff"]
+
+class ProfileViewClient(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ["avatar"]

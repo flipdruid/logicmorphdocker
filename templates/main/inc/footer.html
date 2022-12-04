@@ -1,8 +1,37 @@
+{% load static %}
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-secondary text-white mt-5">
-    <div class="text-center p-4">
-     LogicMorph © 2022
-    </div>
-    <!-- Copyright -->
+<div id="footerwrapper" class="mb-5">
+  <footer class="text-center border-top  mt-5" id="lm-footer">
+    <footer class="text-center text-dark">
+      <!-- Grid container -->
+      <div class="container">
+        <div class="text-center imgspan"> 
+          <img src="{% static 'image/lmlt.png' %}"style="width: 50px; height: 50px;"> <span>LogicMorph</span> 
+      </div>
+      <!-- Grid container -->
+
+      <!-- section -->
+      <section class="footerlink">
+        <a  href="/">Home</a>
+        <a  href="#!">Solutions</a>
+        <a  href="#!">Our Stacks</a>
+        <a  href="#!">Resources</a>
+        <a  href="#!" >About Us</a>
+      </section>
+
+      <section class="footersocial">
+        <a  href="#!"><i class="fa-brands fa-facebook"></i></a>
+        <a  href="#!"><i class="fa-brands fa-twitter"></i></a>
+        <a  href="#!"><i class="fa-brands fa-linkedin-in"></i></a>
+      </section>
+    
+      <!-- Copyright -->
+      <div class="text-center footercopyrights mt-3" >
+      <p>© 2022 Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium. Donec lobortis iaculis neque a laoreet.</p>
+      </div>
+      <!-- Copyright -->
+    </footer>
+      <!-- Copyright -->
   </footer>
+</div>
   <!-- Footer -->

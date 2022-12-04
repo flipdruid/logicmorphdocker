@@ -18,7 +18,7 @@ from app.models.lead import Lead
 from app.models.reglink import Reglink
 from accounts.forms import UserForm, UserUpdateForm, UserFormNoEmail, UserViewForm
 from app.models.client import Client
-from app.forms.profile import ProfileUpdateForm, ProfileViewForm
+from app.forms.profile import ProfileUpdateForm, ProfileViewForm, ProfileViewClient
 from app.forms.client import ClientForm
 from accounts.models.user import User
 from django.contrib.auth.models import Group
@@ -157,11 +157,16 @@ def userprofile(request):
     # profileform = ProfileUpdateForm()
     currentUser = request.user    
     currentProfile = Profile.objects.get(user=currentUser)
-    profileform = ProfileUpdateForm(initial={
-        "avatar" : currentProfile.avatar,
-        "is_logicmorph_staff":currentProfile.is_logicmorph_staff,
-        "is_dark_theme":currentProfile.is_dark_theme
-    },  auto_id=False)
+
+    if request.user.is_superuser:
+        profileform = ProfileUpdateForm(initial={
+            "avatar" : currentProfile.avatar,
+            "is_logicmorph_staff":currentProfile.is_logicmorph_staff,
+            "is_dark_theme":currentProfile.is_dark_theme
+        },  auto_id=False)
+
+    else:
+        profileform = ProfileViewClient
     # Update user form (username, fname, lname) -- START
     userform = UserUpdateForm(initial ={
         'username': currentUser.username,
@@ -190,15 +195,10 @@ def userprofile(request):
 
 
 @allowed_users(allowed_roles=['admin'])
-def userprofileview(request,pk):
+def userprofileadminupdate(request,pk):
 
     getUser = User.objects.get(id=pk)
     getProfile = Profile.objects.get(user=getUser)
-
-    userinfo = {
-        "first_name" : getUser.first_name,
-        "last_name" : getUser.last_name
-    }
 
     userform = UserViewForm(initial ={
         'username': getUser.username,
@@ -212,6 +212,12 @@ def userprofileview(request,pk):
         "is_dark_theme":getProfile.is_dark_theme
     },  auto_id=False)
 
+    if request.method=='POST':
+        profileform=ProfileViewForm(request.POST, request.FILES, instance=getProfile)
+        if profileform.is_valid():
+            profileform.save()
+            return HttpResponseRedirect(reverse('user_profile_adminupdate', args=(getUser.id,)))
+
     context = {
         'userform':userform,
         'profileform': profileform,
@@ -222,7 +228,7 @@ def userprofileview(request,pk):
                 }
     }
 
-    return render(request, 'main/userprofile_view.html', context)
+    return render(request, 'main/userprofile_adminupdate.html', context)
     
 
 
