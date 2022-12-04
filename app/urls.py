@@ -1,3 +1,5 @@
+from django.urls import path, re_path as url
+from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
@@ -8,6 +10,8 @@ from app.views.project import CreateProjectClient, CreateProject, ListProject, L
 
 
 urlpatterns = [
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path("", Landing.as_view(), name="main"),
     path("contactus/", LeadCreate.as_view(), name="contact_us"),
     path("leads/", LeadMailList.as_view(), name="lead_mail_lists"),

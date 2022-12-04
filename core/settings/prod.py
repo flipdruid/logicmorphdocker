@@ -33,6 +33,19 @@ HASHID_FIELD_SALT = config("HASHID_FIELD_SALT")
 
 DEBUG = False
 
+
+if DEBUG:
+
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+else:
+
+  STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+  
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 #S3
 # AWS_ACCESS_KEY_ID =config("AWS_ACCESS_KEY_ID")
 # AWS_SECRET_ACCESS_KEY=config("AWS_SECRET_ACCESS_KEY")
