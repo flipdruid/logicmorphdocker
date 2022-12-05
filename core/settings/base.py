@@ -13,6 +13,7 @@ import os
 from os.path import dirname
 from os.path import join
 from pathlib import Path
+from decouple import config
 
 from dotenv import load_dotenv
 
@@ -106,6 +107,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "core.wsgi.application"
+
+ASGI_APPLICATION = "core.routing.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [config("REDISCLOUD_URL")],
+        },
+    },
+}
 
 
 # Database
