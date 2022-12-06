@@ -205,13 +205,13 @@ HASHID_FIELD_SALT = os.environ.get("HASHID_FIELD_SALT")
 # MEDIA_URL = "/media/"
 
 # Uncomment if upload heroku
-if DEBUG:
-  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-else:
-  STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+# if DEBUG:
+#   STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# else:
+#   STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
 #Uncomment if upload heroku
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] #disable if upload to heroku
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] #disable if upload to heroku
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
