@@ -21,6 +21,8 @@ def currentuserprofileclient(request):
                 lm_logotext = "lm-logotext-dark"
                 turn_text_for_dark="turn-text-for-dark"
                 contact_us_now ="contactusnow-dark"
+                SAP_btn_color ="btn-success"
+                
             else:
                 nav_item_font = "nav-item-font-light"
                 main_body_theme="is_light"
@@ -28,6 +30,7 @@ def currentuserprofileclient(request):
                 lm_logotext = "lm-logotext"
                 turn_text_for_dark=""
                 contact_us_now ="contactusnow"
+                SAP_btn_color ="btn-primary"
 
         except ObjectDoesNotExist:
             pass
@@ -38,6 +41,7 @@ def currentuserprofileclient(request):
         lm_logotext = "lm-logotext"
         turn_text_for_dark=""
         contact_us_now ="contactusnow"
+        SAP_btn_color ="btn-primary"
     return {"userprofile": userprofile, 
             "profileclient": profileclient, 
             "main_body_theme":main_body_theme,
@@ -45,4 +49,5 @@ def currentuserprofileclient(request):
             "footer_social": footer_social,
             "lm_logotext":lm_logotext,
             "turn_text_for_dark": turn_text_for_dark,
-            "contact_us_now":contact_us_now}
+            "contact_us_now":contact_us_now, 
+            "SAP_btn_color":SAP_btn_color}

@@ -419,9 +419,10 @@ color: #292A3C;
    }
 
 #footerwrapper {
-    background-image:url('../image/footerbg.png');
+    background-image:url('../image/footerbg2.png');
     background-repeat: no-repeat;
     background-position: top center;
+    height: 334px;
    }
 
 #lm-footer{
