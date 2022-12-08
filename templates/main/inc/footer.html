@@ -6,12 +6,12 @@
       <!-- Grid container -->
       <div class="container">
         <div class="text-center imgspan"> 
-          <img src="{% static 'image/lmlt.png' %}"style="width: 50px; height: 50px;"> <span>LogicMorph</span> 
+          <img src="{% static 'image/lmlt.png' %}"style="width: 50px; height: 50px;"> <span class="{{lm_logotext}}">LogicMorph</span> 
       </div>
       <!-- Grid container -->
 
       <!-- section -->
-      <section class="footerlink">
+      <section class="footerlink" id="{{nav_item_font}}">
         <a  href="/">Home</a>
         <a  href="#!">Solutions</a>
         <a  href="#!">Our Stacks</a>
@@ -19,7 +19,7 @@
         <a  href="#!" >About Us</a>
       </section>
 
-      <section class="footersocial">
+      <section class="{{footer_social}}">
         <a  href="#!"><i class="fa-brands fa-facebook"></i></a>
         <a  href="#!"><i class="fa-brands fa-twitter"></i></a>
         <a  href="#!"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -27,7 +27,7 @@
     
       <!-- Copyright -->
       <div class="text-center footercopyrights mt-3" >
-      <p>© 2022 Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium. Donec lobortis iaculis neque a laoreet.</p>
+      <p class="{{turn_text_for_dark}}">© 2022 Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium. Donec lobortis iaculis neque a laoreet.</p>
       </div>
       <!-- Copyright -->
     </footer>

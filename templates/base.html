@@ -25,9 +25,11 @@
             {% block head_title %}{% endblock %}
         </title>
     </head>
-    <body >
+    <body id = "{{main_body_theme}}">
+        
         {% include 'main/inc/navbar.html' %}
         <main class="main" id="top">
+            
             {% block content %}{% endblock %}        
         </main>
         {% include 'main/inc/footer.html' %} 
