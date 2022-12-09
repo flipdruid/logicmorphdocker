@@ -193,7 +193,7 @@ HASHID_FIELD_SALT = os.environ.get("HASHID_FIELD_SALT")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -208,7 +208,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 if DEBUG:
   STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 else:
-  STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+#   STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+  STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 #Uncomment if upload heroku
 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] #disable if upload to heroku
