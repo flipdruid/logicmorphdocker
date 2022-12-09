@@ -7,6 +7,11 @@ def currentuserprofileclient(request):
     profileclient=""
     main_body_theme=""
     nav_item_font=""
+    footer_social=""
+    lm_logotext=""
+    turn_text_for_dark=""
+    contact_us_now=""
+    SAP_btn_color=""
 
     if request.user.is_authenticated:
         try:
