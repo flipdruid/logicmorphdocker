@@ -27,7 +27,7 @@
 
 /* .nav-item-font */
 #nav-item-font-light a {
-   font-family: 'Segoe UI', sans-serif;      
+   font-family: 'Segoe UI';      
    color: black !important;
    font-style: normal;
    font-weight: 400;
@@ -43,7 +43,7 @@
 
 
 #nav-item-font-dark a{
-   font-family: 'Segoe UI', sans-serif; 
+   font-family: 'Segoe UI'; 
    font-style: normal;   
    color: white !important;
    font-weight: 400;
@@ -152,7 +152,7 @@
 
 /* contactusnow */
 .contactusnow{
-   font-family: 'Segoe UI', sans-serif;
+   font-family: 'Segoe UI';
    font-style: normal;
    font-weight: 700;
    font-size: 14px;
@@ -175,7 +175,7 @@
 
 /* ---dark--- */
 .contactusnow-dark{
-   font-family: 'Segoe UI', sans-serif;
+   font-family: 'Segoe UI';
    font-style: normal;
    font-weight: 700;
    font-size: 14px;
@@ -199,7 +199,7 @@
 /* contactusnow */
 
 .parag{
-   font-family: 'Segoe UI', sans-serif;
+   font-family: 'Segoe UI';
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
@@ -228,7 +228,7 @@
 .pydjang p {
 width: 439px;
 height: 127px;
-font-family: 'Segoe UI', sans-serif;
+font-family: 'Segoe UI';
 font-style: normal;
 font-weight: 400;
 font-size: 14px;
@@ -319,7 +319,7 @@ color: #292A3C;
 }
 
 .landingparag {
-   font-family: 'Segoe UI', sans-serif;
+   font-family: 'Segoe UI';
    font-size: 14px;
    font-weight: 400;
    line-height: 25px;
@@ -383,7 +383,7 @@ color: #292A3C;
    float: right;
    /* display: flexbox; */
    /* padding-top: 20px !important; */
-   font-family: 'Proxima Nova', sans-serif;                                                
+   font-family: 'Proxima Nova';                                                
    font-style: normal;
    font-weight: 800;
    font-size: 30px;
@@ -409,7 +409,7 @@ color: #292A3C;
    width: 271px;
    height: 75px;
    /* paragraph */
-   font-family: 'Segoe UI', sans-serif;
+   font-family: 'Segoe UI';
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
@@ -505,7 +505,7 @@ color: #292A3C;
  }
 
  .footercopyrights p{
-   font-family: 'Segoe UI', sans-serif;
+   font-family: 'Segoe UI';
    font-style: normal;
    font-weight: 400;
    font-size: 14px;
