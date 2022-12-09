@@ -58,7 +58,7 @@ DEBUG = False
 # 	'Access-Control-Allow-Origin':'*', 
 	
 # }
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
 
 load_dotenv(find_dotenv())
 
