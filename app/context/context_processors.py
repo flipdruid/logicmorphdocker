@@ -29,9 +29,9 @@ def currentuserprofileclient(request):
                 contact_us_now ="contactusnow-dark"
                 SAP_btn_color ="btn-success"
                 
-            else:
-                nav_item_font = "nav-item-font-light"
+            else:                
                 main_body_theme="is_light"
+                nav_item_font = "nav-item-font-light"
                 footer_social = "footer-social"
                 lm_logotext = "lm-logotext"
                 turn_text_for_dark=""
