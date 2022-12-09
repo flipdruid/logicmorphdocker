@@ -3,6 +3,7 @@ from app.models.client import Client
 from django.core.exceptions import ObjectDoesNotExist
 
 def currentuserprofileclient(request):
+    currentUser=request.user
     userprofile=""
     profileclient=""
     main_body_theme=""
@@ -13,10 +14,10 @@ def currentuserprofileclient(request):
     contact_us_now=""
     SAP_btn_color=""
 
-    if request.user.is_authenticated:
+    if currentUser.is_authenticated:
         try:
             
-            userprofile = Profile.objects.get(user=request.user)
+            userprofile = Profile.objects.get(user=currentUser)
             profileclient = Client.objects.get(profile=userprofile)
 
             if userprofile.is_dark_theme:                
