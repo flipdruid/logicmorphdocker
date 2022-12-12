@@ -5,8 +5,9 @@ from django.conf import settings
 from django.db import models
 from hashid_field import HashidAutoField
 
-chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-randomstr = "".join((random.choice(chars)) for x in range(30))
+# chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+# randomstr = "".join((random.choice(chars)) for x in range(30))
+
 
 class Reglink(models.Model):
     id = HashidAutoField(
@@ -16,7 +17,7 @@ class Reglink(models.Model):
     lead_lastname = models.CharField(max_length=50, verbose_name="Last Name")
     lead_mail = models.EmailField(max_length=50, verbose_name="Lead Email")
     lead_id   = models.CharField(max_length=50, verbose_name="Lead ID")
-    lead_reglink   = models.CharField(max_length=150, default=str(randomstr), verbose_name="Lead Registration Link")
+    lead_reglink   = models.CharField(max_length=150, verbose_name="Lead Registration Link")
     link_used = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -9,7 +9,14 @@ from app.models.client import Client
 
 @receiver(post_save, sender=User)
 def post_save_create_profile(sender, instance, created, *args, **kwargs):
+    
     if created:
+
+        if Group.objects.all().count() <1:
+            GROUPS = ['admin', 'staff', 'client']
+            for group in GROUPS:
+                Group.objects.get_or_create(name=group)
+                
         if instance.is_superuser:
             Profile.objects.create(user=instance)            
             newprofile=Profile.objects.get(user=instance)

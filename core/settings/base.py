@@ -166,7 +166,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
 
 STATIC_URL = "static/"
 
@@ -199,24 +200,23 @@ HASHID_FIELD_SALT = os.environ.get("HASHID_FIELD_SALT")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-# MEDIA_URL = "/media/"
+MEDIA_URL = "/media/"
 
 # Uncomment if upload heroku
-# if DEBUG:
-#   STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# else:
-#   STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+if DEBUG:
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+  STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
 # #Uncomment if upload heroku
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] #disable if upload to heroku
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] #disable if upload to heroku
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 

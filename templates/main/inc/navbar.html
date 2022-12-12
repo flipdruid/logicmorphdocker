@@ -28,7 +28,7 @@
             </div>
         </div>
     <!-- Modal End--> 
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark mt-3">
         <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top"> -->
         <button 
         class="navbar-toggler" 
@@ -64,12 +64,12 @@
                                 <li class="nav-item dropdown ">
                                     {% if user.is_authenticated %}
 
-                                    <a class="navbar-brand ml-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                    <a class="navbar-brand navbar-brand-img  ml-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                                         <!-- <img src = "media/{{profile.avatar}" alt="profileavatar" height="35" class="rounded-circle"> -->
                                         <img src="/portal/media/{{userprofile.avatar}}"alt="profileavatar" height="35" width="35"  class="rounded-circle">
                                     </a>
 
-                                        <div class="dropdown-menu dropdown-menu-right mt-3" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-menu dropdown-menu-right mt-1" aria-labelledby="navbarDropdown">
                                             
                                             <div class="dropdown-item">
                                                 <div style="font-size: 15px; text-align: center;" >{{user.first_name}} {{user.last_name}}</div>

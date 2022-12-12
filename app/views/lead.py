@@ -3,7 +3,7 @@ from app.models.project import Project
 import celery
 import email
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -23,6 +23,7 @@ from app.forms.client import ClientForm
 from accounts.models.user import User
 from django.contrib.auth.models import Group
 
+import random
 
 class LeadCreate(CreateView):
     model = Lead
@@ -46,6 +47,47 @@ class LeadMailList(ListView):
     fields = ("first_name", "last_name","email","entity_name", "details")
     context_object_name = "leads"
 
+    def get_context_data(self, **kwargs):
+        context         =    super(LeadMailList, self).get_context_data(**kwargs)
+        leads = Lead.objects.all()
+        lead_list = {}
+        profile_img=""
+        for lead in leads:
+            try:
+                userExist = User.objects.get(email=lead.email)
+                profile_img = Profile.objects.get(user=userExist)
+                
+                lead_list[lead.id] = {
+                    'state': lead.state,
+                    'ids':lead.id,
+                    'first_name':lead.first_name,
+                    'last_name':lead.last_name,
+                    'email':lead.email,
+                    'entity_name':lead.entity_name,
+                    'details':lead.details,
+                    'created_at': lead.created_at,
+                    'updated_at':lead.updated_at,
+                    "profile_img": profile_img.avatar,
+                }
+
+            except ObjectDoesNotExist:               
+
+                lead_list[lead.id] = {
+                    'state': lead.state,
+                    'ids':lead.id,
+                    'first_name':lead.first_name,
+                    'last_name':lead.last_name,
+                    'email':lead.email,
+                    'entity_name':lead.entity_name,
+                    'details':lead.details,
+                    'created_at': lead.created_at,
+                    'updated_at':lead.updated_at,
+                    "profile_img": 'avatar/guesticon2.jpg',
+                }
+
+        context['leads']     =    lead_list       
+        return context
+
 # @method_decorator(login_required, name="dispatch")
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
 class LeadMailView(DetailView):
@@ -63,6 +105,17 @@ class LeadMailViewLead(DetailView):
     template_name       =   'main/lead_mail_view_lead.html'
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
+
+    def get_queryset(self):
+        queryset = super(LeadMailViewLead, self).get_queryset()
+        currentlead = get_object_or_404(Lead, pk=self.kwargs['pk'])
+        if currentlead.state=="new":
+            currentlead.viewed()
+            currentlead.save()
+        lead = Lead.objects.get(pk=self.kwargs['pk'])
+        queryset = lead
+        return queryset
+
 
     
 
@@ -95,12 +148,11 @@ class LeadToClient(DetailView):
 
 
 
-@login_required()
+# @login_required()
 @allowed_users(allowed_roles=['admin', 'staff'])
-def createreglink(request, lead_id):
-
+def createreglink(request,lead_id):
     try:
-        currentLead =   Lead.objects.get(id=lead_id)
+        currentLead =  Lead.objects.get(pk=lead_id)
         emailExist = Reglink.objects.get(lead_mail=currentLead.email)
 
         if emailExist.lead_mail==currentLead.email:
@@ -108,11 +160,19 @@ def createreglink(request, lead_id):
             "app.tasks.leadtoclient_sendreglink.sendreglink", args=(str(emailExist.id),))    
     
     except ObjectDoesNotExist:
+        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        randomstr = "".join((random.choice(chars)) for x in range(30))
+        if Reglink.objects.filter(lead_reglink=randomstr).count()>0:
+                    randomstr = ""
+                    chars = "9876543210zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA"
+                    randomstr = "".join((random.choice(chars)) for x in range(30))
+
         reglink =   Reglink.objects.create(
                     lead_id=currentLead.id,
                     lead_firstname=currentLead.first_name,
                     lead_lastname=currentLead.last_name,
                     lead_mail=currentLead.email,
+                    lead_reglink=randomstr,
                     )
         reglink.save()
         getNewRegLink = Reglink.objects.get(lead_mail=currentLead.email)
@@ -153,8 +213,7 @@ def leadactivation(request, reglink):
 # @login_required()
 @allowed_users(allowed_roles=['admin', 'staff', 'client'])
 def userprofile(request):
-    # user=request.user
-    # profileform = ProfileUpdateForm()
+
     currentUser = request.user    
     currentProfile = Profile.objects.get(user=currentUser)
 
