@@ -2,6 +2,7 @@ from django.forms.models import model_to_dict
 from app.models.project import Project
 import celery
 import email
+from django.contrib.sites.models import Site
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, reverse, get_object_or_404
 from django.http import JsonResponse
@@ -323,5 +324,5 @@ def usergroupchange(request):
             changeStatus = "save changes failed"        
         
     return JsonResponse({'changeStatus':changeStatus})
-
+    
     

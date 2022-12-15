@@ -36,5 +36,4 @@ urlpatterns = [
     path("dashboard/", Dashboard.as_view(), name="dashboard"),
     path("currentusers/", currentusers, name="current_users"),
     path("usergroupchange/", usergroupchange, name="user_group_change"),
-    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
