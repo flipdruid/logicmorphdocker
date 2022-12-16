@@ -497,14 +497,7 @@ color: #292A3C;
    background-image:url('../image/footerbg2.png');
    background-repeat: no-repeat;
    background-position: top center;
-   /* position: absolute; */
-   right: 0;
-   bottom: 0;
-   left: 0;
-   padding: 1rem;
-   background-color: #efefef;
-   text-align: center;
-   /* height: 334px; */
+   height: 334px;
    
    }
 
