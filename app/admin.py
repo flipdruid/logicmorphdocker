@@ -7,6 +7,7 @@ from app.models.post import Post
 from app.models.project import Project
 from app.models.profile import Profile
 from app.models.reglink import Reglink
+from app.models.AppSettings import Appsetting
 
 
 @admin.register(Post)
@@ -65,3 +66,8 @@ class DeveloperAdmin(admin.ModelAdmin):
 @admin.register(Reglink)
 class ReglinkAdmin(admin.ModelAdmin):
     list_display = ["id",  "lead_firstname", "lead_lastname", "lead_mail", "lead_id", "lead_reglink", "link_used", "created_at"]
+
+@admin.register(Appsetting)
+class AppsettingAdmin(admin.ModelAdmin):
+    list_display = ["id", "name", "is_dark_theme"]
+

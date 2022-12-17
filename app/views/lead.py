@@ -221,8 +221,8 @@ def userprofile(request):
     if request.user.is_superuser:
         profileform = ProfileUpdateForm(initial={
             "avatar" : currentProfile.avatar,
-            "is_logicmorph_staff":currentProfile.is_logicmorph_staff,
-            "is_dark_theme":currentProfile.is_dark_theme
+            # "is_logicmorph_staff":currentProfile.is_logicmorph_staff,
+            # "is_dark_theme":currentProfile.is_dark_theme
         },  auto_id=False)
 
     else:
