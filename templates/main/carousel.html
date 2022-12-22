@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            /* min-height: 100vh; */
+        }
+
+        .wrapper {
+            width: 100%;
+        }
+
+        .wrapper .carousel {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 30px;
+
+        }
+
+        .carousel .card{ 
+            background: red;
+            border-radius: 10px;
+            line-height: 250px;
+            text-align: center;
+            color: #fff;
+            font-size: 90px;
+            font-weight: 600;
+            margin: 20px 0;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+
+        }
+
+        .owl-dots{
+            text-align: center;
+            margin-top: 30px;
+        }
+        .owl-dot {
+            height: 15px;
+            width: 15px;
+            border-radius: 25px;
+            margin: 0 5px;
+            cursor: pointer;
+            outline: none;
+            border:  2px solid #0072bc !important;
+            transition:  all .6s ease;
+        }
+
+        .owl-dot:hover { 
+            background: #0072bc !important;
+        }
+
+        .headtext {
+            width: 237px;
+            height: 41px;
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 30px;
+            line-height: 41px;
+            color: #292A3C;
+            text-align: center;
+        }
+    </style>
+    <title>Owl Slider</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="headtext">Our Latest News</div>
+        <div class="carousel owl-carousel">
+            {% for post in posts %}
+            <div class="card card-{{forloop.counter}}">{{forloop.counter}}</div>
+            <!-- <div class="card card-2">B</div>
+            <div class="card card-3">C</div>
+            <div class="card card-4">D</div>
+            <div class="card card-5">E</div> -->
+            {% endfor %}
+            
+        </div>
+
+    </div>
+    <script>
+        $(".carousel").owlCarousel({
+            margin: 10,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 2000,
+            autoplayHoverPause:true,
+            responsive: {
+                0:{
+                    items: 1,
+                    nav: false
+                },
+
+                600: {
+                    items: 2,
+                    nav: false
+                },
+                1000: {
+                    items: 3,
+                    nav: false
+                }
+            }
+        });
+    </script>
+   
+</body>
+</html>

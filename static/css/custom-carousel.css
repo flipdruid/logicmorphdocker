@@ -1,0 +1,22 @@
+/* .carousel-main-wrapper{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+} */
+
+.carousel-main-wrapper .carousel {
+    width: 300px;
+    height: 240px;
+    background-color: blueviolet;
+    margin: auto;
+}
+
+.carousel {
+    background: red;
+    line-height: 250px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: 900;
+    margin: 20px 0;
+}
