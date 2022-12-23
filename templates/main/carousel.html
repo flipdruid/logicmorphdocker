@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,51 +10,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins');
-        *{
+        /* *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
 
-        }
+        } */
 
-        body {
+        /* .bodywrapper {
             display: flex;
             align-items: center;
-            /* min-height: 100vh; */
-        }
+        } */
 
         .wrapper {
             width: 100%;
         }
 
         .wrapper .carousel {
-            max-width: 1200px;
+            max-width: 90%;
             margin: auto;
             padding: 0 30px;
 
         }
 
-        .carousel .card{ 
-            background: red;
-            border-radius: 10px;
-            line-height: 250px;
+        .wrapper .parag{
+            width: 529px;
+            height: 71px;
+            /* paragraph */
+
+            font-family: 'Noto Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 25px;
+            /* or 179% */
+
             text-align: center;
-            color: #fff;
-            font-size: 90px;
-            font-weight: 600;
-            margin: 20px 0;
+
+            /* Darc_01 */
+
+            color: #292A3C;
+
+            opacity: 0.75;
+
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 20px !important;
+            margin-bottom: 30px !important;
+        }
+
+        .carousel .card{ 
+            /* background: red; */
+            background-image:url("{% static 'image/ram-carousel1.png' %}");
+            background-repeat: no-repeat;
+            border-radius: 20px;
+            line-height: 250px;
+            width: 338px;
+            height: 380px;
+            margin: 0 auto;
+            /* text-align: center !important; */
+            /* color: #fff; */
+            /* font-size: 90px; */
+            /* font-weight: 600; */
+            /* margin: 20px 0; */
             box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
 
         }
 
         .owl-dots{
             text-align: center;
-            margin-top: 30px;
+            /* margin-top: 15px; */
         }
         .owl-dot {
-            height: 15px;
-            width: 15px;
+            height: 10px;
+            width: 10px;
             border-radius: 25px;
             margin: 0 5px;
             cursor: pointer;
@@ -75,21 +106,103 @@
             font-size: 30px;
             line-height: 41px;
             color: #292A3C;
+            width: 100%;
+            margin: 0 auto;
             text-align: center;
+
+        }
+
+        .categ{
+            width: 75px;
+            height: 20px;
+            background: #4649FF;
+            border-radius: 50px;
+            overflow: hidden;
+            display: block;
+            /* top: 50px; */
+            margin-top: 35px;
+            margin-left: 20px;
+
+        }
+
+        .categ span{ 
+            width: 51px;
+            height: 10px;
+            display: block;
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 6px;
+            /* align-items: center !important;
+            text-align: center !important; */
+            color: #FFFFFF;
+            /* align-self: center !important;
+            align-content: center !important; */
+            /* margin-top: 3px; */
+            /* display: flex; */
+            margin-top: 8px;
+            margin-left: 12px;
+            text-align: center;
+
+            /* overflow: hidden; */
+            
+        }
+        /* .card-img {
+            background-image:url('../image/ram-carousel1.png');
+            background-repeat: no-repeat;
+        } */
+
+        .cardinfo {
+            margin-top: 200px;
+            /* top: 120px !important; */
+            margin-left: 20px;
+            /* overflow: hidden; */
+        }
+        .cardinfo h6 {
+            font-family: 'Noto Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 25px;
+            color: #FFFFFF;
+            margin-top: 10px;
+        }
+
+        .cardinfo p {
+            width: 91px;
+            height: 15px;
+            left: 217px;
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 25px;
+            color: #B3B5C5;
+        }
+
+        .cardinfo img {
+            width: 37px !important;
+            height: 37px !important;
+            background-color: #FFFFFF;
         }
     </style>
-    <title>Owl Slider</title>
+    <!-- <title>Owl Slider</title> -->
 </head>
 <body>
     <div class="wrapper">
         <div class="headtext">Our Latest News</div>
+        <p  class="parag">Donec dictum felis et felis varius, sed pharetra tortor imperdiet. Integer viverra diam at tortor</p>
         <div class="carousel owl-carousel">
-            {% for post in posts %}
-            <div class="card card-{{forloop.counter}}">{{forloop.counter}}</div>
-            <!-- <div class="card card-2">B</div>
-            <div class="card card-3">C</div>
-            <div class="card card-4">D</div>
-            <div class="card card-5">E</div> -->
+            {% for key, values in posts.items %}
+                <div class="card card-{{forloop.counter}}">
+                    <div class="categ"><span>Category</span> </div>
+                    <div class="cardinfo">
+                        <img src="/portal/media/{{ values.profile_img }}"/>
+                        <h6>{{values.title}}</h6>
+                        <p>{{values.created_at|date:'M d, Y'}}</p>
+                    </div>
+                </div>
             {% endfor %}
             
         </div>
@@ -100,7 +213,7 @@
             margin: 10,
             loop: true,
             autoplay: true,
-            autoplayTimeout: 2000,
+            autoplayTimeout: 3500,
             autoplayHoverPause:true,
             responsive: {
                 0:{

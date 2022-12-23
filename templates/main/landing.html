@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container-fluid mb-5">        
-    <!-- <h2 class="text-center text-primary headertext">CURRENT POSTS</h2> -->
-
+<div class="container-fluid mb-5">
     <!-- landingrow Start -->
     <div class="row landingrow">
         <div class="col-lg-12">
@@ -74,8 +72,7 @@
                     <img src="static/image/missionicon.png" />
                     <h6>Our Mission</h6>
                     <p class="para">To Bring inspiration and innovation to every human being in this big blue planet.</p>
-                </div>     
-                </div>   
+                </div>    
             </div>
         </div>
     </div>
@@ -146,22 +143,7 @@
         </div> 
     </div>
 
-    <div class="carousel-main-wrapper"> 
-        <div class="carousel">
-            {% for post in posts %}
-                <div class="card">{{post.title}}</div>
-            {% endfor %}
-            <a href="#one" class="carousel-item">
-                <img src="static/image/xd.png" />
-            </a>
-            <a href="#two" class="carousel-item">
-                <img src="static/image/xd.png" />
-            </a>
-            <a href="#three" class="carousel-item">
-                <img src="static/image/xd.png" />
-            </a>
-        </div>
-    </div>
+    {% include 'main/carousel.html' %} 
 
     <div class="row itsols">            
         <div class="col-lg-12 itsolssub">

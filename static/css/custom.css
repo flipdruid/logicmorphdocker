@@ -132,7 +132,7 @@
 } */
 
 
-.itsols{
+.itsols{   
    max-width: 80%;
    margin:0 auto;  
 }
@@ -144,6 +144,8 @@
    background-repeat: no-repeat;
    background-position: center;
    height: 509px;
+   border-radius: 20px;
+   margin-top: 50px !important;
    /* max-width: 80%;
    margin:0 auto;   */
 } 
@@ -843,6 +845,7 @@ color: #292A3C;
    background-repeat: no-repeat;
    /* min-height: 100%; */
    min-width: 768px;
+   /* max-width: 100%; */
    background-size: 100%;
    margin:0 auto;
    background-position: top;
