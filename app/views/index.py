@@ -60,6 +60,30 @@ class Carousel(ListView):
     template_name = "main/carousel.html"
     paginate_by = 9
     context_object_name = "posts"
+
+    def get_context_data(self, **kwargs):
+        context     =    super(Carousel, self).get_context_data(**kwargs)
+        posts       =    Post.objects.all()
+        post_lists  ={}
+        profile_img=""
+
+        for post in posts:
+            try:
+                profile_img = Profile.objects.get(user=post.created_by)
+                post_lists[post.id] = {
+                    "title" : post.title,
+                    "description": post.description,
+                    "created_by":post.created_by,
+                    "created_at":post.created_at,
+                    "updated_at":post.updated_at,
+                    "profile_img": profile_img.avatar
+                }
+
+            except ObjectDoesNotExist:  
+                pass
+            context['posts']     =    post_lists      
+        # context['show_convert']     =  User.objects.filter(email=currentObject.email)
+        return context
     
 
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
