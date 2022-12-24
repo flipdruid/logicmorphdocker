@@ -96,6 +96,16 @@ class LeadMailView(DetailView):
     template_name       =   'main/lead_mail_view.html'
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
+    
+    def get_context_data(self, **kwargs):
+        context         =    super(LeadMailView, self).get_context_data(**kwargs)
+        currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
+        if currentObject.state=="new":
+            currentObject.viewed()
+            currentObject.save()       
+        context['lead']     =  currentObject
+        return context
+
 
     
 
@@ -107,15 +117,14 @@ class LeadMailViewLead(DetailView):
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
 
-    def get_queryset(self):
-        queryset = super(LeadMailViewLead, self).get_queryset()
-        currentlead = get_object_or_404(Lead, pk=self.kwargs['pk'])
-        if currentlead.state=="new":
-            currentlead.viewed()
-            currentlead.save()
-        lead = Lead.objects.get(pk=self.kwargs['pk'])
-        queryset = lead
-        return queryset
+    def get_context_data(self, **kwargs):
+        context         =    super(LeadMailViewLead, self).get_context_data(**kwargs)
+        currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
+        if currentObject.state=="new":
+            currentObject.viewed()
+            currentObject.save()       
+        context['lead']     =  currentObject
+        return context
 
 
     
@@ -140,11 +149,40 @@ class LeadToClient(DetailView):
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
 
+    # def get_context_data(self, **kwargs):
+    #     context         =    super(LeadToClient, self).get_context_data(**kwargs)
+    #     currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
+        
+    #     context['lead_mails']     =    Lead.objects.all().filter(email=currentObject.email)        
+    #     context['show_convert']     =  User.objects.filter(email=currentObject.email)
+    #     return context
     def get_context_data(self, **kwargs):
         context         =    super(LeadToClient, self).get_context_data(**kwargs)
         currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
-        context['lead_mails']     =    Lead.objects.all().filter(email=currentObject.email)        
-        context['show_convert']     =  User.objects.filter(email=currentObject.email)
+        leadInfo = {}
+        if User.objects.filter(email=currentObject.email).count()>0:
+            userInfo = User.objects.get(email=currentObject.email)
+            profileInfo = Profile.objects.get(user=userInfo)
+            leadInfo = {
+                'show_convert': True,
+                'profile_img' : profileInfo.avatar,
+                'fname':userInfo.first_name,
+                'lname':userInfo.last_name,
+                'email':userInfo.email
+            }
+
+        else:
+
+            leadInfo = {
+                'show_convert': False,
+                'profile_img' : "avatar/default-lead-avatar.png",
+                'fname':currentObject.first_name,
+                'lname':currentObject.last_name,
+                'email':currentObject.email
+            }
+
+        context['lead_mails']   =    Lead.objects.all().filter(email=currentObject.email)        
+        context['leadInfo']     =  leadInfo
         return context
 
 

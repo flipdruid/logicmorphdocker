@@ -10,28 +10,7 @@
                        <strong>{{ error_message }}</strong>
                     </p>
                 {% endif %}
-
-                <div class="custom-lead-card">
-                    <div class="dividerian2"></div>
-                    <div class="half-circle">
-                            <img src="/portal/media/{{leadInfo.profile_img}}" />
-                    </div>
-                    <div class="lead-name">
-                        {{leadInfo.fname}} {{leadInfo.lname}}
-                    </div>
-                    <span>{{leadInfo.email}}</span>
-
-                    <div class="btn-func">
-                        <div class="btn-group">
-                            <a href="{% url 'lead_mail_lists' %}" class="btn btn-sm btn-outline-primary mr-2" role="button" aria-pressed="true" style="width:150px ;"><i class="fa-solid fa-left-long"></i> Back</a>
-                            {% if not leadInfo.show_convert %}
-                                <a href="{% url 'create_reg_link' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true" style="width:150px ;"><i class="fa-regular fa-circle-up"></i> Convert to Client</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- <div class="card box-shadow mt-5">
+                <div class="card box-shadow mt-5">
                     <div class="bg-primary text-white text-center align-middle">Lead Information</div>
                         <div class = "card-body text-center">
                             <h3 class="text-muted ">{{lead.first_name}} {{lead.last_name}}</h3>
@@ -45,7 +24,7 @@
                                 </div>
                             </div>
                         </div>
-                </div> -->
+                </div>
                 
 
             </div>
