@@ -2,6 +2,7 @@ from django.forms.models import model_to_dict
 from app.models.project import Project
 import celery
 import email
+from django.core.paginator import Paginator
 from django.contrib.sites.models import Site
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, reverse, get_object_or_404
@@ -45,21 +46,21 @@ class LeadMailList(ListView):
     model = Lead
     paginate_by = 9
     template_name = "main/lead_mail_lists.html"
-    fields = ("first_name", "last_name","email","entity_name", "details")
+    fields = ("first_name", "last_name","email","entity_name", "details", "created_at")
     context_object_name = "leads"
 
     def get_context_data(self, **kwargs):
         context         =    super(LeadMailList, self).get_context_data(**kwargs)
         leads = Lead.objects.all()
-        lead_list = {}
+        lead_list = []
         profile_img=""
         for lead in leads:
             try:
                 userExist = User.objects.get(email=lead.email)
                 profile_img = Profile.objects.get(user=userExist)
                 
-                lead_list[lead.id] = {
-                    'state': lead.state,
+                lead_list = [
+                    {'state': lead.state,
                     'ids':lead.id,
                     'first_name':lead.first_name,
                     'last_name':lead.last_name,
@@ -68,12 +69,12 @@ class LeadMailList(ListView):
                     'details':lead.details,
                     'created_at': lead.created_at,
                     'updated_at':lead.updated_at,
-                    "profile_img": profile_img.avatar,
-                }
+                    "profile_img": profile_img.avatar,}
+                ]
 
             except ObjectDoesNotExist:               
 
-                lead_list[lead.id] = {
+                lead_list = {
                     'state': lead.state,
                     'ids':lead.id,
                     'first_name':lead.first_name,
@@ -86,7 +87,8 @@ class LeadMailList(ListView):
                     "profile_img": 'avatar/guesticon2.jpg',
                 }
 
-        context['leads']     =    lead_list       
+                
+        context['leadsdata']     =    lead_list       
         return context
 
 # @method_decorator(login_required, name="dispatch")

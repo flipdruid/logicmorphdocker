@@ -35,8 +35,8 @@
     height: 97px;
     border-radius: 50%;
     vertical-align: middle;
-    border-left-color: transparent;
-    border: 1px solid rgb(0, 0, 0);
+    /* border-left-color: transparent; */
+    /* border: 1px solid rgb(0, 0, 0); */
 
 }
 

@@ -1,3 +1,15 @@
+.page-item {
+   margin: 3px;
+   width: 120px;
+   text-align: center;
+   /* border-radius: 50px !important; */
+}
+
+.page-navi-center {
+   display: flex;
+   justify-content: center;
+   margin-top: 30px;
+}
 .undernav-border-bottom{
    border-bottom: 1px solid rgba(0, 0, 0, .1);
    margin-top: -5px;
@@ -8,17 +20,25 @@
 
 .in-card {
    height: 140px;
-   /* margin-top: 20px; */
+   margin-top: 15px;
 }
 
-/* .view-lead-del .btn{ */
-   /* align-items: baseline; */
-   /* justify-content: flex-end; */
-   /* bottom: -30px; */
+.in-card h4{ 
+   margin-bottom: 20px;
+   }
+
+
+.in-card p{
+   margin-top: 10px;
+}
+.view-lead-del .btn{
+   align-items: baseline;
+   justify-content: flex-end;
+   bottom: -30px;
    /* position: static; */
-   /* justify-self: first baseline; */
+   justify-self: first baseline;
    /* font-size: large; */
-/* } */
+}
 
 .navbar-brand img{
    margin-top: -9px;
@@ -47,15 +67,15 @@
 
 
 
-.card img {
+/* .card img {
    height: 60px;
-   width: 60px;
+   width: 60px; */
    /* margin-top: -30px; */
-   margin-top: 5px;
+   /* margin-top: 5px;
    align-self: center;
    border-radius: 50%;
    box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
-}
+} */
 
 .custombody{
    overflow: hidden !important;
@@ -80,11 +100,31 @@
    transform: rotate(45deg);
 }
 
+.badge-date {
+   font-size: 12px;
+   top: 0px !important;
+   height: 30px !important;
+   width: 110px !important;
+   display: block;
+   right: 48px;
+   color: white;
+   position: absolute;
+   border: 1px solid #0275d8 ;
+   background-color: blue;
+   border-radius: 15px;
+   overflow: hidden !important;
+   margin-top: -3px;
+}
+
+.badge-date p{ 
+   margin-top: 5px;
+}
+
 .custombody span p{
    margin-top: 30px;
    text-align: center;
    margin-left: -5px;
-   font-size: 15px;
+   font-size: 13px;
    color: white;
  }
 
