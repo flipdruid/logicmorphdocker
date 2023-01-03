@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #cccccc;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        img {
+            border: 0;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #cccccc;
+        }
+
+        .main {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            border-spacing: 0;
+            font-family: sans-serif;
+        }
+
+        @media screen and (max-width:600px) {
+            
+        }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main" align="center">
+
+            <!-- Social Media Icons -->
+            <tr>
+                <td>
+                    <table width="100%">
+                        <tr>
+                            <td style="text-align:center; padding:8px 0 4px; 
+                            background-color:#eaf6fb; border-top: 2px solid #21c6b8;
+                            border-bottom: 3px solid #21c6b8;">
+                               <a href="#"><img src="{% static 'image/smi-facebook.png' %}" width="32" alt=""></a>  
+                               <a href="#"><img src="{% static 'image/smi-twitter.png' %}" width="32" alt=""></a>  
+                               <a href="#"><img src="{% static 'image/smi-youtube.png' %}" width="32" alt=""></a>  
+                               <a href="#"><img src="{% static 'image/smi-linkin.png' %}" width="32" alt=""></a>  
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- Social Media Icons -->
+
+
+            <!-- Logo -->
+            <tr>
+                <td>
+                    <table width="100%">
+                        <tr>
+                            <td style="text-align: center;">
+                                <a href="https://logicmorph.herokuapp.com/"><img src="{% static 'image/lm-logo100.png' %}" alt="Logo" title="Logo"></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- Logo -->
+
+            <!-- Banner -->
+            <tr>
+                <td>
+                    <a href=""><img src=""/></a>
+                </td>
+            </tr>
+            <!-- Banner -->
+
+
+        </table>
+    </center>
+    
+</body>
+</html>

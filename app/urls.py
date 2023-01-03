@@ -3,7 +3,7 @@ from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from app.views.index import Landing, Dashboard, Carousel
+from app.views.index import Landing, Dashboard, Carousel, EmailRegTemplate
 from app.views.lead import LeadCreate, LeadMailList, LeadToClient, LeadMailView, LeadMailDelete, LeadMailViewLead, createreglink, leadactivation, userprofile, userprofileadminupdate, currentusers, usergroupchange
 from app.views.post import PostCreate, PostDelete, PostUpdate, PostView
 from app.views.project import CreateProjectClient, CreateProject, ListProject, ListClientProject, ClientProjectUpdate, ClientProjectDelete
@@ -37,4 +37,5 @@ urlpatterns = [
     path("dashboard/", Dashboard.as_view(), name="dashboard"),
     path("currentusers/", currentusers, name="current_users"),
     path("usergroupchange/", usergroupchange, name="user_group_change"),
+    path("emailreg/", EmailRegTemplate.as_view(), name="email_reg"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -89,3 +89,7 @@ class Carousel(ListView):
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
 class Dashboard(TemplateView):
     template_name = "main/dashboard.html"
+
+
+class EmailRegTemplate(TemplateView):
+    template_name = "main/email_reg_template.html"
