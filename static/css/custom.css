@@ -339,6 +339,11 @@
    max-width: 80%;
 } */
 
+.centro{
+   display: flex;
+   justify-content: center;
+}
+
 .it-solutions {   
    
    font-family: 'Noto Sans';
@@ -349,6 +354,8 @@
    width: 478px;
    height: 82px;
    color: #292A3C;
+   display: flex;
+   justify-content: center;
 }
 
 .imgcenter {
@@ -416,6 +423,7 @@ text-align:justify ;
 }
 .djflask-top-margin {
    margin-top: 100px !important;
+   overflow: hidden;
 }
 
 .stacks-backend {
@@ -590,8 +598,10 @@ text-align:justify ;
    /* width: 478px;
    height: 82px; */
    color: #292A3C !important;
-   text-align: center;
-   margin-bottom: 100px;
+   display: flex;
+   justify-content: center;
+   /* text-align: center !important; */
+   margin-bottom: 70px !important;
 }
 
 .djflask{
@@ -1189,4 +1199,12 @@ color: #292A3C;
 
 
    .dividerian { width: 100%; }
+
+   .djflask-top-margin {
+      margin-top: 500px !important;
+   }
+
+   .itdesc{   
+      width: 100%;
+   }
 }

@@ -27,7 +27,7 @@ def currentuserprofileclient(request):
     if Appsetting.objects.filter(name="landing").exists():
         appsetting = Appsetting.objects.get(name="landing")
 
-        if appsetting.is_dark_theme:        
+        if appsetting.is_dark_theme:
             main_body_theme ="is_dark"
             nav_item_font = "nav-item-font-dark"
             footer_social = "footer-social-dark"
