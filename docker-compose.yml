@@ -1,0 +1,52 @@
+version: "3.8"
+services:
+
+  #redis
+  redis:
+    image: redis:alpine
+    container_name: redis
+
+  #Database Postgress
+  db:
+      image: postgres
+      volumes:
+        - ./data/db:/var/lib/postgres/data
+
+      environment:
+        - POSTGRES_DB=lmdbtest5
+        - POSTGRES_USER=lmpg
+        - POSTGRES_PASSWORD=logic2022
+      container_name: postgres_db
+
+  #Django Application    
+  app:
+    build: .
+    volumes:
+      - .:/django
+    ports:
+      - 8000:8000
+    image: app:django
+    container_name: django_app
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOST=localhost 127.0.0.1[::1]
+      - CELERY_BROKER=redis://:6379/0
+      - CELERY_BACKEND=redis://:6379/0
+    depends_on:
+      - db
+      - redis
+  
+
+  #Celery
+  celery:
+    # restart: always
+    build: .
+    command: celery -A core.celery worker --pool=solo -l info
+    volumes:
+      - .:/django
+      
+    depends_on:
+      - db
+      - redis
+      - app
