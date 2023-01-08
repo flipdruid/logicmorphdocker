@@ -10,7 +10,7 @@ class ProfileUpdateForm(ModelForm):
     avatar = ImageField(widget=FileInput)
     class Meta:
         model = Profile
-        fields = ["avatar", "is_dark_theme","is_logicmorph_staff"]
+        fields = ["avatar"]
 
 class ProfileViewForm(ModelForm):
     # avatar = DateField(widget=FileInput)

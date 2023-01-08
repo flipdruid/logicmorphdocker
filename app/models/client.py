@@ -28,7 +28,6 @@ def image_path(instance, filename):
         )
     )
 
-
 class Client(models.Model):
     id = HashidAutoField(
         primary_key=True, salt=f"clientmodel{settings.HASHID_FIELD_SALT}"

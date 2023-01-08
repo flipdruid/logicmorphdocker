@@ -3,90 +3,84 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% include 'main/inc/leftnav.html' %} 
-    <div class="album py-2">
-        <div class="container">
-          <div class = "row ">
-            <div class = "col-lg-1"></div>
-            <div class = "col-lg-10">
-              <h2 class="text-center text-primary">Account</h2>
+<div class="container">
+    <div class = "row ">
+        <div class = "col-lg-1"></div>
+        <div class = "col-lg-10">
+            <h2 class="text-center text-primary">Account</h2>
 
-                <!-- Update Modal Start-->
-                <div class="modal fade" id="updateuserprofile" tabindex="-1" aria-labelledby="updateuserprofileLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="updateuserprofileLabel">Logic Morph</h5>
-                                <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
-                        </div>
-                        <div class="modal-body text-center ">
-                            <div> Update profile changes? </div>
-                        </div>
-                        <!-- <div class="modal-footer"> -->
-                            <div class="text-center mb-3">                                                                    
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-sm btn-outline-primary trigger_submit"><i class="fa-regular fa-circle-check"></i> Confirm</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i> Cancel</button>
-                            </div>
-                        <!-- </div> -->
+            <!-- Update Modal Start-->
+            <div class="modal fade" id="updateuserprofile" tabindex="-1" aria-labelledby="updateuserprofileLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title" id="updateuserprofileLabel">Logic Morph</h5>
+                            <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
                     </div>
+                    <div class="modal-body text-center ">
+                        <div> Update profile changes? </div>
                     </div>
+                    <!-- <div class="modal-footer"> -->
+                        <div class="text-center mb-3">                                                                    
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-sm btn-outline-primary trigger_submit"><i class="fa-regular fa-circle-check"></i> Confirm</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i> Cancel</button>
+                        </div>
+                    <!-- </div> -->
                 </div>
+                </div>
+            </div>
             <!-- Update Modal Start-->  
-              
-                <div class="card box-shadow rounded-top text-center bg-primary">
-                    <div class="text-white  text-center align-middle">
-                        <img src="/portal/media/{{profileinfo.avatar}}" alt="" style="width: 85px; height: 85px;" class=" rounded-circle mt-2"><br/>
-                        <p class="mt-1">{{userinfo.first_name}} {{userinfo.last_name}} </p>
-                    </div>                   
-                </div>
+            
+            <div class="card box-shadow rounded-top text-center bg-primary">
+                <div class="text-white  text-center align-middle">
+                    <img src="/portal/media/{{profileinfo.avatar}}" alt="" style="width: 85px; height: 85px;" class=" rounded-circle mt-2"><br/>
+                    <p class="mt-1">{{userinfo.first_name}} {{userinfo.last_name}} </p>
+                </div>                   
+            </div>
 
-                <div class="card box-shadow rounded-top text-center mt-2">
-                    
-                    <div class = "card-body">
-                        <!-- <h5 class=" text-primary">User Information</h5> -->
-                        <div class="row" >
-                            <div class = "col-lg-3"></div>
-                            <div class = "col-lg-6" style="text-align: left;">
-                                <form method="post"  action="" enctype='multipart/form-data'>
-                                    {% csrf_token %}               
-                                        {{userform|crispy}}
-                                        {{profileform|crispy}}     
-                                        
-                                    <div class="form-group text-center">
-                                        <button type="submit" class="btn btn-light btn-outline-primary hideupdate_button" style="width:180px ;">
-                                            <i class="fa-regular fa-floppy-disk"></i> Update
-                                        </button>                                        
-                                    </div>
-                                   
-                                </form>
-
-                                    <div class="text-center">  
-
-                                        <button class="btn btn-light btn-outline-primary" style="width: 180px ;" 
-                                            data-bs-toggle="modal" data-bs-target="#updateuserprofile" role="button" 
-                                            aria-pressed="true"><i class="fa-solid fa-floppy-disk "></i> Update
-                                        </button>   
-
-                                        <a href="{% url 'current_users'%}" class="btn btn-light btn-outline-primary" style="width:180px;">
-                                            <i class="fa-regular fa-id-badge"></i> Back
-                                        </a>
-
-                                    </div>
+            <div class="card box-shadow rounded-top text-center mt-2">
+                
+                <div class = "card-body">
+                    <!-- <h5 class=" text-primary">User Information</h5> -->
+                    <div class="row" >
+                        <div class = "col-lg-3"></div>
+                        <div class = "col-lg-6" style="text-align: left;">
+                            <form method="post"  action="" enctype='multipart/form-data'>
+                                {% csrf_token %}               
+                                    {{userform|crispy}}
+                                    {{profileform|crispy}}     
                                     
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-light btn-outline-primary hideupdate_button" style="width:180px ;">
+                                        <i class="fa-regular fa-floppy-disk"></i> Update
+                                    </button>                                        
+                                </div>
                                 
-                            </div>
-                            <div class = "col-lg-3"></div>
+                            </form>
+
+                                <div class="text-center">  
+
+                                    <button class="btn btn-light btn-outline-primary" style="width: 180px ;" 
+                                        data-bs-toggle="modal" data-bs-target="#updateuserprofile" role="button" 
+                                        aria-pressed="true"><i class="fa-solid fa-floppy-disk "></i> Update
+                                    </button>   
+
+                                    <a href="{% url 'current_users'%}" class="btn btn-light btn-outline-primary" style="width:180px;">
+                                        <i class="fa-regular fa-id-badge"></i> Back
+                                    </a>
+
+                                </div>
                         </div>
+                        <div class = "col-lg-3"></div>
                     </div>
                 </div>
-
-               
-                
-          </div>
-          </div>
+            </div>
         </div>
+    </div>
+</div>
 
-          <div class = "col-lg-1"></div>
-        </div>
+    <div class = "col-lg-1"></div>
+</div>
 
 {% endblock %}

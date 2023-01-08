@@ -11,6 +11,10 @@ $(document).ready(function(){
 
     });
 
+    $(".carousel").carousel({
+        indicators: true
+    });
+
     $(".trigger_submit").on("click", function(){
         $(".hideupdate_button").click()
         $(".hide_button_user").click()

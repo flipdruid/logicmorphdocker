@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'main/inc/leftnav.html' %} 
+
+<div class="container-fluid mx-auto">    
+    <h2 class="text-center text-primary mt-5">CURRENT LEAD EMAIL(S)</h2>
+    <div class="row">
+                    <!-- <div class="col-lg-2"></div> -->
+        <div class="col-lg-12 mx-auto">     
+            {% for key, values in leads.items %}
+                <!-- Modal Start-->
+                <div class="modal fade" id="deletelead" tabindex="-1" aria-labelledby="deleteleadLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title" id="deleteleadLabel">Logic Morph</h5>
+                                <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
+                            </div>
+                            <div class="modal-body">
+                                <div> Are you sure you want to delete the '{{ values.entity_name |slice:":20" }}' </div>
+                            </div>
+                            <!-- <div class="modal-footer"> -->
+                                <div class="text-center mb-3">                                                                    
+                                    <!-- Button trigger modal -->
+                                    <a href="{% url 'lead_mail_delete' key %}" type="button" class="btn btn-sm btn-outline-primary"><i class="fa-regular fa-circle-check"></i> Confirm</a>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i> Cancel</button>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal End-->
+            
+                {% if forloop.counter0|divisibleby:3 %} <div class="row d-flex justify-content-center"> {%  endif %}
+                    <div class="card text-center card-custom-margin ">
+                        
+                        <img src="/portal/media/{{values.profile_img}}"/> 
+                        <!-- <div class="text-center" style="height:25px;">{{lead.created_at}} | <span class="badge badge-info rounded-pill"> {{ lead.state }}</span></div> -->
+                        
+                        <div class = "card-body custombody">
+                            <span class="badge bg-primary">
+                               <p>{{values.state}}</p>
+                            </span>
+                            <div class="in-card">
+                                <h4> {{ values.entity_name |slice:":20" }}</h4>
+                                <div>
+                                    <medium class="text-muted" >{{values.details|slice:":50"}}</medium> <br/>
+                                </div>
+                                <small class="text-muted" style="text-align:center;">{{values.first_name}} {{values.last_name}}</small> <br/>
+                            </div>
+                            <!-- <small class="text-muted">{{lead.email}}</small>  -->
+                            <div class="text-center view-lead-del">
+                                <div class="btn-group ">
+                                    <a href="{% url 'lead_mail_view' key %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>
+                                    <a href="{% url 'lead_client' key %}" class="btn btn-sm btn-outline-primary ml-2 mr-2"  role="button" aria-pressed="true"><i class="fa-regular fa-id-badge"></i> Lead Info.</a>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#deletelead" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
+            {% endfor %}
+                <!-- <div class="page-navi-center">` -->
+                    <ul class="pagination page-navi-center">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item"><a href="?page=1" class="page-link" ><i class="fa-solid fa-angles-left"></i> First</a></li>
+                            <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"><i class="fa-solid fa-arrow-left"></i> Previous</a></li>
+                        {% endif %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"><i class="fa-solid fa-arrow-right"></i> Next</a></li>
+                            <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link"><i class="fa-solid fa-angles-right"></i> Last</a></li>
+                        {% endif %}
+                    </ul>
+                <!-- </div> -->
+        </div>
+    <!-- <div class="col-lg-2"></div> -->
+    </div>
+</div>
+{% endblock %}

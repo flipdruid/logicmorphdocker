@@ -2,6 +2,7 @@ from django.forms.models import model_to_dict
 from app.models.project import Project
 import celery
 import email
+from django.core.paginator import Paginator
 from django.contrib.sites.models import Site
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, reverse, get_object_or_404
@@ -45,21 +46,21 @@ class LeadMailList(ListView):
     model = Lead
     paginate_by = 9
     template_name = "main/lead_mail_lists.html"
-    fields = ("first_name", "last_name","email","entity_name", "details")
+    fields = ("first_name", "last_name","email","entity_name", "details", "created_at")
     context_object_name = "leads"
 
     def get_context_data(self, **kwargs):
         context         =    super(LeadMailList, self).get_context_data(**kwargs)
         leads = Lead.objects.all()
-        lead_list = {}
+        lead_list = []
         profile_img=""
         for lead in leads:
             try:
                 userExist = User.objects.get(email=lead.email)
                 profile_img = Profile.objects.get(user=userExist)
                 
-                lead_list[lead.id] = {
-                    'state': lead.state,
+                lead_list = [
+                    {'state': lead.state,
                     'ids':lead.id,
                     'first_name':lead.first_name,
                     'last_name':lead.last_name,
@@ -68,12 +69,12 @@ class LeadMailList(ListView):
                     'details':lead.details,
                     'created_at': lead.created_at,
                     'updated_at':lead.updated_at,
-                    "profile_img": profile_img.avatar,
-                }
+                    "profile_img": profile_img.avatar,}
+                ]
 
             except ObjectDoesNotExist:               
 
-                lead_list[lead.id] = {
+                lead_list = {
                     'state': lead.state,
                     'ids':lead.id,
                     'first_name':lead.first_name,
@@ -86,7 +87,8 @@ class LeadMailList(ListView):
                     "profile_img": 'avatar/guesticon2.jpg',
                 }
 
-        context['leads']     =    lead_list       
+                
+        context['leadsdata']     =    lead_list       
         return context
 
 # @method_decorator(login_required, name="dispatch")
@@ -96,6 +98,16 @@ class LeadMailView(DetailView):
     template_name       =   'main/lead_mail_view.html'
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
+    
+    def get_context_data(self, **kwargs):
+        context         =    super(LeadMailView, self).get_context_data(**kwargs)
+        currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
+        if currentObject.state=="new":
+            currentObject.viewed()
+            currentObject.save()       
+        context['lead']     =  currentObject
+        return context
+
 
     
 
@@ -107,15 +119,14 @@ class LeadMailViewLead(DetailView):
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
 
-    def get_queryset(self):
-        queryset = super(LeadMailViewLead, self).get_queryset()
-        currentlead = get_object_or_404(Lead, pk=self.kwargs['pk'])
-        if currentlead.state=="new":
-            currentlead.viewed()
-            currentlead.save()
-        lead = Lead.objects.get(pk=self.kwargs['pk'])
-        queryset = lead
-        return queryset
+    def get_context_data(self, **kwargs):
+        context         =    super(LeadMailViewLead, self).get_context_data(**kwargs)
+        currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
+        if currentObject.state=="new":
+            currentObject.viewed()
+            currentObject.save()       
+        context['lead']     =  currentObject
+        return context
 
 
     
@@ -140,11 +151,40 @@ class LeadToClient(DetailView):
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
 
+    # def get_context_data(self, **kwargs):
+    #     context         =    super(LeadToClient, self).get_context_data(**kwargs)
+    #     currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
+        
+    #     context['lead_mails']     =    Lead.objects.all().filter(email=currentObject.email)        
+    #     context['show_convert']     =  User.objects.filter(email=currentObject.email)
+    #     return context
     def get_context_data(self, **kwargs):
         context         =    super(LeadToClient, self).get_context_data(**kwargs)
         currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
-        context['lead_mails']     =    Lead.objects.all().filter(email=currentObject.email)        
-        context['show_convert']     =  User.objects.filter(email=currentObject.email)
+        leadInfo = {}
+        if User.objects.filter(email=currentObject.email).count()>0:
+            userInfo = User.objects.get(email=currentObject.email)
+            profileInfo = Profile.objects.get(user=userInfo)
+            leadInfo = {
+                'show_convert': True,
+                'profile_img' : profileInfo.avatar,
+                'fname':userInfo.first_name,
+                'lname':userInfo.last_name,
+                'email':userInfo.email
+            }
+
+        else:
+
+            leadInfo = {
+                'show_convert': False,
+                'profile_img' : "avatar/default-lead-avatar.png",
+                'fname':currentObject.first_name,
+                'lname':currentObject.last_name,
+                'email':currentObject.email
+            }
+
+        context['lead_mails']   =    Lead.objects.all().filter(email=currentObject.email)        
+        context['leadInfo']     =  leadInfo
         return context
 
 
@@ -221,8 +261,8 @@ def userprofile(request):
     if request.user.is_superuser:
         profileform = ProfileUpdateForm(initial={
             "avatar" : currentProfile.avatar,
-            "is_logicmorph_staff":currentProfile.is_logicmorph_staff,
-            "is_dark_theme":currentProfile.is_dark_theme
+            # "is_logicmorph_staff":currentProfile.is_logicmorph_staff,
+            # "is_dark_theme":currentProfile.is_dark_theme
         },  auto_id=False)
 
     else:

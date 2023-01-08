@@ -4,13 +4,34 @@
 <div class="container-fluid">
     <div class="row">
        <div class="col-lg-4"></div>
-           <div class="col-lg-4">
+           <div class="col-lg-4 mt-5">
                 {% if error_message %}
                     <p class="alert alert-danger">
                        <strong>{{ error_message }}</strong>
                     </p>
                 {% endif %}
-                <div class="card box-shadow mt-5">
+
+                <div class="custom-lead-card">
+                    <div class="dividerian2"></div>
+                    <div class="half-circle">
+                            <img src="/portal/media/{{leadInfo.profile_img}}" />
+                    </div>
+                    <div class="lead-name">
+                        {{leadInfo.fname}} {{leadInfo.lname}}
+                    </div>
+                    <span>{{leadInfo.email}}</span>
+
+                    <div class="btn-func">
+                        <div class="btn-group">
+                            <a href="{% url 'lead_mail_lists' %}" class="btn btn-sm btn-outline-primary mr-2" role="button" aria-pressed="true" style="width:150px ;"><i class="fa-solid fa-left-long"></i> Back</a>
+                            {% if not leadInfo.show_convert %}
+                                <a href="{% url 'create_reg_link' lead.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true" style="width:150px ;"><i class="fa-regular fa-circle-up"></i> Convert to Client</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="card box-shadow mt-5">
                     <div class="bg-primary text-white text-center align-middle">Lead Information</div>
                         <div class = "card-body text-center">
                             <h3 class="text-muted ">{{lead.first_name}} {{lead.last_name}}</h3>
@@ -24,25 +45,39 @@
                                 </div>
                             </div>
                         </div>
-                </div>
+                </div> -->
                 
 
             </div>
        <div class="col-lg-4"></div>
     </div>
-    <h3 class="text-center text-muted">Lead Email(s)</h3>
+    <h4 class="text-center mt-5 text-primary">Lead Email(s)</h4>
     {% if lead_mails %}
         {% for lead_mail in lead_mails %}
             {% if forloop.counter0|divisibleby:3 %} <div class="row d-flex justify-content-center"> {%  endif %}
-                <div class="card box-shadow" style="width: 300px; margin: 5px;">
-                    <div class="bg-primary text-white  text-center" style="height:25px;">{{lead_mail.created_at}}</div>
-                        <div class = "card-body">
-                            <h3 class="text-muted">{{lead_mail.entity_name}}</h3>
-                            <p><small class="text-muted"> {{lead_mail.details|slice:":100"}}</small></p>  
-                            <div class="text-center">
-                                <a href="{% url 'lead_mail_view_lead' lead_mail.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>                                  
+                <div class="card text-center card-custom-margin">
+                    <!-- <img src="/portal/media/{{leadsdata.profile_img}}"/>  -->
+                    <!-- <div class="text-center" style="height:25px;">{{lead.created_at}} | <span class="badge badge-info rounded-pill"> {{ lead.state }}</span></div> -->
+                    
+                    <div class = "card-body custombody">
+                        <span class="badge bg-primary">
+                           <p>{{lead.created_at|date:'Y-m-d'}}</p>
+                        </span>
+                        
+                        <div class="in-card">
+                            <h4> {{ lead.entity_name |slice:":20" }}</h4>
+                                <medium class="text-muted">{{lead.details|slice:":50"}}</medium>
+                            <p>
+                                <small class="text-muted" style="text-align:center;">{{lead.first_name}} {{lead.last_name}}</small>
+                            </p>
+                        </div>
+                        <!-- <small class="text-muted">{{lead.email}}</small>  -->
+                        <div class="text-center view-lead-del">
+                            <div class="btn-group ">
+                                <a href="{% url 'lead_mail_view_lead' lead_mail.id %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>
                             </div>
                         </div>
+                    </div>
                 </div>
             {%  if forloop.counter|divisibleby:3 or forloop.last %}</div><br>{%  endif %}
         {% endfor %}
