@@ -16,7 +16,7 @@
                                 <h5 class="modal-title" id="deleteleadLabel">Logic Morph</h5>
                                 <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="font-size: 20px;"><i class="fa-regular fa-circle-xmark"></i></a>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body text-center">
                                 <div> Are you sure you want to delete the '{{ lead.entity_name |slice:":20" }}' </div>
                             </div>
                             <!-- <div class="modal-footer"> -->
@@ -66,13 +66,13 @@
                 <!-- <div class="page-navi-center">` -->
                     <ul class="pagination page-navi-center">
                         {% if page_obj.has_previous %}
-                            <li class="page-item"><a href="?page=1" class="page-link" ><i class="fa-solid fa-angles-left"></i> First</a></li>
-                            <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link"><i class="fa-solid fa-arrow-left"></i> Previous</a></li>
+                            <li class="page-item"><a href="?page=1" class="page-link bg-primary text-white" ><i class="fa-solid fa-angles-left"></i> First</a></li>
+                            <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link bg-primary text-white"><i class="fa-solid fa-arrow-left"></i> Previous</a></li>
                         {% endif %}
 
                         {% if page_obj.has_next %}
-                            <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"><i class="fa-solid fa-arrow-right"></i> Next</a></li>
-                            <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link"><i class="fa-solid fa-angles-right"></i> Last</a></li>
+                            <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link bg-primary text-white"><i class="fa-solid fa-arrow-right"></i> Next</a></li>
+                            <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link bg-primary text-white"><i class="fa-solid fa-angles-right"></i> Last</a></li>
                         {% endif %}
                     </ul>
                 <!-- </div> -->

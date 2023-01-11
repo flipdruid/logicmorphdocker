@@ -57,7 +57,6 @@ Run djlint
 [logicmorph] celery -A core.celery worker --concurrency=5 -l info
 ```
 
-
 #### Docker first run
 ```
 [logicmorph] Just run "docker exec -it django_app sh" inside the environment, then "python manage.py migrate" to migrate the models
