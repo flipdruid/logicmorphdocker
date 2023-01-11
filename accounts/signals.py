@@ -6,6 +6,7 @@ from django.contrib.auth.models import Group
 from accounts.models.user import User
 from app.models.profile import Profile
 from app.models.client import Client
+from app.models.AppSettings import Appsetting
 
 @receiver(post_save, sender=User)
 def post_save_create_profile(sender, instance, created, *args, **kwargs):
@@ -24,3 +25,6 @@ def post_save_create_profile(sender, instance, created, *args, **kwargs):
             group = Group.objects.get(name='admin')
             newuser.groups.add(group)
             Client.objects.create(profile = newprofile)
+
+            if Appsetting.objects.all().count() == 0:
+                Appsetting.objects.create(name="landing")
