@@ -95,3 +95,8 @@
     text-decoration: none;
     
  }
+
+
+ .dashboard-content {
+   min-height: 200px;
+ }
