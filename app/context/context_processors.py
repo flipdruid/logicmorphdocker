@@ -54,8 +54,6 @@ def currentuserprofileclient(request):
             contact_us_now ="contactusnow"
             SAP_btn_color ="btn-primary"
 
-    
-
     return {"userprofile": userprofile, 
             "profileclient": profileclient, 
             "main_body_theme":main_body_theme,

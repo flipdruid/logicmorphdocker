@@ -130,57 +130,54 @@
             </div>
         </div>
         </div>
-        <div class="col-lg-6 col-sm-12 col-12 order-first order-xs-first centro order-md-last order-lg-last stacks2-right"><img src="static/image/xd.png"/></div>
+        <div class="col-lg-6 col-sm-12 col-12 order-first order-xs-first centro order-md-last order-lg-last stacks2-right">
+            <img src="static/image/xd.png"/>
+        </div>
     </div> 
-
     </div>
-
 
 {% include 'main/carousel.html' %} 
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="readmore-holder">
-            <div class="readmore-carousel">     
-                <a href="">Read More</a>   
-            </div>
-        </div>
-    
-        <div class="row itsols">            
-            <div class="col-lg-12 itsolssub">
-                <div class="row">
-                    <div class="col-lg-4 col-sm-12 colfour">
-                        <h2 class="{{turn_text_for_dark}}">I.T. Solutions That Saves Your Time!</h2>
-                        <p class="{{turn_text_for_dark}}">Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium. Donec lobortis iaculis neque a laoreet.</p>
-                        <button type="button" class="btn {{SAP_btn_color}} rounded-pill">Schedule An Appointment</button>
-                    </div>
-                    <div class="col-lg-4 col-sm-12 colfourcenter">
-                        <button class="btn btncolfour"> <img src="static/image/dollar.png"/></button>
-                        <h6 class="{{turn_text_for_dark}}">Transparent Pricing</h6>
-                        <p class="{{turn_text_for_dark}}">Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium.</p>
-                    </div>
-                    <div class="col-lg-4 col-sm-12 colfourcenter">
-                        <button class="btn btncolfour"> <img src="static/image/clock.png"/></button>
-                        <h6 class="{{turn_text_for_dark}}">Transparent Pricing</h6>
-                        <p class="{{turn_text_for_dark}}">Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium.</p>
-                    </div>
-                    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="readmore-holder">
+                <div class="readmore-carousel">     
+                    <a href="">Read More</a>   
                 </div>
             </div>
-        </div>
-    
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="contactus {{turn_text_for_dark}}">Contact Us</div>
-                <p class="parag {{turn_text_for_dark}}">If you have any questions or queries, a member from our team will always be happy to help. Feel free to contact us and we will be sure to get back to you as soon as possible. </p>
-                <div class="text-center mt-5">
-                    <a href="{% url 'contact_us' %}" class="btn rounded-pill {{contact_us_now}}"><h6>Contact Us Now</h6></a>
+        
+            <div class="row itsols">            
+                <div class="col-lg-12 itsolssub">
+                    <div class="row itsolssub-row">
+                        <div class="col-lg-4 col-sm-12 col-12 colfour">
+                            <h2 class="{{turn_text_for_dark}}">I.T. Solutions That Saves Your Time!</h2>
+                            <p class="{{turn_text_for_dark}}">Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium. Donec lobortis iaculis neque a laoreet.</p>
+                            <button type="button" class="btn {{SAP_btn_color}} rounded-pill">Schedule An Appointment</button>
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-12 colfourcenter">
+                            <button class="btn btncolfour"> <img src="static/image/dollar.png"/></button>
+                            <h6 class="{{turn_text_for_dark}}">Transparent Pricing</h6>
+                            <p class="{{turn_text_for_dark}}">Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium.</p>
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-12 colfourcenter">
+                            <button class="btn btncolfour"> <img src="static/image/clock.png"/></button>
+                            <h6 class="{{turn_text_for_dark}}">Transparent Pricing</h6>
+                            <p class="{{turn_text_for_dark}}">Pellentesque vehicula tempor dictum. Aliquam pellentesque interdum mi imperdiet pretium.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-    
+        
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contactus {{turn_text_for_dark}}">Contact Us</div>
+                    <p class="parag {{turn_text_for_dark}}">If you have any questions or queries, a member from our team will always be happy to help. Feel free to contact us and we will be sure to get back to you as soon as possible. </p>
+                    <div class="text-center mt-5">
+                        <a href="{% url 'contact_us' %}" class="btn rounded-pill {{contact_us_now}}"><h6>Contact Us Now</h6></a>
+                    </div>
+                </div>
+        
+            </div>
         </div>
     </div>
-</div>
-
 </div>
 {% endblock %}

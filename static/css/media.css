@@ -1,26 +1,21 @@
 /* 769 */
 @media only screen and (max-width:769px) {
+   .itsolssub{
+      height: 900px;      
+   }
     .stacks2 {
         text-align: center !important;
     }
-
     .imgstack{
         height: 300px !important;
-        /* width: 300px; */
         margin-top: 0px !important;
         margin-right: -130px !important;
-        /* align-self: center !important; */
-        
-    }
-    
-    .landingrow2 {
-       background: transparent;
-  }
+    }   
+     
+   .landingrow2 {background: transparent;} 
+   .dividerian { width: 100%; }
  
- 
-    .dividerian { width: 100%; }
- 
-    .djflask-top-margin {
+   .djflask-top-margin {
        margin-top: 500px !important;
     }
  
