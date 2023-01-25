@@ -1,0 +1,120 @@
+/* 769 */
+@media only screen and (max-width:769px) {
+    .stacks2 {
+        text-align: center !important;
+    }
+
+    .imgstack{
+        height: 300px !important;
+        /* width: 300px; */
+        margin-top: 0px !important;
+        margin-right: -130px !important;
+        /* align-self: center !important; */
+        
+    }
+    
+    .landingrow2 {
+       background: transparent;
+  }
+ 
+ 
+    .dividerian { width: 100%; }
+ 
+    .djflask-top-margin {
+       margin-top: 500px !important;
+    }
+ 
+    .itdesc{   
+       width: 100% !important;
+    }
+ 
+    .stacks-backend {
+       margin-top: 30px;
+       box-sizing: border-box;
+       border-top: 10px solid;
+       border-left: transparent;
+       border-image: linear-gradient(to right,#1DB4C9,#7C1DC9)1 0 0 0;
+       /* display: flex;
+       justify-content: center; */
+    }
+ 
+    .stacks-backend-left {
+       border-top: 10px solid #7C1DC9;
+       border-right: transparent;
+       border-image: linear-gradient(to right,#1DB4C9,#7C1DC9)1 0 0 0;
+    }
+ 
+    .stacks-backend-2 {
+       border-top: 10px solid #7C1DC9;
+       border-left: transparent;
+       border-image: linear-gradient(to right,#1DB4C9,#7C1DC9)1 0 0 0;
+    }
+ 
+    .stacks-backend-left-2 {
+       border-top: 10px solid #7C1DC9;
+       border-right: transparent;
+       border-image: linear-gradient(to right,#1DB4C9,#7C1DC9)1 0 0 0;
+       margin-top: 30px;
+    }
+ 
+    .stacks2 {
+       align-self: center;
+       text-align:right ;
+    }
+ 
+    .techno {   
+       width: 342px;
+       height: 33px;
+       font-family: 'Noto Sans';
+       font-style: normal;
+       font-weight: 700;
+       font-size: 24px;
+       line-height: 33px;
+       color: #292A3C;
+       text-align: center;
+ }
+ 
+ .techrow .centro img {
+    margin-top: -70px;
+ }
+ 
+ .techrow .stacks2 img{
+ 
+    margin-left: -50px;
+    margin-top: -40px;
+    /* text-align: center !important; */
+ 
+ }
+ 
+ }
+ 
+ 
+
+ /* 992px */
+ @media only screen and (max-width:992px) {
+ 
+    .landingrow2 .row2col span{
+       font-size: 24px;
+       margin-top: 5px;
+    }
+ 
+    .landingrow2 .row2col h2{
+       line-height: 30px;
+       font-size: 24px;
+       text-align: left !important;
+    }
+ 
+ 
+    .landingrow2 .row2col p {
+       /* height: auto !important; */
+       line-height: 20px;
+       width: 80%;
+       text-align: left !important;
+       }
+ 
+       .dividerian {
+          margin-top: -5px;
+          margin-bottom: 20px;
+       }
+ }
+ 
