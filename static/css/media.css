@@ -1,8 +1,85 @@
 /* 769 */
 @media only screen and (max-width:769px) {
-   .itsolssub{
-      height: 900px;      
+
+   .techrowtools {
+      margin-top: -60px !important;
    }
+
+   .margintop-pricing {
+      margin-top: 45px;
+   }
+
+   .margintop-delivery {
+      margin-top: 40px;
+      margin-bottom: 40px;
+   }
+
+   .colfourcenter p{
+      width: 223px;
+      height: 70px;
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 25px;
+      text-align: center;
+      color: #FFFFFF;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: -10px;
+
+   }
+
+   .stacks2-right {
+      margin-top: 60px !important;
+      margin-left: auto;
+      margin-right: auto;
+   }
+
+   .stacks-backend-left{
+      float: none;
+      margin: auto !important;
+   }
+
+   .stackfront{
+
+      margin-top: 0px !important;
+   }
+   .itsolssub{
+      height: auto;   
+      background-size: cover;   
+   }
+
+   .colfour button{
+
+      margin-top: -3px
+   }
+
+   .colfour h2 {
+
+      width: 300px;
+      height: 66px;
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 33px;
+      color: #FFFFFF;
+
+   }
+
+   .colfour p {
+      width: 328px;
+      height: 78px;
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 25px;
+      color: #FFFFFF;
+   }
+
+
     .stacks2 {
         text-align: center !important;
     }
@@ -30,7 +107,11 @@
        border-left: transparent;
        border-image: linear-gradient(to right,#1DB4C9,#7C1DC9)1 0 0 0;
        /* display: flex;
-       justify-content: center; */
+       justify-content: center;
+       align-items: center; */
+       margin-top: 30px;
+       margin-left: auto;
+       margin-right: auto;
     }
  
     .stacks-backend-left {
@@ -43,18 +124,25 @@
        border-top: 10px solid #7C1DC9;
        border-left: transparent;
        border-image: linear-gradient(to right,#1DB4C9,#7C1DC9)1 0 0 0;
+       float: none !important;
+       margin: auto !important;
+
     }
  
     .stacks-backend-left-2 {
        border-top: 10px solid #7C1DC9;
        border-right: transparent;
        border-image: linear-gradient(to right,#1DB4C9,#7C1DC9)1 0 0 0;
+       float: none !important;
        margin-top: 30px;
+       margin-left: auto;
+       margin-right: auto;
     }
  
     .stacks2 {
-       align-self: center;
-       text-align:right ;
+       /* align-self: center;
+       text-align:right ; */
+       margin: auto;
     }
  
     .techno {   
