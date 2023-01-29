@@ -78,14 +78,8 @@
                                             </div>
                                             <div class="dropdown-divider"></div>
                                             <a href="{% url 'user_profile' %}" class="dropdown-item">
-                                                Profile
+                                                <i class="fa-solid fa-user"></i> Profile
                                             </a>
-
-                                            {% if request.user.is_superuser %}
-                                            <a href="{% url 'current_users' %}" class="dropdown-item">
-                                               Users
-                                            </a>
-                                            {% endif %}
 
                                             <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirm_logout" role="button" aria-pressed="true">
                                                 <i class="fa-solid fa-power-off"></i> Logout
