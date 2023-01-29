@@ -260,7 +260,6 @@ def leadactivation(request, reglink):
 @allowed_users(allowed_roles=['admin', 'staff', 'client'])
 def userprofile(request):
 
-
     currentUser = request.user    
     currentProfile = Profile.objects.get(user=currentUser)
 
@@ -268,17 +267,22 @@ def userprofile(request):
         profileform = ProfileUpdateForm(initial={
             "avatar" : currentProfile.avatar,
             # "is_logicmorph_staff":currentProfile.is_logicmorph_staff,
-            # "is_dark_theme":currentProfile.is_dark_theme
+            "is_dark_theme":currentProfile.is_dark_theme
         },  auto_id=False)
 
     else:
-        profileform = ProfileViewClient
+        profileform = ProfileViewClient(initial={
+            # "avatar" : currentProfile.avatar,
+            # "is_logicmorph_staff":currentProfile.is_logicmorph_staff,
+            "is_dark_theme":currentProfile.is_dark_theme
+        },  auto_id=False)
     # Update user form (username, fname, lname) -- START
     userform = UserUpdateForm(initial ={
         'username': currentUser.username,
         'first_name': currentUser.first_name,
         'last_name':currentUser.last_name
-    })    
+    })  
+     
     if request.method == 'POST': 
         userform=UserUpdateForm(request.POST, instance=request.user)
         if userform.is_valid():
