@@ -3,7 +3,8 @@ from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from app.views.index import Landing, Dashboard, Carousel, EmailRegTemplate
+from app.views.dashboard import Index, Chart
+from app.views.index import Landing, Carousel, EmailRegTemplate
 from app.views.lead import LeadCreate, LeadMailList, LeadToClient, LeadMailView, LeadMailDelete, LeadMailViewLead, createreglink, leadactivation, userprofile, userprofileadminupdate, currentusers, usergroupchange
 from app.views.post import PostCreate, PostDelete, PostUpdate, PostView
 from app.views.project import CreateProjectClient, CreateProject, ListProject, ListClientProject, ClientProjectUpdate, ClientProjectDelete
@@ -34,7 +35,8 @@ urlpatterns = [
     path("clientprojects/", ListClientProject.as_view(), name="list_client_project"),
     path("clientprojectupdate/<str:pk>/", ClientProjectUpdate.as_view(), name="update_client_project"),
     path("clientprojectdelete/<str:pk>/", ClientProjectDelete.as_view(), name="delete_client_project"),
-    path("dashboard/", Dashboard.as_view(), name="dashboard"),
+    path("dashboard/", Index.as_view(), name="dashboard"),
+    path("chart/", Chart.as_view(), name="chart"),
     path("currentusers/", currentusers, name="current_users"),
     path("usergroupchange/", usergroupchange, name="user_group_change"),
     path("emailreg/", EmailRegTemplate.as_view(), name="email_reg"),

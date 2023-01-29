@@ -38,6 +38,12 @@ class LeadCreate(CreateView):
         else:
             return reverse('main')
 
+    def get_context_data(self, **kwargs):
+        context         =    super(LeadCreate, self).get_context_data(**kwargs) 
+        context['lead_is_active']     =  'active'
+        return context
+    
+
 
 
 # @method_decorator(login_required, name="dispatch")
@@ -87,7 +93,7 @@ class LeadMailList(ListView):
                     "profile_img": 'avatar/guesticon2.jpg',
                 }
 
-                
+        context['lead_is_active']     =  'active'        
         context['leadsdata']     =    lead_list       
         return context
 
@@ -104,7 +110,8 @@ class LeadMailView(DetailView):
         currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
         if currentObject.state=="new":
             currentObject.viewed()
-            currentObject.save()       
+            currentObject.save()   
+        context['lead_is_active']     =  'active'    
         context['lead']     =  currentObject
         return context
 
@@ -124,7 +131,8 @@ class LeadMailViewLead(DetailView):
         currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
         if currentObject.state=="new":
             currentObject.viewed()
-            currentObject.save()       
+            currentObject.save()   
+        context['lead_is_active']     =  'active'    
         context['lead']     =  currentObject
         return context
 
@@ -142,6 +150,10 @@ class LeadMailDelete(DeleteView):
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context         =    super(LeadMailDelete, self).get_context_data(**kwargs) 
+        context['lead_is_active']     =  'active'
+        return context
 
 # @method_decorator(login_required, name="dispatch")
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
@@ -151,13 +163,6 @@ class LeadToClient(DetailView):
     pk_url_kwarg        =   'pk'
     context_object_name =   'lead'
 
-    # def get_context_data(self, **kwargs):
-    #     context         =    super(LeadToClient, self).get_context_data(**kwargs)
-    #     currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
-        
-    #     context['lead_mails']     =    Lead.objects.all().filter(email=currentObject.email)        
-    #     context['show_convert']     =  User.objects.filter(email=currentObject.email)
-    #     return context
     def get_context_data(self, **kwargs):
         context         =    super(LeadToClient, self).get_context_data(**kwargs)
         currentObject    =    Lead.objects.get(id=self.kwargs['pk'])
@@ -182,7 +187,7 @@ class LeadToClient(DetailView):
                 'lname':currentObject.last_name,
                 'email':currentObject.email
             }
-
+        context['lead_is_active']     =  'active'
         context['lead_mails']   =    Lead.objects.all().filter(email=currentObject.email)        
         context['leadInfo']     =  leadInfo
         return context
@@ -247,13 +252,14 @@ def leadactivation(request, reglink):
             clientProfileCreate = Client.objects.create(profile=clientProfile)
             clientProfileCreate.save()
             return HttpResponseRedirect(reverse('accounts:login'))
-
-    context ={"regForm":regForm, 'leadmail':str(currentReglink.lead_mail)}    
+    lead_is_active     =  'active'
+    context ={"regForm":regForm, 'leadmail':str(currentReglink.lead_mail), 'lead_is_active': lead_is_active}    
     return render(request, 'main/lead_regform.html', context)
 
 # @login_required()
 @allowed_users(allowed_roles=['admin', 'staff', 'client'])
 def userprofile(request):
+
 
     currentUser = request.user    
     currentProfile = Profile.objects.get(user=currentUser)
@@ -286,10 +292,10 @@ def userprofile(request):
         if profileform.is_valid():
             profileform.save()
             return HttpResponseRedirect(reverse('user_profile'))
-        
+    user_is_active = "active"
     # Update user form (username, fname, lname) -- END
 
-    context ={"userform":userform, 'currentProf':currentProfile, 'currentUser':currentUser, 'profileform': profileform}
+    context ={"userform":userform, 'currentProf':currentProfile, 'currentUser':currentUser, 'profileform': profileform, 'user_is_active':user_is_active}
 
     return render(request, 'main/userprofile.html', context)
 
