@@ -100,3 +100,15 @@
  .dashboard-content {
    min-height: 200px;
  }
+
+
+
+ html:focus-within {
+   scroll-behavior: smooth;
+ }
+
+ @media(prefers-reduce-motion) {
+   html:focus-within {
+      scroll-behavior:auto;
+    } 
+ }

@@ -305,6 +305,32 @@
    margin-bottom: 40px ;
 }
 
+.contactusnav{
+   font-family: 'Segoe UI';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 14px;
+   line-height: 20px;
+   color: #FFFFFF;
+   width: 130px;
+   height: 30px;
+   /* #4649FF */
+   background: #4649FF;
+   /* shadow_002 */
+   box-shadow: 0px 4px 23px -5px #3C3DA5;
+   border-radius: 100px;
+   text-align: center;
+   align-items: center;
+   /* margin-bottom: 60px; */
+   margin-left: 20px;
+   margin-top: 3px;
+}
+
+.contactusnav h6{ 
+   margin-top: -1px;
+   font-size: 14px;
+}
+
 
 /* contactusnow */
 .contactusnow{
