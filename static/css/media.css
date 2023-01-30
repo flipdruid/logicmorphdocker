@@ -89,7 +89,10 @@
         margin-right: -130px !important;
     }   
      
-   .landingrow2 {background: transparent;} 
+   .landingrow2 {
+      background: transparent;
+      margin-top: -10px !important;
+   } 
    .dividerian { width: 100%; }
  
    .djflask-top-margin {
