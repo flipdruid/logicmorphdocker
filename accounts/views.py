@@ -31,6 +31,11 @@ class Login(LoginView):
     def get_success_url(self):    
         return reverse('dashboard')
 
+    def get_context_data(self, **kwargs):
+        context         =    super(Login, self).get_context_data(**kwargs)   
+        context['is_sblogin']     =  True
+        return context
+
 class Logout(LogoutView):
     template_name = "accounts/logged_out.html"
 
