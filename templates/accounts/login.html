@@ -60,14 +60,14 @@
                                     </a> -->
                                     <div class="form-group text-center">
                                       <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        <span class="glyphicon glyphicon-ok"></span> Login
+                                        <i class="fa-solid fa-right-to-bracket"></i> Login
                                       </button>
                                       <!-- <a href="{% url 'accounts:home' %}" class="btn btn-light border border-primary rounded">Cancel</a> -->
                                   </div>
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    <a class="small" href="{% url 'accounts:reset_password' %}">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
                                     <a class="small" href="{% url 'accounts:register' %}">Create an Account!</a>

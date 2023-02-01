@@ -253,7 +253,8 @@ def leadactivation(request, reglink):
             clientProfileCreate.save()
             return HttpResponseRedirect(reverse('accounts:login'))
     lead_is_active     =  'active'
-    context ={"regForm":regForm, 'leadmail':str(currentReglink.lead_mail), 'lead_is_active': lead_is_active}    
+    is_sblogin = True
+    context ={"regForm":regForm, 'leadmail':str(currentReglink.lead_mail), 'lead_is_active': lead_is_active, 'is_sblogin': is_sblogin}    
     return render(request, 'main/lead_regform.html', context)
 
 # @login_required()

@@ -324,11 +324,17 @@
    /* margin-bottom: 60px; */
    margin-left: 20px;
    margin-top: 3px;
+   /* text-decoration: none; */
 }
 
 .contactusnav h6{ 
-   margin-top: -1px;
+   margin-top: 6px;
    font-size: 14px;
+   text-decoration: none;
+}
+
+.navbar-nav a:hover {
+   text-decoration: none;
 }
 
 

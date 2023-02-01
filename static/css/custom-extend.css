@@ -1,4 +1,28 @@
 /* bg-login-image{background:url(https://source.unsplash.com/K4mSJ7kc0As/600x800)} */
+.reg_image2 {
+   background:url('../image/itsolutions.png');
+   background-position:center;
+   background-position-y: 200px;
+   vertical-align: middle;
+   background-repeat: no-repeat;
+}
+
+.reset_image {
+   background:url('../image/itsolutions.png');
+   background-position:center;
+   background-position-y: 10px;
+   vertical-align: middle;
+   background-repeat: no-repeat;
+   background-size: 550px;
+}
+
+.reg_image {
+   background:url('../image/itsolutions.png');
+   background-position:center;
+   background-position-y: 200px;
+   vertical-align: middle;
+   background-repeat: no-repeat;
+}
 
 .login_image {
    background:url('../image/itsolutions.png');

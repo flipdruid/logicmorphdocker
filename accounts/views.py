@@ -55,11 +55,19 @@ class ChangePassword(PasswordChangeView):
 class ChangePasswordDone(PasswordChangeDoneView):
     template_name = "accounts/password_change_done.html"
 
-@method_decorator(login_required, name="dispatch")
+# @method_decorator(login_required, name="dispatch")
 class ResetPassword(PasswordResetView):
     template_name = "accounts/password_reset_form.html"
+    subject_template_name = "accounts/password_reset_subject.txt"
+    email_template_name = "accounts/password_reset_email.html"
+    success_url = reverse_lazy("accounts:password_reset_done")
 
-@method_decorator(login_required, name="dispatch")
+    def get_context_data(self, **kwargs):
+        context         =    super(ResetPassword, self).get_context_data(**kwargs)   
+        context['is_sblogin']     =  True
+        return context
+
+# @method_decorator(login_required, name="dispatch")
 class ResetPasswordDone(PasswordResetDoneView):
     template_name = "accounts/password_reset_done.html"
 
@@ -75,6 +83,11 @@ class Register(RegistrationView):
     form_class = UserForm
     template_name = "django_registration/registration_form.html"
     success_url = reverse_lazy("accounts:django_registration_complete")
+
+    def get_context_data(self, **kwargs):
+        context         =    super(Register, self).get_context_data(**kwargs)   
+        context['is_sblogin']     =  True
+        return context
 
 
 class ActivateUser(ActivationView):
