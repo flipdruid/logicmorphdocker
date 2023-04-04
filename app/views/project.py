@@ -25,6 +25,11 @@ class CreateProjectClient(CreateView):
         ccli = Client.objects.get(profile=cprof)
         form.instance.client = ccli
         return super(CreateProjectClient, self).form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context         =    super(CreateProjectClient, self).get_context_data(**kwargs) 
+        context['project_is_active']     =  'active'
+        return context
 
 @method_decorator(login_required, name="dispatch")
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff']),  name="dispatch")
@@ -33,6 +38,11 @@ class CreateProject(CreateView):
     template_name = "main/project_create.html"
     fields = ("name","client",)
     success_url = reverse_lazy("list_project")
+
+    def get_context_data(self, **kwargs):
+        context         =    super(CreateProject, self).get_context_data(**kwargs) 
+        context['project_is_active']     =  'active'
+        return context
     
 
 # @method_decorator(login_required, name="dispatch")
@@ -43,6 +53,11 @@ class ListProject(ListView):
     template_name = "main/project_lists.html"
     fields = ("name", "state","client","created_at", "updated_at")
     context_object_name = "projects"
+
+    def get_context_data(self, **kwargs):
+        context         =    super(ListProject, self).get_context_data(**kwargs) 
+        context['project_is_active']     =  'active'
+        return context
 
 # @method_decorator(login_required, name="dispatch")
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
@@ -59,6 +74,11 @@ class ListClientProject(ListView):
         client = Client.objects.get(profile=profile)
         return queryset.filter(client=client)
     
+    def get_context_data(self, **kwargs):
+        context         =    super(ListClientProject, self).get_context_data(**kwargs) 
+        context['project_is_active']     =  'active'
+        return context
+    
 # @method_decorator(login_required, name="dispatch")
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
 class ClientProjectUpdate(UpdateView):
@@ -73,6 +93,11 @@ class ClientProjectUpdate(UpdateView):
             return reverse('list_project')
         else:
             return reverse('list_client_project')
+    
+    def get_context_data(self, **kwargs):
+        context         =    super(ClientProjectUpdate, self).get_context_data(**kwargs) 
+        context['project_is_active']     =  'active'
+        return context
     
 
 @method_decorator(allowed_users(allowed_roles=['admin', 'staff', 'client']),  name="dispatch")
@@ -89,3 +114,8 @@ class ClientProjectDelete(DeleteView):
             return reverse('list_project')
         else:
             return reverse('list_client_project')
+    
+    def get_context_data(self, **kwargs):
+        context         =    super(ClientProjectDelete, self).get_context_data(**kwargs) 
+        context['project_is_active']     =  'active'
+        return context

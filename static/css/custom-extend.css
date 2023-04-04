@@ -1,3 +1,36 @@
+/* bg-login-image{background:url(https://source.unsplash.com/K4mSJ7kc0As/600x800)} */
+.reg_image2 {
+   background:url('../image/itsolutions.png');
+   background-position:center;
+   background-position-y: 200px;
+   vertical-align: middle;
+   background-repeat: no-repeat;
+}
+
+.reset_image {
+   background:url('../image/itsolutions.png');
+   background-position:center;
+   background-position-y: 10px;
+   vertical-align: middle;
+   background-repeat: no-repeat;
+   background-size: 550px;
+}
+
+.reg_image {
+   background:url('../image/itsolutions.png');
+   background-position:center;
+   background-position-y: 200px;
+   vertical-align: middle;
+   background-repeat: no-repeat;
+}
+
+.login_image {
+   background:url('../image/itsolutions.png');
+   background-position:center;
+   background-position-y: 30px;
+   vertical-align: middle;
+   background-repeat: no-repeat;
+}
 .custom-lead-card {
     width: 500px;
     height: 300px;
@@ -94,4 +127,77 @@
     line-height: normal;
     text-decoration: none;
     
+ }
+
+
+
+
+ .leadsubmit{
+   font-family: 'Segoe UI';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 14px;
+   line-height: 20px;
+   color: #FFFFFF;
+   width: 120px;
+   height: 44px;
+   /* #4649FF */
+   background: #4649FF;
+   /* shadow_002 */
+   box-shadow: 0px 4px 23px -5px #3C3DA5;
+   border-radius: 100px;
+   text-align: center;
+   align-items: center;
+   margin-bottom: 20px;
+   margin-top: 20px;
+   margin-right: 10px;
+}
+
+.leadcancel{
+   font-family: 'Segoe UI';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 14px;
+   line-height: 20px;
+   color: #FFFFFF;
+   width: 120px;
+   height: 44px;
+   /* #4649FF */
+   background: #4649FF;
+   /* shadow_002 */
+   box-shadow: 0px 4px 23px -5px #3C3DA5;
+   border-radius: 100px;
+   text-align: center;
+   align-items: center;
+   margin-bottom: 20px;
+   margin-top: 20px;
+   margin-left: 10px;
+}
+
+.leadcanceltext{
+   margin-top: 5px;
+}
+
+
+/* .submitlead span{
+   vertical-align: middle;
+} */
+
+
+
+
+ .dashboard-content {
+   min-height: 200px;
+ }
+
+
+
+ html:focus-within {
+   scroll-behavior: smooth;
+ }
+
+ @media(prefers-reduce-motion) {
+   html:focus-within {
+      scroll-behavior:auto;
+    } 
  }

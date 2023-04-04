@@ -1,13 +1,11 @@
-{% extends 'base.html' %}
-<!-- {% load crispy_forms_tags %} -->
+{% extends 'dashboard/_base.html' %}
 {% block content %}
-{% include 'main/inc/leftnav.html' %} 
 <div class="container-fluid">
     
     <h2 class="text-center text-primary mt-5">CURRENT PROJECTS</h2>
     <div class="row">
-                    <div class="col-lg-2"></div>
-                        <div class="col-lg-8">
+                    <!-- <div class="col-lg-2"></div> -->
+                        <div class="col-lg-12">
 
                         {% if projects %}
 
@@ -17,9 +15,9 @@
                                 <div class="card text-center card-custom-margin">
 
                                     <div class = "card-body custombody">
-                                        <div class="badge bg-primary badge-date">
+                                        <!-- <div class="badge bg-primary badge-date">
                                             <p>{{project.created_at|date:'Y-m-d'}}</p>
-                                        </div>
+                                        </div> -->
                                         <span class="badge bg-primary">
                                             <p>{{project.state}}</p>
                                         </span>
@@ -37,7 +35,7 @@
                                                     <a href="{% url 'update_client_project'  project.id  %}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> View</a>
 
                                                     <!-- Modal Start-->
-                                                    <div class="modal fade" id="deleteproject" tabindex="-1" aria-labelledby="deleteprojectLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="deleteproject{{project.id}}" tabindex="-1" aria-labelledby="deleteprojectLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bg-primary text-white">
@@ -59,7 +57,7 @@
                                                     </div>
                                                     <!-- Modal Start--> 
                                                                                                             
-                                                    <button class="btn btn-sm btn-outline-primary ml-1" data-bs-toggle="modal" data-bs-target="#deleteproject" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                                                    <button class="btn btn-sm btn-outline-primary ml-1" data-bs-toggle="modal" data-bs-target="#deleteproject{{project.id}}" role="button" aria-pressed="true"><i class="fa-solid fa-trash-can"></i> Delete</button>
                                                     
                                                 </div>
                                             </div>
@@ -94,7 +92,7 @@
                                 {% endif %}
                             </ul>
                         </div>
-                    <div class="col-lg-2"></div>
+                    <!-- <div class="col-lg-2"></div> -->
     </div>
 </div>
 {% endblock %}

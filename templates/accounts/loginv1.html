@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="album py-2">
+    <div class="container">
+      <div class = "row">
+        <div class = "col-lg-3"></div>
+        <div class = "col-lg-6">
+          <h2 class="text-center text-primary">LOGIN</h2>
+      <form method="post" novalidate>
+          {% csrf_token %}
+
+          {% for field in form.visible_fields %}
+            <div class="form-group">
+                <label for ="{{  field.id_for_label }}"> {{ field.label }}  </label>
+                {{field|add_class:'form-control'}}
+                {% for error in field.errors %}
+                <span class="help-block"> {{ error }}</span>
+                {% endfor %}
+            </div>
+          {% endfor %}
+          <div class="form-group text-center">
+              <button type="submit" class="btn btn-light border border-primary rounded">
+                <span class="glyphicon glyphicon-ok"></span> Login
+              </button>
+              <a href="{% url 'accounts:home' %}" class="btn btn-light border border-primary rounded">Cancel</a>
+          </div>
+      </form>
+      </div>
+      <div class = "col-lg-3"></div>
+    </div>
+</div>
+{% endblock %}

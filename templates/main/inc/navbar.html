@@ -6,7 +6,7 @@
         <!--  fixed-top  -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"> -->
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top"> -->
-        <!-- Modal Start-->
+    <!-- Modal Start-->
         <div class="modal fade" id="confirm_logout" tabindex="-1" aria-labelledby="confirm_logoutLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -28,6 +28,7 @@
             </div>
         </div>
     <!-- Modal End--> 
+    <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark mt-3">
         <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top"> -->
         <button 
@@ -48,19 +49,21 @@
                 <div class="collapse navbar-collapse border-secondary" id ="collapse_target">
                     <!-- <div class="col-lg-3 "> -->    
                         <div class="navbar-collapse">                 
-                            <a class="navbar-brand"><img src="{% static 'image/lmlt.png' %}"style="width: 50px; height: 50px;"></a>
-                            <a href ="/" class = "align-middle"><span class="navbar-text {{lm_logotext}}">LogicMorph</span></a>
+                            <a class="navbar-brand" href="/"><img src="{% static 'image/lmimglogo.png' %}"style="height: 40px;"></a>
+                            <!-- <a href ="/" class = "align-middle"><span class="navbar-text {{lm_logotext}}">LogicMorph</span></a> -->
                         </div>   
                     <!-- </div> -->
                     <!-- <div class="col-lg-9"> -->                        
                         <!-- <ul class="navbar-nav ml-auto"> -->
                         <ul class="navbar-nav text-left">
                                 <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="/">Home</a></li>
-                                <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="#">Solutions</a></li>
-                                <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="#">Our Stacks</a></li>
-                                <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="#">Resources</a></li>
-                                <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="#">About Us</a></li>
-                                <!-- <li><a href="{% url 'contact_us' %}" class="nav-link btn btn-outline-secondary"><i class="fa-regular fa-envelope"></i> Contact Us</a></li> -->
+                                <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="#solution">Solutions</a></li>
+                                <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="#ourstacks">Our Stacks</a></li>
+                                <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="#resources">Resources</a></li>
+                                <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link"  href="#ourmission">About Us</a></li>
+                                <!-- <li class="nav-item" id="{{nav_item_font}}"><a class="nav-link btn btn-sm btn-outline-secondary"  href="{% url 'contact_us' %}">Contact Us</a></li> -->
+                                <a href="{% url 'contact_us' %}" class="contactusnav"><h6>Contact Us</h6></a>
+                                <!-- <li><a href="{% url 'contact_us' %}" class="nav-link btn btn-outline-secondary ml-4 mr-1"><i class="fa-regular fa-envelope"></i> Contact Us</a></li> -->
                                 <li class="nav-item dropdown ">
                                     {% if user.is_authenticated %}
 
@@ -77,14 +80,8 @@
                                             </div>
                                             <div class="dropdown-divider"></div>
                                             <a href="{% url 'user_profile' %}" class="dropdown-item">
-                                                Profile
+                                                <i class="fa-solid fa-user"></i> Profile
                                             </a>
-
-                                            {% if request.user.is_superuser %}
-                                            <a href="{% url 'current_users' %}" class="dropdown-item">
-                                               Users
-                                            </a>
-                                            {% endif %}
 
                                             <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirm_logout" role="button" aria-pressed="true">
                                                 <i class="fa-solid fa-power-off"></i> Logout
@@ -102,3 +99,4 @@
 
 
     </nav>
+</div>

@@ -6,14 +6,26 @@
   <div class = "row ">
       <div class = "col-lg-3"></div>
       <div class = "col-lg-6">
-        <h2 class="text-center text-primary">CONTACT US</h2>
+        <h2 class="text-center text-primary mt-5">CONTACT US</h2>
         <form method="post" novalidate>
             {% csrf_token %}
             {{ form|crispy }}
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-light border border-primary rounded"><i class="fa-solid fa-paper-plane"></i> Submit
+                <!-- <button type="submit" class="btn btn-light border border-primary rounded">
+                  <i class="fa-solid fa-paper-plane"></i> Submit
+                </button> -->
+                <button type="submit" class="btn rounded-pill leadsubmit">
+                 <span> <i class="fa-solid fa-paper-plane"></i> Submit </span>
                 </button>
-                <a href="{% url 'main' %}" class="btn btn-light border border-primary rounded"><i class="fa-solid fa-xmark"></i> Cancel</a>
+                <!-- <button type="submit" class="btn rounded-pill leadcancel">
+                  <a href="{% url 'main' %}" ><i class="fa-solid fa-paper-plane"></i> Submit</a>
+                 </button> -->
+                <!-- <a href="{% url 'main' %}" class="btn btn-light border border-primary rounded">
+                  <i class="fa-solid fa-xmark"></i> Cancel
+                </a> -->
+                <a href="{% url 'main' %}" class="btn rounded-pill leadcancel">
+                 <div class="leadcanceltext"> <i class="fa-solid fa-xmark"></i>  Cancel</div>
+                </a>
             </div>
         </form>
       </div>

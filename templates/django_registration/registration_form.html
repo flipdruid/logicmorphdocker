@@ -3,39 +3,58 @@
 
 {% block content %}
 
-<div class="album bg-light">
-    <div class="container-fluid pt-2">
-      
-      <!-- <div class="card text-center"> -->
-      <div class = "row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-          <h2 class="text-center text-primary">REGISTRATION FORM</h2>
-          <form method="post"  action=".">
-              {% csrf_token %}
-            
-              {% for field in form.visible_fields %}
-                <div class="form-group">
-                    <label for ="{{  field.id_for_label }}"> {{ field.label }}  </label>
-                    {{field|add_class:'form-control'}}
-                    {% for error in field.errors %}
-                    <span class="help-block"> {{ error }}</span>
-                    {% endfor %}
-                </div>
-              {% endfor %}
-              <div class="form-group text-center">
-                  <button type="submit" class="btn btn-light border border-primary rounded">
-                    <span class="glyphicon glyphicon-ok"></span> Submit
-                  </button>
-                  <a href="{% url 'accounts:login' %}" class="btn btn-light border border-primary rounded">Cancel</a>
-              </div>
-          </form>
-        </div>
-        <div class="col-lg-4"></div>
-      </div>
-    <!-- </div> -->
-    </div>
-</div>
-</div>
-{% endblock %}>
+<div class="album py-2">
+  <div class="container">
 
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block reg_image"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">REGISTRATION FORM</h1>
+                                </div>
+                                <form class="user" method="post">
+                                  {% csrf_token %}
+                                    {% for field in form.visible_fields %}
+                                  <div class="form-group">
+                                      <label for ="{{  field.id_for_label }}"> {{ field.label }}  </label>
+                                      {{field|add_class:'form-control form-control-user'}}
+                                      {% for error in field.errors %}
+                                      <span class="help-block"> {{ error }}</span>
+                                      {% endfor %}
+                                  </div>
+                                  {% endfor %}
+                                    <div class="form-group text-center">
+                                        <button type="submit" class="btn btn-primary btn-user ">
+                                          <i class="fa-solid fa-paper-plane"></i> Submit
+                                        </button>
+                                        <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-user">
+                                          <i class="fa-solid fa-xmark"></i> Cancel
+                                        </a>
+                                    </div>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="{% url 'accounts:reset_password' %}">Forgot Password?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+{% endblock %}

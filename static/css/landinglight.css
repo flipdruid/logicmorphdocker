@@ -1,0 +1,36 @@
+.imgstack{
+    height: 600px;
+    margin-top: -20px;
+    margin-left: -160px !important;
+    
+}
+
+
+.headertop {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 43px;
+    line-height: 59px;
+    color: #292A3C;
+    text-align: left !important;
+    width: 551px;
+    height: 177px;
+
+}
+
+.imgmession {
+    text-align: left !important;
+}
+.paragtop{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 25px;
+    color: #292A3C;
+    /* width: 336px; */
+    height: 60px;
+    text-align: left !important;
+    
+}
