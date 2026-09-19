@@ -31,13 +31,13 @@ services:
 
   # Database Postgres
   db:
-    image: postgres
+    image: postgres:16
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB="${PG_DB_NAME}"
-      - POSTGRES_USER="${PG_USERNAME}"
-      - POSTGRES_PASSWORD="${PG_PASSWORD}"
+      - POSTGRES_DB=${PG_DB_NAME}
+      - POSTGRES_USER=${PG_USERNAME}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
     container_name: postgres_db
 
   # Django Application
@@ -51,8 +51,7 @@ services:
     container_name: django_app
     # command: python manage.py runserver 0.0.0.0:8000
     command: >
-      sh -c "python manage.py makemigrations &&
-             python manage.py migrate &&
+      sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
